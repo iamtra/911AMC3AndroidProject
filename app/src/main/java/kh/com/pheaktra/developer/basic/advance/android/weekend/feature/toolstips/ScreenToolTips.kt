@@ -50,7 +50,6 @@ fun ScreenToolTips(
         Pay to: 0987654321
         Account: 1234567890
         Amount: 1000000000
-        Note: This is a note
     """.trimIndent()
 
     Scaffold(
