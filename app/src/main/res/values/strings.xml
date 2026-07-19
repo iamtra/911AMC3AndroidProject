@@ -5,4 +5,5 @@
     <string name="lbl_icon_button">">Icon Button</string>
     <string name="lbl_confirm">Button</string>
     <string name="lbl_cancel">Cancel</string>
+    <string name="lbl_goodbye">Good Bye</string>
 </resources>
