@@ -69,7 +69,7 @@ fun ScreenToolTips(
                     }
                 },
                 title = {
-                    Text("TextField")
+                    Text("Tooltips")
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
                     containerColor = MaterialTheme.colorScheme.background
