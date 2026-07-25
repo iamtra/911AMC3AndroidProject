@@ -33,7 +33,9 @@ import kh.com.pheaktra.developer.basic.advance.android.weekend.ui.theme.AppTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ScreenCards() {
+fun ScreenCards(
+    onBack: () -> Unit
+) {
     val content = """
         Card behaves much like other containers in Compose. 
         You declare its content by calling other composables within it. 
@@ -44,7 +46,9 @@ fun ScreenCards() {
             LargeTopAppBar(
                 navigationIcon = {
                     IconButton(
-                        onClick = {},
+                        onClick = {
+                            onBack()
+                        },
                         colors = IconButtonDefaults.iconButtonColors(
                             containerColor = MaterialTheme.colorScheme.background.copy(0.5f),
                             contentColor = colorResource(R.color.black)
@@ -121,7 +125,7 @@ fun ScreenCards() {
 @Composable
 fun ScreenCardPreview() {
     AppTheme() {
-        ScreenCards()
+        ScreenCards(onBack = {})
     }
 }
 

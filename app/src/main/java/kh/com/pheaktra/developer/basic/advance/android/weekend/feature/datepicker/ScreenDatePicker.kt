@@ -1,25 +1,19 @@
 package kh.com.pheaktra.developer.basic.advance.android.weekend.feature.datepicker
 
-import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.material3.AssistChip
 import androidx.compose.material3.Button
 import androidx.compose.material3.DatePicker
 import androidx.compose.material3.DatePickerDefaults
 import androidx.compose.material3.DatePickerDialog
-import androidx.compose.material3.DatePickerFormatter
 import androidx.compose.material3.DisplayMode
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FilledTonalButton
-import androidx.compose.material3.FilterChip
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -33,7 +27,6 @@ import androidx.compose.material3.TopAppBarDefaults.topAppBarColors
 import androidx.compose.material3.rememberDatePickerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -53,7 +46,7 @@ import kh.com.pheaktra.developer.basic.advance.android.weekend.util.extension.to
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ScreenDatePickerDialog(
+fun ScreenDatePicker(
     onBack: () -> Unit
 ) {
     val state = rememberDatePickerState(
@@ -148,7 +141,7 @@ fun ScreenDatePickerDialog(
         if (isShowDatePicker) {
             DatePickerDialog(
                 onDismissRequest = {
-//                    isShowDatePicker = false
+                    isShowDatePicker = false
                 },
                 dismissButton = {
                     FilledTonalButton(
@@ -194,40 +187,10 @@ fun ScreenDatePickerDialog(
     }
 }
 
-/**
- * 1. June 6, 2026
- * 2. 06/06/2026
- * 3. 2026 06 01
- * 4. 2026-06-01
- * 5. 2026/06/01
- * 6. 2026.06.01
- * 7. 06 June 2026
- */
-
 @Composable
 @Preview(showBackground = false)
-fun ScreenDatePickerDialogPreview() {
-    AppTheme() {
-        ScreenDatePickerDialog { }
+fun ScreenDatePickerPreview() {
+    AppTheme {
+        ScreenDatePicker(onBack = {})
     }
 }
-
-/**
- * Homework Date Picker Component
- * 1. Create date picker without having dialog
- * 2. Create date picker with having dialog
- * 3. Create date picker dialog with input mode
- * 4. Research and develop date rank picker
- * 5. Apply date time format pattern
- * 6. Official document : https://developer.android.com/develop/ui/compose/components/datepickers
- */
-
-
-
-
-
-
-
-
-
-

@@ -8,12 +8,11 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
@@ -21,7 +20,6 @@ import androidx.compose.material3.TopAppBarDefaults.topAppBarColors
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -30,13 +28,17 @@ import kh.com.pheaktra.developer.basic.advance.android.weekend.ui.theme.AppTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ScreenFilledTonalButton() {
+fun ScreenOutlineButton(
+    onBack: () -> Unit
+) {
     Scaffold(
         topBar = {
             TopAppBar(
                 navigationIcon = {
                     IconButton(
-                        onClick = {}
+                        onClick = {
+                            onBack()
+                        }
                     ) {
                         Icon(
                             painter = painterResource(R.drawable.ic_arrow_back),
@@ -50,7 +52,7 @@ fun ScreenFilledTonalButton() {
                 ),
                 title = {
                     Text(
-                        text = "Fill Tonal Button"
+                        text = "Outline Button"
                     )
                 }
             )
@@ -63,22 +65,16 @@ fun ScreenFilledTonalButton() {
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
-            FilledTonalButton(
+            OutlinedButton(
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(56.dp)
                     .padding(horizontal = 16.dp),
                 shape = RoundedCornerShape(8.dp),
-                enabled = false,
+                enabled = true,
                 onClick = {
-                    println("=====> You click icon icon Button")
+                    println("=====> You click Outline Button")
                 },
-                colors = ButtonDefaults.filledTonalButtonColors(
-                    containerColor = MaterialTheme.colorScheme.primary,
-                    contentColor = colorResource(R.color.red),
-                    disabledContentColor = MaterialTheme.colorScheme.secondary,
-                    disabledContainerColor = MaterialTheme.colorScheme.secondaryContainer,
-                )
             ) {
                 Text("Transfer")
             }
@@ -90,8 +86,8 @@ fun ScreenFilledTonalButton() {
 
 @Preview(showBackground = true)
 @Composable
-fun ScreenFilledTonalButtonPreview() {
-    AppTheme() {
-        ScreenFilledTonalButton()
+fun ScreenOutlineButtonPreview() {
+    AppTheme {
+        ScreenOutlineButton(onBack = {})
     }
 }

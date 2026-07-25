@@ -33,14 +33,18 @@ import kh.com.pheaktra.developer.basic.advance.android.weekend.ui.theme.AppTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ScreenRow() {
+fun ScreenRow(
+    onBack: () -> Unit
+) {
     val textList = listOf("1", "2", "3", "4")
     Scaffold(
         topBar = {
             TopAppBar(
                 navigationIcon = {
                     IconButton(
-                        onClick = {}
+                        onClick = {
+                            onBack()
+                        }
                     ) {
                         Icon(
                             painter = painterResource(R.drawable.ic_arrow_back),
@@ -102,7 +106,7 @@ fun ScreenRow() {
 @Preview(showBackground = false)
 fun ScreenRowPreview() {
     AppTheme {
-        ScreenRow()
+        ScreenRow(onBack = {})
     }
 }
 

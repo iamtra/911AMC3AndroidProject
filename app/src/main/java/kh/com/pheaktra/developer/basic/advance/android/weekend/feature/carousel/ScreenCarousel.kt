@@ -33,7 +33,9 @@ import kh.com.pheaktra.developer.basic.advance.android.weekend.ui.theme.AppTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ScreenCarousel() {
+fun ScreenCarousel(
+    onBack: () -> Unit
+) {
     data class CarouselItem(
         val title: String,
         @DrawableRes val image: Int,
@@ -98,7 +100,9 @@ fun ScreenCarousel() {
             LargeTopAppBar(
                 navigationIcon = {
                     IconButton(
-                        onClick = {},
+                        onClick = {
+                            onBack()
+                        },
                         colors = IconButtonDefaults.iconButtonColors(
                             containerColor = MaterialTheme.colorScheme.background.copy(0.5f),
                             contentColor = colorResource(R.color.black)
@@ -174,6 +178,6 @@ fun ScreenCarousel() {
 @Composable
 fun ScreenCarouselPreview() {
     AppTheme() {
-        ScreenCarousel()
+        ScreenCarousel(onBack = {})
     }
 }

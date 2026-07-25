@@ -35,23 +35,23 @@ import kh.com.pheaktra.developer.basic.advance.android.weekend.ui.theme.AppTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ScreenBadge() {
+fun ScreenBadge(
+    onBack: () -> Unit
+) {
     Scaffold(
         topBar = {
             TopAppBar(
                 navigationIcon = {
-                    Icon(
-                        modifier = Modifier
-                            .size(48.dp)
-                            .clip(CircleShape)
-                            .clickable(
-                                onClick = {
-                                    println("====> You profile")
-                                }
-                            ),
-                        painter = painterResource(R.drawable.ic_arrow_back),
-                        contentDescription = "Back"
-                    )
+                    IconButton(
+                        onClick = {
+                            onBack()
+                        }
+                    ) {
+                        Icon(
+                            painter = painterResource(R.drawable.ic_arrow_back),
+                            contentDescription = "Back"
+                        )
+                    }
                 },
                 title = {
                     Row() {
@@ -163,7 +163,7 @@ fun ScreenBadge() {
 @Preview(showBackground = true)
 fun ScreenBadgePreview() {
     AppTheme {
-        ScreenBadge()
+        ScreenBadge(onBack = {})
     }
 }
 

@@ -29,35 +29,23 @@ import kh.com.pheaktra.developer.basic.advance.android.weekend.ui.theme.AppTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ScreenLazyRow() {
+fun ScreenLazyRow(
+    onBack: () -> Unit
+) {
     val names = listOf(
-        "Alex",
-        "Benjamin",
-        "Charlotte",
-        "Daniel",
-        "Emma",
-        "Felix",
-        "Grace",
-        "Henry",
-        "Isabella",
-        "Jack",
-        "Kevin",
-        "Luna",
-        "Michael",
-        "Nathan",
-        "Olivia",
-        "Pheaktra",
-        "Ryan",
-        "Sophia",
-        "Thomas",
-        "Victoria"
+        "Alex", "Benjamin", "Charlotte", "Daniel", "Emma",
+        "Felix", "Grace", "Henry", "Isabella", "Jack",
+        "Kevin", "Luna", "Michael", "Nathan", "Olivia",
+        "Pheaktra", "Ryan", "Sophia", "Thomas", "Victoria"
     )
     Scaffold(
         topBar = {
             TopAppBar(
                 navigationIcon = {
                     IconButton(
-                        onClick = {}
+                        onClick = {
+                            onBack()
+                        }
                     ) {
                         Icon(
                             painter = painterResource(R.drawable.ic_arrow_back),
@@ -80,23 +68,9 @@ fun ScreenLazyRow() {
                 .fillMaxWidth()
                 .padding(innerPadding),
         ) {
-//                item {
-//                    for (i in 1..100) {
-//                        Text("Hello $i")
-//                    }
-//                }
-//            items(100) {
-//
-//            }
             items(names.size) { index ->
                 ItemLazyColumn(index, names[index])
             }
-//            itemsIndexed(
-//                names,
-//                key = { _, item -> item}
-//            ) { index, item ->
-//                ItemLazyColumn(index, item)
-//            }
         }
     }
 }
@@ -117,14 +91,9 @@ fun ItemLazyColumn(index: Int, item: String) {
     ) {
         Text(
             modifier = Modifier.padding(start = 16.dp),
-            text = "${index+1}, $item"
+            text = "${index + 1}, $item"
         )
         Spacer(modifier = Modifier.weight(1f))
-//                    Icon(
-//                        modifier = Modifier.padding(end = 16.dp),
-//                        painter = painterResource(R.drawable.ic_arrow_forward_ios),
-//                        contentDescription = "hello "
-//                    )
         Icon(
             modifier = Modifier.padding(end = 16.dp),
             imageVector = Icons.Filled.Build,
@@ -135,13 +104,8 @@ fun ItemLazyColumn(index: Int, item: String) {
 
 @Composable
 @Preview(showBackground = true)
-fun ScreenScreenRowPreview() {
-    AppTheme() {
-        ScreenLazyRow()
+fun ScreenLazyRowPreview() {
+    AppTheme {
+        ScreenLazyRow(onBack = {})
     }
 }
-
-data class Khqr(
-    val name: String,
-
-)

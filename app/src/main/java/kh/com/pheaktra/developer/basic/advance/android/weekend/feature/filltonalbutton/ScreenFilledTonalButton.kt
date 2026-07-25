@@ -9,8 +9,8 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.ElevatedButton
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -29,13 +29,17 @@ import kh.com.pheaktra.developer.basic.advance.android.weekend.ui.theme.AppTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ScreenElevatedButton() {
+fun ScreenFilledTonalButton(
+    onBack: () -> Unit
+) {
     Scaffold(
         topBar = {
             TopAppBar(
                 navigationIcon = {
                     IconButton(
-                        onClick = {}
+                        onClick = {
+                            onBack()
+                        }
                     ) {
                         Icon(
                             painter = painterResource(R.drawable.ic_arrow_back),
@@ -49,7 +53,7 @@ fun ScreenElevatedButton() {
                 ),
                 title = {
                     Text(
-                        text = "Outline Button"
+                        text = "Filled Tonal Button"
                     )
                 }
             )
@@ -62,7 +66,7 @@ fun ScreenElevatedButton() {
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
-            ElevatedButton(
+            FilledTonalButton(
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(56.dp)
@@ -70,19 +74,8 @@ fun ScreenElevatedButton() {
                 shape = RoundedCornerShape(8.dp),
                 enabled = true,
                 onClick = {
-                    println("=====> You click icon icon Button")
+                    println("=====> You click Filled Tonal Button")
                 },
-                elevation = ButtonDefaults.buttonElevation(
-                    defaultElevation = 4.dp,
-                    pressedElevation = 8.dp,
-                    disabledElevation = 0.dp,
-                ),
-                colors = ButtonDefaults.filledTonalButtonColors(
-//                    containerColor = MaterialTheme.colorScheme.primary,
-//                    contentColor = colorResource(R.color.red),
-//                    disabledContentColor = MaterialTheme.colorScheme.secondary,
-//                    disabledContainerColor = MaterialTheme.colorScheme.secondaryContainer,
-                )
             ) {
                 Text("Transfer")
             }
@@ -94,8 +87,8 @@ fun ScreenElevatedButton() {
 
 @Preview(showBackground = true)
 @Composable
-fun ScreenElevatedButtonPreview() {
+fun ScreenFilledTonalButtonPreview() {
     AppTheme {
-        ScreenElevatedButton()
+        ScreenFilledTonalButton(onBack = {})
     }
 }

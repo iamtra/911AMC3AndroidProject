@@ -29,13 +29,17 @@ import kh.com.pheaktra.developer.basic.advance.android.weekend.ui.theme.AppTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ScreenElevatedButton() {
+fun ScreenElevatedButton(
+    onBack: () -> Unit
+) {
     Scaffold(
         topBar = {
             TopAppBar(
                 navigationIcon = {
                     IconButton(
-                        onClick = {}
+                        onClick = {
+                            onBack()
+                        }
                     ) {
                         Icon(
                             painter = painterResource(R.drawable.ic_arrow_back),
@@ -49,7 +53,7 @@ fun ScreenElevatedButton() {
                 ),
                 title = {
                     Text(
-                        text = "Fill Tonal Button"
+                        text = "Elevated Button"
                     )
                 }
             )
@@ -89,7 +93,7 @@ fun ScreenElevatedButton() {
 @Preview(showBackground = true)
 @Composable
 fun ScreenElevatedButtonPreview() {
-    AppTheme() {
-        ScreenElevatedButton()
+    AppTheme {
+        ScreenElevatedButton(onBack = {})
     }
 }

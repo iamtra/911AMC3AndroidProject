@@ -34,13 +34,17 @@ import kh.com.pheaktra.developer.basic.advance.android.weekend.ui.theme.AppTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ScreenIconButton() {
+fun ScreenIconButton(
+    onBack: () -> Unit
+) {
     Scaffold(
         topBar = {
             TopAppBar(
                 navigationIcon = {
                     IconButton(
-                        onClick = {}
+                        onClick = {
+                            onBack()
+                        }
                     ) {
                         Icon(
                             painter = painterResource(R.drawable.ic_arrow_back),
@@ -123,8 +127,8 @@ fun ScreenIconButton() {
 
 @Preview(showBackground = true)
 @Composable
-fun ScreenBoxPreview() {
-    AppTheme() {
-        ScreenIconButton()
+fun ScreenIconButtonPreview() {
+    AppTheme {
+        ScreenIconButton(onBack = {})
     }
 }

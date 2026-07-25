@@ -40,7 +40,9 @@ import kh.com.pheaktra.developer.basic.advance.android.weekend.ui.theme.AppTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ScreenSpacer() {
+fun ScreenSpacer(
+    onBack: () -> Unit
+) {
     val scrollState = rememberScrollState()
     val transactions = transactionList
     Scaffold(
@@ -48,7 +50,9 @@ fun ScreenSpacer() {
             CenterAlignedTopAppBar(
                 navigationIcon = {
                     IconButton(
-                        onClick = {}
+                        onClick = {
+                            onBack()
+                        }
                     ) {
                         Icon(
                             painter = painterResource(R.drawable.ic_arrow_back),
@@ -64,16 +68,16 @@ fun ScreenSpacer() {
                         onClick = {}
                     ) {
                         Icon(
-                            painter = painterResource(R.drawable.ic_arrow_back),
-                            contentDescription = "Back",
+                            painter = painterResource(R.drawable.ic_share),
+                            contentDescription = "Share",
                         )
                     }
                     IconButton(
                         onClick = {}
                     ) {
                         Icon(
-                            painter = painterResource(R.drawable.ic_arrow_back),
-                            contentDescription = "Back",
+                            painter = painterResource(R.drawable.ic_more_vert),
+                            contentDescription = "More",
                         )
                     }
                 },
@@ -223,6 +227,6 @@ fun TransactionCard(transaction: TransactionModel) {
 @Preview(showBackground = true)
 fun ScreenScreenSpacerPreview() {
     AppTheme {
-        ScreenSpacer()
+        ScreenSpacer(onBack = {})
     }
 }
