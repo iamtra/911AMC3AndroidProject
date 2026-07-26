@@ -1,0 +1,43 @@
+package kh.com.pheaktra.developer.basic.advance.android.weekend.navigation
+
+object NavKey {
+    data object Home
+    data object Badge
+    data object BottomSheet
+    data object Buttons
+    data object Cards
+    data object Carousel
+    data object CheckBox
+    data object Chip
+    data object ColumnScreen
+    data object DatePicker
+    data object Dialog
+    data object FullScreenDialog
+    data object ElevatedButton
+    data object FilledTonalButton
+    data object IconButton
+    data object LazyColumnScreen
+    data object LazyRowScreen
+    data object Menu
+    data object BottomNavigationBar
+    data object NavigationDrawer
+    data object OutlineButton
+    data object ProgressIndicator
+    data object Radio
+    data object RowScreen
+    data object ScaffoldScreen
+    data object MultiChoiceSegmentButton
+    data object SingleChoiceSegmentedButton
+    data object Slider
+    data object SnackBar
+    data object SpacerScreen
+    data object Switch
+    data object Tabs
+    data object TextButton
+    data object TextField
+    data object TimePicker
+    data object Toolbar
+    data object ToolTips
+    data object BoxScreen
+    data object TopAppBarScreen
+}
