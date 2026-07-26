@@ -4,5 +4,6 @@ data class MaterialComponentModel(
     val id: Int,
     val title: String,
     val description: String,
-    val route: String
+    val route: String,
+    val icon: String,
 )
