@@ -13,6 +13,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -36,6 +37,7 @@ import kh.com.pheaktra.developer.basic.advance.android.weekend.ui.theme.AppTheme
 @Composable
 fun ScreenHome(
     onClick: (route: Any) -> Unit,
+    onClickNotification: (String) -> Unit,
 ) {
     Scaffold(
         topBar = {
@@ -58,10 +60,24 @@ fun ScreenHome(
                         text = stringResource(R.string.app_name)
                     )
                 },
+                actions = {
+                    IconButton(
+                        onClick = {
+                            onClickNotification("Notification")
+                        }
+                    ) {
+                        Icon(
+                            modifier = Modifier.size(24.dp),
+                            painter = painterResource(R.drawable.ic_notification_on),
+                            contentDescription = "Light",
+                        )
+                    }
+                },
                 colors = TopAppBarDefaults.topAppBarColors(
                     containerColor = MaterialTheme.colorScheme.primary,
                     titleContentColor = MaterialTheme.colorScheme.onPrimary,
-                    navigationIconContentColor = Color.Yellow
+                    navigationIconContentColor = Color.Yellow,
+                    actionIconContentColor = MaterialTheme.colorScheme.onPrimary
                 )
             )
         }
@@ -119,7 +135,8 @@ fun ScreenHome(
 fun ScreenHomePreview() {
     AppTheme {
         ScreenHome(
-            onClick = {}
+            onClick = {},
+            onClickNotification = {}
         )
     }
 }

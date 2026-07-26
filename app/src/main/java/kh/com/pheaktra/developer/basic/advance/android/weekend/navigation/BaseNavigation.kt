@@ -34,6 +34,7 @@ import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.lazyrow.S
 import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.menu.ScreenMenu
 import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.navigationbar.ScreenBottomNavigationBar
 import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.navigationdrawer.ScreenNavigationDrawer
+import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.notification.ScreenNotificationList
 import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.outlinebutton.ScreenOutlineButton
 import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.progressindicator.ScreenProgressIndicator
 import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.radio.ScreenRadio
@@ -68,6 +69,9 @@ fun BaseNavigation() {
                     onClick = { route ->
                         backStack.add(route)
                     },
+                    onClickNotification = { title ->
+                        backStack.add(NavKey.NotificationList(title))
+                    }
                 )
             }
 
@@ -225,6 +229,13 @@ fun BaseNavigation() {
 
             entry<NavKey.TopAppBarScreen> {
                 ScreenTopAppBar(onBack = { backStack.removeLastOrNull() })
+            }
+
+            entry<NavKey.NotificationList> { key ->
+                ScreenNotificationList(
+                    title = key.title,
+                    onBack = { backStack.removeLastOrNull() }
+                )
             }
         }
     )

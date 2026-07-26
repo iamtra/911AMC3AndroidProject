@@ -40,4 +40,6 @@ object NavKey {
     data object ToolTips
     data object BoxScreen
     data object TopAppBarScreen
+
+    data class NotificationList(val title: String)
 }
