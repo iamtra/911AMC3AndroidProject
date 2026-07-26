@@ -28,12 +28,14 @@ import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import kh.com.pheaktra.developer.basic.advance.android.weekend.R
+import kh.com.pheaktra.developer.basic.advance.android.weekend.model.MaterialComponentModel
 import kh.com.pheaktra.developer.basic.advance.android.weekend.ui.theme.AppTheme
 import kh.com.pheaktra.developer.basic.advance.android.weekend.ui.theme.Yellow60
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ScreenSwitchComponent(
+    item: MaterialComponentModel,
     onBack: () -> Unit = {}
 ) {
     var isEnableNotification by remember { mutableStateOf(false) }
@@ -54,7 +56,7 @@ fun ScreenSwitchComponent(
                     }
                 },
                 title = {
-                    Text("Switch component")
+                    Text(item.title)
                 }
             )
         }
@@ -141,6 +143,14 @@ fun ScreenSwitchComponent(
 @Composable
 fun ScreenSwitchComponentPreview() {
     AppTheme {
-        ScreenSwitchComponent()
+        ScreenSwitchComponent(
+            item = MaterialComponentModel(
+                1,
+                "Switch",
+                "Switch description",
+                { "" },
+                ""
+            )
+        )
     }
 }

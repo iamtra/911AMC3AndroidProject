@@ -34,12 +34,14 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import kh.com.pheaktra.developer.basic.advance.android.weekend.R
+import kh.com.pheaktra.developer.basic.advance.android.weekend.model.MaterialComponentModel
 import kh.com.pheaktra.developer.basic.advance.android.weekend.ui.theme.AppTheme
 import kh.com.pheaktra.developer.basic.advance.android.weekend.ui.theme.Blue40
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ScreenDialog(
+    item: MaterialComponentModel,
     onBack: () -> Unit,
 ) {
     val context = LocalContext.current
@@ -78,7 +80,7 @@ fun ScreenDialog(
                 ),
                 title = {
                     Text(
-                        text = "Dialog"
+                        text = item.title
                     )
                 }
             )
@@ -155,6 +157,15 @@ fun ScreenDialog(
 @Composable
 fun ScreenDialogPreview() {
     AppTheme {
-        ScreenDialog(onBack = {})
+        ScreenDialog(
+            item = MaterialComponentModel(
+                1,
+                "Dialog",
+                "Dialog description",
+                { "" },
+                ""
+            ),
+            onBack = {}
+        )
     }
 }

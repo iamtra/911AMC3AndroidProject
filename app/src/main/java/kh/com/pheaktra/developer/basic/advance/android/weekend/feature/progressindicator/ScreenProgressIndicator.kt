@@ -38,6 +38,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.DialogProperties
 import kh.com.pheaktra.developer.basic.advance.android.weekend.R
+import kh.com.pheaktra.developer.basic.advance.android.weekend.model.MaterialComponentModel
 import kh.com.pheaktra.developer.basic.advance.android.weekend.ui.theme.AppTheme
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -45,6 +46,7 @@ import kotlinx.coroutines.launch
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ScreenProgressIndicator(
+    item: MaterialComponentModel,
     onBack: () -> Unit,
 ) {
     val scope = rememberCoroutineScope()
@@ -78,7 +80,7 @@ fun ScreenProgressIndicator(
                 ),
                 title = {
                     Text(
-                        text = "Progress Indicator"
+                        text = item.title
                     )
                 }
             )
@@ -173,6 +175,15 @@ suspend fun loadProgress(updateProgress: (Float) -> Unit) {
 @Composable
 fun ScreenProgressIndicatorPreview() {
     AppTheme {
-        ScreenProgressIndicator(onBack = {})
+        ScreenProgressIndicator(
+            item = MaterialComponentModel(
+                1,
+                "Progress Indicator",
+                "Progress Indicator description",
+                { "" },
+                ""
+            ),
+            onBack = {}
+        )
     }
 }

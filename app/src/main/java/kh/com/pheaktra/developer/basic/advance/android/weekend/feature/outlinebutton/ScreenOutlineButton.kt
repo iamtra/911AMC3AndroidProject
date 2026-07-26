@@ -24,11 +24,13 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import kh.com.pheaktra.developer.basic.advance.android.weekend.R
+import kh.com.pheaktra.developer.basic.advance.android.weekend.model.MaterialComponentModel
 import kh.com.pheaktra.developer.basic.advance.android.weekend.ui.theme.AppTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ScreenOutlineButton(
+    item: MaterialComponentModel,
     onBack: () -> Unit
 ) {
     Scaffold(
@@ -52,7 +54,7 @@ fun ScreenOutlineButton(
                 ),
                 title = {
                     Text(
-                        text = "Outline Button"
+                        text = item.title
                     )
                 }
             )
@@ -88,6 +90,15 @@ fun ScreenOutlineButton(
 @Composable
 fun ScreenOutlineButtonPreview() {
     AppTheme {
-        ScreenOutlineButton(onBack = {})
+        ScreenOutlineButton(
+            item = MaterialComponentModel(
+                1,
+                "Outline Button",
+                "Outline Button description",
+                { "" },
+                ""
+            ),
+            onBack = {}
+        )
     }
 }

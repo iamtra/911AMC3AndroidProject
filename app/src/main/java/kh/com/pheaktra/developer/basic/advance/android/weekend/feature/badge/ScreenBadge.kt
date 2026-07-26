@@ -1,13 +1,10 @@
 package kh.com.pheaktra.developer.basic.advance.android.weekend.feature.badge
 
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Badge
 import androidx.compose.material3.BadgedBox
 import androidx.compose.material3.BottomAppBar
@@ -22,20 +19,20 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults.topAppBarColors
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import kh.com.pheaktra.developer.basic.advance.android.weekend.R
+import kh.com.pheaktra.developer.basic.advance.android.weekend.model.MaterialComponentModel
 import kh.com.pheaktra.developer.basic.advance.android.weekend.ui.theme.AppTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ScreenBadge(
+    item: MaterialComponentModel,
     onBack: () -> Unit
 ) {
     Scaffold(
@@ -59,7 +56,7 @@ fun ScreenBadge(
                         Column() {
                             Text(
                                 modifier = Modifier.fillMaxWidth(),
-                                text = stringResource(R.string.lbl_badge),
+                                text = item.title,
                                 textAlign = TextAlign.Start,
                                 fontWeight = FontWeight.Bold
                             )
@@ -163,7 +160,16 @@ fun ScreenBadge(
 @Preview(showBackground = true)
 fun ScreenBadgePreview() {
     AppTheme {
-        ScreenBadge(onBack = {})
+        ScreenBadge(
+            item = MaterialComponentModel(
+                1,
+                "Badge",
+                "Badge description",
+                { "" },
+                ""
+            ),
+            onBack = {}
+        )
     }
 }
 

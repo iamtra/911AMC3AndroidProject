@@ -29,11 +29,13 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import kh.com.pheaktra.developer.basic.advance.android.weekend.R
+import kh.com.pheaktra.developer.basic.advance.android.weekend.model.MaterialComponentModel
 import kh.com.pheaktra.developer.basic.advance.android.weekend.ui.theme.AppTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ScreenCards(
+    item: MaterialComponentModel,
     onBack: () -> Unit
 ) {
     val content = """
@@ -66,7 +68,7 @@ fun ScreenCards(
                 ),
                 title = {
                     Text(
-                        text = "Card Group"
+                        text = item.title
                     )
                 }
             )
@@ -125,7 +127,16 @@ fun ScreenCards(
 @Composable
 fun ScreenCardPreview() {
     AppTheme() {
-        ScreenCards(onBack = {})
+        ScreenCards(
+            item = MaterialComponentModel(
+                1,
+                "Cards",
+                "Cards description",
+                { "" },
+                ""
+            ),
+            onBack = {}
+        )
     }
 }
 

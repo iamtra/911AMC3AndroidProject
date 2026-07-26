@@ -26,11 +26,13 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import kh.com.pheaktra.developer.basic.advance.android.weekend.R
+import kh.com.pheaktra.developer.basic.advance.android.weekend.model.MaterialComponentModel
 import kh.com.pheaktra.developer.basic.advance.android.weekend.ui.theme.AppTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ScreenLazyColumn(
+    item: MaterialComponentModel,
     onBack: () -> Unit
 ) {
     val names = listOf(
@@ -59,7 +61,7 @@ fun ScreenLazyColumn(
                     titleContentColor = MaterialTheme.colorScheme.primary,
                 ),
                 title = {
-                    Text("Lazy Column Layout")
+                    Text(item.title)
                 }
             )
         },
@@ -109,6 +111,15 @@ fun ItemLazyColumn(index: Int, item: String) {
 @Preview(showBackground = true)
 fun ScreenLazyColumnPreview() {
     AppTheme {
-        ScreenLazyColumn(onBack = {})
+        ScreenLazyColumn(
+            item = MaterialComponentModel(
+                1,
+                "Lazy Column",
+                "Lazy Column description",
+                { "" },
+                ""
+            ),
+            onBack = {}
+        )
     }
 }

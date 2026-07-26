@@ -39,6 +39,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import kh.com.pheaktra.developer.basic.advance.android.weekend.R
+import kh.com.pheaktra.developer.basic.advance.android.weekend.model.MaterialComponentModel
 import kh.com.pheaktra.developer.basic.advance.android.weekend.ui.theme.AppTheme
 import kh.com.pheaktra.developer.basic.advance.android.weekend.util.common.DateFormat
 import kh.com.pheaktra.developer.basic.advance.android.weekend.util.datetime.DatetimeFormatter
@@ -47,6 +48,7 @@ import kh.com.pheaktra.developer.basic.advance.android.weekend.util.extension.to
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ScreenDatePicker(
+    item: MaterialComponentModel,
     onBack: () -> Unit
 ) {
     val state = rememberDatePickerState(
@@ -79,7 +81,7 @@ fun ScreenDatePicker(
                 ),
                 title = {
                     Text(
-                        text = "DatePicker"
+                        text = item.title
                     )
                 }
             )
@@ -191,6 +193,15 @@ fun ScreenDatePicker(
 @Preview(showBackground = false)
 fun ScreenDatePickerPreview() {
     AppTheme {
-        ScreenDatePicker(onBack = {})
+        ScreenDatePicker(
+            item = MaterialComponentModel(
+                1,
+                "DatePicker",
+                "DatePicker description",
+                { "" },
+                ""
+            ),
+            onBack = {}
+        )
     }
 }

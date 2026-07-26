@@ -33,11 +33,13 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import kh.com.pheaktra.developer.basic.advance.android.weekend.R
+import kh.com.pheaktra.developer.basic.advance.android.weekend.model.MaterialComponentModel
 import kh.com.pheaktra.developer.basic.advance.android.weekend.ui.theme.AppTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ScreenCheckBox(
+    item: MaterialComponentModel,
     onBack: () -> Unit
 ) {
     data class CheckBoxItem(
@@ -137,7 +139,7 @@ fun ScreenCheckBox(
                 ),
                 title = {
                     Text(
-                        text = "CheckBox Component"
+                        text = item.title
                     )
                 }
             )
@@ -190,6 +192,14 @@ fun ScreenCheckBox(
 @Composable
 fun ScreenCheckBoxPreview() {
     AppTheme() {
-        ScreenCheckBox() {}
+        ScreenCheckBox(
+            item = MaterialComponentModel(
+                1,
+                "CheckBox",
+                "CheckBox description",
+                { "" },
+                ""
+            )
+        ) {}
     }
 }

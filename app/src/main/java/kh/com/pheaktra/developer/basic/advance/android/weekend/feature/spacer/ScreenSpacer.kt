@@ -33,6 +33,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import kh.com.pheaktra.developer.basic.advance.android.weekend.R
+import kh.com.pheaktra.developer.basic.advance.android.weekend.model.MaterialComponentModel
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -41,6 +42,7 @@ import kh.com.pheaktra.developer.basic.advance.android.weekend.ui.theme.AppTheme
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ScreenSpacer(
+    item: MaterialComponentModel,
     onBack: () -> Unit
 ) {
     val scrollState = rememberScrollState()
@@ -61,7 +63,7 @@ fun ScreenSpacer(
                     }
                 },
                 title = {
-                    Text("Spacer")
+                    Text(item.title)
                 },
                 actions = {
                     IconButton(
@@ -227,6 +229,15 @@ fun TransactionCard(transaction: TransactionModel) {
 @Preview(showBackground = true)
 fun ScreenScreenSpacerPreview() {
     AppTheme {
-        ScreenSpacer(onBack = {})
+        ScreenSpacer(
+            item = MaterialComponentModel(
+                1,
+                "Spacer",
+                "Spacer description",
+                { "" },
+                ""
+            ),
+            onBack = {}
+        )
     }
 }

@@ -21,6 +21,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import kh.com.pheaktra.developer.basic.advance.android.weekend.R
+import kh.com.pheaktra.developer.basic.advance.android.weekend.model.MaterialComponentModel
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import kh.com.pheaktra.developer.basic.advance.android.weekend.ui.theme.AppTheme
@@ -28,6 +29,7 @@ import kh.com.pheaktra.developer.basic.advance.android.weekend.ui.theme.AppTheme
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ScreenColumn(
+    item: MaterialComponentModel,
     onBack: () -> Unit
 ) {
     Scaffold(
@@ -50,7 +52,7 @@ fun ScreenColumn(
                     titleContentColor = MaterialTheme.colorScheme.primary,
                 ),
                 title = {
-                    Text("Column Layout")
+                    Text(item.title)
                 }
             )
         },
@@ -95,7 +97,16 @@ fun ScreenColumn(
 @Preview(showBackground = true)
 fun ScreenScreenColumnPreview() {
     AppTheme {
-        ScreenColumn(onBack = {})
+        ScreenColumn(
+            item = MaterialComponentModel(
+                1,
+                "Column",
+                "Column description",
+                { "" },
+                ""
+            ),
+            onBack = {}
+        )
     }
 }
 

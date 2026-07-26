@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -31,11 +32,14 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import kh.com.pheaktra.developer.basic.advance.android.weekend.R
+import kh.com.pheaktra.developer.basic.advance.android.weekend.model.MaterialComponentModel
 import kh.com.pheaktra.developer.basic.advance.android.weekend.ui.theme.AppTheme
 import kotlinx.coroutines.launch
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ScreenToolTips(
+    item: MaterialComponentModel,
     onBack: () -> Unit = {}
 ) {
     val scope = rememberCoroutineScope()
@@ -68,7 +72,7 @@ fun ScreenToolTips(
                     }
                 },
                 title = {
-                    Text("Tooltips")
+                    Text(item.title)
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
                     containerColor = MaterialTheme.colorScheme.background
@@ -158,6 +162,14 @@ fun ScreenToolTips(
 @Composable
 private fun ScreenToolTipsPreview() {
     AppTheme {
-        ScreenToolTips()
+        ScreenToolTips(
+            item = MaterialComponentModel(
+                1,
+                "Tooltips",
+                "Tooltips description",
+                { "" },
+                ""
+            )
+        )
     }
 }

@@ -25,11 +25,13 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import kh.com.pheaktra.developer.basic.advance.android.weekend.R
+import kh.com.pheaktra.developer.basic.advance.android.weekend.model.MaterialComponentModel
 import kh.com.pheaktra.developer.basic.advance.android.weekend.ui.theme.AppTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ScreenFilledTonalButton(
+    item: MaterialComponentModel,
     onBack: () -> Unit
 ) {
     Scaffold(
@@ -53,7 +55,7 @@ fun ScreenFilledTonalButton(
                 ),
                 title = {
                     Text(
-                        text = "Filled Tonal Button"
+                        text = item.title
                     )
                 }
             )
@@ -89,6 +91,15 @@ fun ScreenFilledTonalButton(
 @Composable
 fun ScreenFilledTonalButtonPreview() {
     AppTheme {
-        ScreenFilledTonalButton(onBack = {})
+        ScreenFilledTonalButton(
+            item = MaterialComponentModel(
+                1,
+                "Filled Tonal Button",
+                "Filled Tonal Button description",
+                { "" },
+                ""
+            ),
+            onBack = {}
+        )
     }
 }

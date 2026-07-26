@@ -28,12 +28,14 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import kh.com.pheaktra.developer.basic.advance.android.weekend.R
+import kh.com.pheaktra.developer.basic.advance.android.weekend.model.MaterialComponentModel
 import kh.com.pheaktra.developer.basic.advance.android.weekend.ui.theme.AppTheme
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ScreenSnackBar(
+    item: MaterialComponentModel,
     onBack: () -> Unit
 ) {
     val scope = rememberCoroutineScope()
@@ -69,7 +71,7 @@ fun ScreenSnackBar(
                 ),
                 title = {
                     Text(
-                        text = "slider"
+                        text = item.title
                     )
                 }
             )
@@ -109,6 +111,13 @@ fun ScreenSnackBar(
 fun ScreenSnackBarPreview() {
     AppTheme {
         ScreenSnackBar(
+            item = MaterialComponentModel(
+                1,
+                "SnackBar",
+                "SnackBar description",
+                { "" },
+                ""
+            ),
             onBack = {}
         )
     }

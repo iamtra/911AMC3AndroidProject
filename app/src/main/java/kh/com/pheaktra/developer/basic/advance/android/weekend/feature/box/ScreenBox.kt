@@ -23,11 +23,13 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import kh.com.pheaktra.developer.basic.advance.android.weekend.R
+import kh.com.pheaktra.developer.basic.advance.android.weekend.model.MaterialComponentModel
 import kh.com.pheaktra.developer.basic.advance.android.weekend.ui.theme.AppTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ScreenBox(
+    item: MaterialComponentModel,
     onBack: () -> Unit
 ) {
     Scaffold(
@@ -50,7 +52,7 @@ fun ScreenBox(
                     titleContentColor = MaterialTheme.colorScheme.primary,
                 ),
                 title = {
-                    Text("Box")
+                    Text(item.title)
                 }
             )
         },
@@ -108,6 +110,15 @@ fun ScreenBox(
 @Composable
 fun ScreenBoxPreview() {
     AppTheme {
-        ScreenBox(onBack = {})
+        ScreenBox(
+            item = MaterialComponentModel(
+                1,
+                "Box",
+                "Box description",
+                { "" },
+                ""
+            ),
+            onBack = {}
+        )
     }
 }

@@ -35,11 +35,13 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import kh.com.pheaktra.developer.basic.advance.android.weekend.R
+import kh.com.pheaktra.developer.basic.advance.android.weekend.model.MaterialComponentModel
 import kh.com.pheaktra.developer.basic.advance.android.weekend.ui.theme.AppTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ScreenToolbar(
+    item: MaterialComponentModel,
     onBack: () -> Unit = {}
 ) {
     val scrollBehavior = BottomAppBarDefaults.exitAlwaysScrollBehavior()
@@ -74,7 +76,7 @@ fun ScreenToolbar(
                     }
                 },
                 title = {
-                    Text("Toolbar")
+                    Text(item.title)
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
                     containerColor = MaterialTheme.colorScheme.background
@@ -143,7 +145,15 @@ fun ScreenToolbar(
 @Composable
 private fun ScreenToolbarPreview() {
     AppTheme {
-        ScreenToolbar()
+        ScreenToolbar(
+            item = MaterialComponentModel(
+                1,
+                "Toolbar",
+                "Toolbar description",
+                { "" },
+                ""
+            )
+        )
     }
 }
 

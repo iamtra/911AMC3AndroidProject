@@ -23,11 +23,13 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import kh.com.pheaktra.developer.basic.advance.android.weekend.R
+import kh.com.pheaktra.developer.basic.advance.android.weekend.model.MaterialComponentModel
 import kh.com.pheaktra.developer.basic.advance.android.weekend.ui.theme.AppTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ScreenTextButton(
+    item: MaterialComponentModel,
     onBack: () -> Unit
 ) {
     Scaffold(
@@ -51,7 +53,7 @@ fun ScreenTextButton(
                 ),
                 title = {
                     Text(
-                        text = "Text Button"
+                        text = item.title
                     )
                 }
             )
@@ -85,6 +87,15 @@ fun ScreenTextButton(
 @Composable
 fun ScreenTextButtonPreview() {
     AppTheme {
-        ScreenTextButton(onBack = {})
+        ScreenTextButton(
+            item = MaterialComponentModel(
+                1,
+                "Text Button",
+                "Text Button description",
+                { "" },
+                ""
+            ),
+            onBack = {}
+        )
     }
 }

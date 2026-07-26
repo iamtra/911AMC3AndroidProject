@@ -21,11 +21,13 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import kh.com.pheaktra.developer.basic.advance.android.weekend.R
+import kh.com.pheaktra.developer.basic.advance.android.weekend.model.MaterialComponentModel
 import kh.com.pheaktra.developer.basic.advance.android.weekend.ui.theme.AppTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ScreenScaffold(
+    item: MaterialComponentModel,
     onBack: () -> Unit
 ) {
     Scaffold(
@@ -48,7 +50,7 @@ fun ScreenScaffold(
                     titleContentColor = MaterialTheme.colorScheme.primary,
                 ),
                 title = {
-                    Text("Scaffold")
+                    Text(item.title)
                 }
             )
         },
@@ -95,6 +97,15 @@ fun ScreenScaffold(
 @Preview(showBackground = true)
 fun ScreenScaffoldPreview() {
     AppTheme {
-        ScreenScaffold(onBack = {})
+        ScreenScaffold(
+            item = MaterialComponentModel(
+                1,
+                "Scaffold",
+                "Scaffold description",
+                { "" },
+                ""
+            ),
+            onBack = {}
+        )
     }
 }

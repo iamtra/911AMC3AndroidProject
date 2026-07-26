@@ -32,11 +32,13 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import kh.com.pheaktra.developer.basic.advance.android.weekend.R
+import kh.com.pheaktra.developer.basic.advance.android.weekend.model.MaterialComponentModel
 import kh.com.pheaktra.developer.basic.advance.android.weekend.ui.theme.AppTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ScreenSingleChoiceSegmentedButton(
+    item: MaterialComponentModel,
     onBack: () -> Unit
 ) {
     var selectedIndex by remember { mutableIntStateOf(0) }
@@ -79,7 +81,7 @@ fun ScreenSingleChoiceSegmentedButton(
                 ),
                 title = {
                     Text(
-                        text = "Single Choice Segmented Button"
+                        text = item.title
                     )
                 }
             )
@@ -304,6 +306,15 @@ val transactionList = listOf(
 @Composable
 fun ScreenSingleChoiceSegmentedButtonPreview() {
     AppTheme() {
-        ScreenSingleChoiceSegmentedButton(onBack = {})
+        ScreenSingleChoiceSegmentedButton(
+            item = MaterialComponentModel(
+                1,
+                "Single Choice Segmented Button",
+                "Single Choice Segmented Button description",
+                { "" },
+                ""
+            ),
+            onBack = {}
+        )
     }
 }

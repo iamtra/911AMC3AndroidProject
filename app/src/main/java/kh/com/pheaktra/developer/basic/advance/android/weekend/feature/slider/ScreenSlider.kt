@@ -37,12 +37,14 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import kh.com.pheaktra.developer.basic.advance.android.weekend.R
+import kh.com.pheaktra.developer.basic.advance.android.weekend.model.MaterialComponentModel
 import kh.com.pheaktra.developer.basic.advance.android.weekend.ui.theme.AppTheme
 import kotlin.math.roundToInt
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ScreenSlider(
+    item: MaterialComponentModel,
     onBack: () -> Unit
 ) {
     val sliderState = rememberSliderState(
@@ -86,7 +88,7 @@ fun ScreenSlider(
                 ),
                 title = {
                     Text(
-                        text = "slider"
+                        text = item.title
                     )
                 }
             )
@@ -246,6 +248,13 @@ fun ScreenSlider(
 fun ScreenSliderPreview() {
     AppTheme {
         ScreenSlider(
+            item = MaterialComponentModel(
+                1,
+                "Slider",
+                "Slider description",
+                { "" },
+                ""
+            ),
             onBack = {}
         )
     }

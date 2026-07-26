@@ -29,11 +29,13 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import kh.com.pheaktra.developer.basic.advance.android.weekend.R
+import kh.com.pheaktra.developer.basic.advance.android.weekend.model.MaterialComponentModel
 import kh.com.pheaktra.developer.basic.advance.android.weekend.ui.theme.AppTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ScreenCarousel(
+    item: MaterialComponentModel,
     onBack: () -> Unit
 ) {
     data class CarouselItem(
@@ -120,7 +122,7 @@ fun ScreenCarousel(
                 ),
                 title = {
                     Text(
-                        text = "Carousel Component"
+                        text = item.title
                     )
                 }
             )
@@ -178,6 +180,15 @@ fun ScreenCarousel(
 @Composable
 fun ScreenCarouselPreview() {
     AppTheme() {
-        ScreenCarousel(onBack = {})
+        ScreenCarousel(
+            item = MaterialComponentModel(
+                1,
+                "Carousel",
+                "Carousel description",
+                { "" },
+                ""
+            ),
+            onBack = {}
+        )
     }
 }

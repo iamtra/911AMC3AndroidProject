@@ -21,18 +21,20 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import kh.com.pheaktra.developer.basic.advance.android.weekend.R
+import kh.com.pheaktra.developer.basic.advance.android.weekend.model.MaterialComponentModel
 import kh.com.pheaktra.developer.basic.advance.android.weekend.ui.theme.AppTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ScreenTopAppBar(
+    item: MaterialComponentModel,
     onBack: () -> Unit
 ) {
     Scaffold(
         topBar = {
             TopAppBar(
                 title = {
-                    Text(text = "Top App Bar")
+                    Text(text = item.title)
                 },
                 navigationIcon = {
                     IconButton(
@@ -120,6 +122,15 @@ fun ScreenTopAppBar(
 @Preview(showBackground = true)
 fun ScreenTopAppBarPreview() {
     AppTheme {
-        ScreenTopAppBar(onBack = {})
+        ScreenTopAppBar(
+            item = MaterialComponentModel(
+                1,
+                "Top App Bar",
+                "Top App Bar description",
+                { "" },
+                ""
+            ),
+            onBack = {}
+        )
     }
 }

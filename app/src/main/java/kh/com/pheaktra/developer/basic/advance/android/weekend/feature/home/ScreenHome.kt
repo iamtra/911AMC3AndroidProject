@@ -36,7 +36,7 @@ import kh.com.pheaktra.developer.basic.advance.android.weekend.ui.theme.AppTheme
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ScreenHome(
-    onClick: (route: Any) -> Unit,
+    onClick: (item: MaterialComponentModel) -> Unit,
     onClickNotification: (String) -> Unit,
 ) {
     Scaffold(
@@ -92,7 +92,7 @@ fun ScreenHome(
                         .fillMaxWidth()
                         .clickable(
                             onClick = {
-                                onClick(item.route)
+                                onClick(item)
                             }
                         )
                         .padding(16.dp),

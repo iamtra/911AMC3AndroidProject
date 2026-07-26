@@ -50,6 +50,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.DialogProperties
 import kh.com.pheaktra.developer.basic.advance.android.weekend.R
+import kh.com.pheaktra.developer.basic.advance.android.weekend.model.MaterialComponentModel
 import kh.com.pheaktra.developer.basic.advance.android.weekend.ui.theme.AppTheme
 import kh.com.pheaktra.developer.basic.advance.android.weekend.ui.theme.Blue40
 import kotlinx.coroutines.delay
@@ -58,6 +59,7 @@ import kotlinx.coroutines.launch
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ScreenFullScreenDialog(
+    item: MaterialComponentModel,
     onBack: () -> Unit,
 ) {
     val context = LocalContext.current
@@ -89,7 +91,7 @@ fun ScreenFullScreenDialog(
                 ),
                 title = {
                     Text(
-                        text = "Full Screen Dialog"
+                        text = item.title
                     )
                 }
             )
@@ -189,7 +191,15 @@ fun ScreenFullScreenDialog(
 @Composable
 fun ScreenFullScreenDialogPreview() {
     AppTheme {
-        ScreenFullScreenDialog {
+        ScreenFullScreenDialog(
+            item = MaterialComponentModel(
+                1,
+                "Full Screen Dialog",
+                "Full Screen Dialog description",
+                { "" },
+                ""
+            )
+        ) {
 
         }
     }

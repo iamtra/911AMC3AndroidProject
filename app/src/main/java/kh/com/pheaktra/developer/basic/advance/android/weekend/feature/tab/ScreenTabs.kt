@@ -34,6 +34,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import kh.com.pheaktra.developer.basic.advance.android.weekend.R
+import kh.com.pheaktra.developer.basic.advance.android.weekend.model.MaterialComponentModel
 import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.navigationbar.CONTENT_TYPE
 import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.navigationbar.FavoriteScreen
 import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.navigationbar.HomeScreen
@@ -43,6 +44,7 @@ import kh.com.pheaktra.developer.basic.advance.android.weekend.ui.theme.AppTheme
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ScreenTabs(
+    item: MaterialComponentModel,
     onBack: () -> Unit = {}
 ) {
     var selectedTabIndex by remember { mutableIntStateOf(0) }
@@ -79,7 +81,7 @@ fun ScreenTabs(
                     }
                 },
                 title = {
-                    Text("Tab Component")
+                    Text(item.title)
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
                     containerColor = MaterialTheme.colorScheme.background
@@ -176,6 +178,14 @@ enum class Tab
 @Composable
 fun ScreenTabsPreview() {
     AppTheme {
-        ScreenTabs()
+        ScreenTabs(
+            item = MaterialComponentModel(
+                1,
+                "Tabs",
+                "Tabs description",
+                { "" },
+                ""
+            )
+        )
     }
 }

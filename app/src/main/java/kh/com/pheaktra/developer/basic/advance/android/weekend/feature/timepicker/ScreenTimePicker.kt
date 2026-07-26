@@ -38,12 +38,14 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import kh.com.pheaktra.developer.basic.advance.android.weekend.R
+import kh.com.pheaktra.developer.basic.advance.android.weekend.model.MaterialComponentModel
 import kh.com.pheaktra.developer.basic.advance.android.weekend.ui.theme.AppTheme
 import java.util.Calendar
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ScreenTimePicker(
+    item: MaterialComponentModel,
     onBack: () -> Unit
 ) {
     val calendar = Calendar.getInstance()
@@ -78,7 +80,7 @@ fun ScreenTimePicker(
                 ),
                 title = {
                     Text(
-                        text = "TimePicker"
+                        text = item.title
                     )
                 }
             )
@@ -164,7 +166,15 @@ fun ScreenTimePicker(
 @Preview(showBackground = false)
 fun ScreenTimePickerPreview() {
     AppTheme() {
-        ScreenTimePicker { }
+        ScreenTimePicker(
+            item = MaterialComponentModel(
+                1,
+                "TimePicker",
+                "TimePicker description",
+                { "" },
+                ""
+            )
+        ) { }
     }
 }
 
