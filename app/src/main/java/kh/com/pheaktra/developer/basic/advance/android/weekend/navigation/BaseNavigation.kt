@@ -1,5 +1,9 @@
 package kh.com.pheaktra.developer.basic.advance.android.weekend.navigation
 
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.slideInHorizontally
+import androidx.compose.animation.slideOutHorizontally
+import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -55,13 +59,31 @@ import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.tooltips.
 import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.topbar.ScreenTopAppBar
 import kh.com.pheaktra.developer.basic.advance.android.weekend.model.MaterialComponentModel
 import kh.com.pheaktra.developer.basic.advance.android.weekend.model.route
-
+private const val ANIMATION_DURATION = 300
 @Composable
 fun BaseNavigation() {
     val backStack = remember { mutableStateListOf<Any>(NavKey.Home) }
 
     NavDisplay(
         backStack = backStack,
+        transitionSpec = {
+            slideInHorizontally(
+                initialOffsetX = { fullWidth -> fullWidth },
+                animationSpec = tween(durationMillis = ANIMATION_DURATION),
+            ) togetherWith slideOutHorizontally(
+                targetOffsetX = { fullWidth -> -fullWidth/3 },
+                animationSpec = tween(durationMillis = ANIMATION_DURATION),
+            )
+        },
+        popTransitionSpec = {
+            slideInHorizontally(
+                initialOffsetX = { fullWidth -> -fullWidth / 3 },
+                animationSpec = tween(durationMillis = ANIMATION_DURATION),
+            ) togetherWith slideOutHorizontally(
+                targetOffsetX = { fullWidth -> fullWidth },
+                animationSpec = tween(durationMillis = ANIMATION_DURATION),
+            )
+        },
         onBack = {
             backStack.removeLastOrNull()
         },

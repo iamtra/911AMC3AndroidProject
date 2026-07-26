@@ -47,13 +47,15 @@ fun ScreenBox(
                         )
                     }
                 },
-                colors = topAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.primaryContainer,
-                    titleContentColor = MaterialTheme.colorScheme.primary,
-                ),
                 title = {
                     Text(item.title)
-                }
+                },
+                colors = topAppBarColors(
+                    containerColor = MaterialTheme.colorScheme.primary,
+                    titleContentColor = MaterialTheme.colorScheme.onPrimary,
+                    navigationIconContentColor = MaterialTheme.colorScheme.onPrimary,
+                    actionIconContentColor = MaterialTheme.colorScheme.onPrimary
+                )
             )
         },
     ) { innerPadding ->
@@ -65,11 +67,12 @@ fun ScreenBox(
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             Box(
-                modifier = Modifier.background(
-                    color = MaterialTheme.colorScheme.primary.copy(alpha = 0.5f),
-                    shape =
-                        RoundedCornerShape(16.dp)
-                )
+                modifier = Modifier
+                    .background(
+                        color = MaterialTheme.colorScheme.primary.copy(alpha = 0.5f),
+                        shape =
+                            RoundedCornerShape(16.dp)
+                    )
                     .size(128.dp),
                 contentAlignment = Alignment.Center
             ) {

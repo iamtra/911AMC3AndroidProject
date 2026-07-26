@@ -109,7 +109,7 @@ fun ScreenNavigationDrawer(
     ModalNavigationDrawer(
         drawerState = drawerState,
         drawerContent = {
-            ModalDrawerSheet() {
+            ModalDrawerSheet {
                 DrawerContent(
                     drawerList = drawerList,
                     scrollState = scrollState,
@@ -139,8 +139,10 @@ fun ScreenNavigationDrawer(
                         }
                     },
                     colors = topAppBarColors(
-                        containerColor = MaterialTheme.colorScheme.primaryContainer,
-                        titleContentColor = MaterialTheme.colorScheme.primary,
+                        containerColor = MaterialTheme.colorScheme.primary,
+                        titleContentColor = MaterialTheme.colorScheme.onPrimary,
+                        navigationIconContentColor = MaterialTheme.colorScheme.onPrimary,
+                        actionIconContentColor = MaterialTheme.colorScheme.onPrimary
                     ),
                     title = {
                         Text(
