@@ -32,6 +32,7 @@ import coil.compose.AsyncImage
 import kh.com.pheaktra.developer.basic.advance.android.weekend.R
 import kh.com.pheaktra.developer.basic.advance.android.weekend.model.MaterialComponentModel
 import kh.com.pheaktra.developer.basic.advance.android.weekend.ui.theme.AppTheme
+import kh.com.pheaktra.developer.basic.advance.android.weekend.util.SystemBarController
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -39,6 +40,11 @@ fun ScreenHome(
     onClick: (item: MaterialComponentModel) -> Unit,
     onClickNotification: (String) -> Unit,
 ) {
+
+    SystemBarController(
+        useDarkStatusBarIcons = false,
+        useDarkNavigationBarIcons = false
+    )
     Scaffold(
         topBar = {
             TopAppBar(
