@@ -11,10 +11,11 @@ import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.navigation3.runtime.NavEntry
+import androidx.navigation3.runtime.entryProvider
 import androidx.navigation3.ui.NavDisplay
 import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.badge.ScreenBadge
 import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.bottomsheet.ScreenBottomSheet
+import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.box.ScreenBox
 import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.buttons.ScreenButton
 import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.cards.ScreenCards
 import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.carousel.ScreenCarousel
@@ -50,7 +51,6 @@ import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.textfield
 import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.timepicker.ScreenTimePicker
 import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.toolbar.ScreenToolbar
 import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.tooltips.ScreenToolTips
-import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.box.ScreenBox
 import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.topbar.ScreenTopAppBar
 
 @Composable
@@ -62,62 +62,169 @@ fun BaseNavigation() {
         onBack = {
             backStack.removeLastOrNull()
         },
-        entryProvider = { key ->
-            when (key) {
-                is NavKey.Home -> NavEntry(key) {
-                    ScreenHome(
-                        onClick = { route ->
-                            backStack.add(route)
-                        }
-                    )
-                }
+        entryProvider = entryProvider {
+            entry<NavKey.Home> {
+                ScreenHome(
+                    onClick = { route ->
+                        backStack.add(route)
+                    },
+                )
+            }
 
-                is NavKey.Badge -> NavEntry(key) { ScreenBadge(onBack = { backStack.removeLastOrNull() }) }
-                is NavKey.BottomSheet -> NavEntry(key) { ScreenBottomSheet(onBack = { backStack.removeLastOrNull() }) }
-                is NavKey.Buttons -> NavEntry(key) { ScreenButton(onBack = { backStack.removeLastOrNull() }) }
-                is NavKey.Cards -> NavEntry(key) { ScreenCards(onBack = { backStack.removeLastOrNull() }) }
-                is NavKey.Carousel -> NavEntry(key) { ScreenCarousel(onBack = { backStack.removeLastOrNull() }) }
-                is NavKey.CheckBox -> NavEntry(key) { ScreenCheckBox(onBack = { backStack.removeLastOrNull() }) }
-                is NavKey.Chip -> NavEntry(key) { ScreenChip(onBack = { backStack.removeLastOrNull() }) }
-                is NavKey.ColumnScreen -> NavEntry(key) { ScreenColumn(onBack = { backStack.removeLastOrNull() }) }
-                is NavKey.DatePicker -> NavEntry(key) { ScreenDatePicker(onBack = { backStack.removeLastOrNull() }) }
-                is NavKey.Dialog -> NavEntry(key) { ScreenDialog(onBack = { backStack.removeLastOrNull() }) }
-                is NavKey.FullScreenDialog -> NavEntry(key) { ScreenFullScreenDialog(onBack = { backStack.removeLastOrNull() }) }
-                is NavKey.ElevatedButton -> NavEntry(key) { ScreenElevatedButton(onBack = { backStack.removeLastOrNull() }) }
-                is NavKey.FilledTonalButton -> NavEntry(key) { ScreenFilledTonalButton(onBack = { backStack.removeLastOrNull() }) }
-                is NavKey.IconButton -> NavEntry(key) { ScreenIconButton(onBack = { backStack.removeLastOrNull() }) }
-                is NavKey.LazyColumnScreen -> NavEntry(key) { ScreenLazyColumn(onBack = { backStack.removeLastOrNull() }) }
-                is NavKey.LazyRowScreen -> NavEntry(key) { ScreenLazyRow(onBack = { backStack.removeLastOrNull() }) }
-                is NavKey.Menu -> NavEntry(key) { ScreenMenu(onBack = { backStack.removeLastOrNull() }) }
-                is NavKey.BottomNavigationBar -> NavEntry(key) { ScreenBottomNavigationBar(onBack = { backStack.removeLastOrNull() }) }
-                is NavKey.NavigationDrawer -> NavEntry(key) { ScreenNavigationDrawer(onBack = { backStack.removeLastOrNull() }) }
-                is NavKey.OutlineButton -> NavEntry(key) { ScreenOutlineButton(onBack = { backStack.removeLastOrNull() }) }
-                is NavKey.ProgressIndicator -> NavEntry(key) { ScreenProgressIndicator(onBack = { backStack.removeLastOrNull() }) }
-                is NavKey.Radio -> NavEntry(key) { ScreenRadio(onBack = { backStack.removeLastOrNull() }) }
-                is NavKey.RowScreen -> NavEntry(key) { ScreenRow(onBack = { backStack.removeLastOrNull() }) }
-                is NavKey.ScaffoldScreen -> NavEntry(key) { ScreenScaffold(onBack = { backStack.removeLastOrNull() }) }
-                is NavKey.MultiChoiceSegmentButton -> NavEntry(key) { ScreenMultiChoiceSegmentButton(onBack = { backStack.removeLastOrNull() }) }
-                is NavKey.SingleChoiceSegmentedButton -> NavEntry(key) { ScreenSingleChoiceSegmentedButton(onBack = { backStack.removeLastOrNull() }) }
-                is NavKey.Slider -> NavEntry(key) { ScreenSlider(onBack = { backStack.removeLastOrNull() }) }
-                is NavKey.SnackBar -> NavEntry(key) { ScreenSnackBar(onBack = { backStack.removeLastOrNull() }) }
-                is NavKey.SpacerScreen -> NavEntry(key) { ScreenSpacer(onBack = { backStack.removeLastOrNull() }) }
-                is NavKey.Switch -> NavEntry(key) { ScreenSwitchComponent(onBack = { backStack.removeLastOrNull() }) }
-                is NavKey.Tabs -> NavEntry(key) { ScreenTabs(onBack = { backStack.removeLastOrNull() }) }
-                is NavKey.TextButton -> NavEntry(key) { ScreenTextButton(onBack = { backStack.removeLastOrNull() }) }
-                is NavKey.TextField -> NavEntry(key) { ScreenTextField(onBack = { backStack.removeLastOrNull() }) }
-                is NavKey.TimePicker -> NavEntry(key) { ScreenTimePicker(onBack = { backStack.removeLastOrNull() }) }
-                is NavKey.Toolbar -> NavEntry(key) { ScreenToolbar(onBack = { backStack.removeLastOrNull() }) }
-                is NavKey.ToolTips -> NavEntry(key) { ScreenToolTips(onBack = { backStack.removeLastOrNull() }) }
-                is NavKey.BoxScreen -> NavEntry(key) { ScreenBox(onBack = { backStack.removeLastOrNull() }) }
-                is NavKey.TopAppBarScreen -> NavEntry(key) { ScreenTopAppBar(onBack = { backStack.removeLastOrNull() }) }
+            entry<NavKey.Badge> {
+                ScreenBadge(onBack = { backStack.removeLastOrNull() })
+            }
 
-                else -> NavEntry(Unit) {
-                    NavigationNotFound(
-                        onBack = {
-                            backStack.removeLastOrNull()
-                        }
-                    )
-                }
+            entry<NavKey.BottomSheet> {
+                ScreenBottomSheet(onBack = { backStack.removeLastOrNull() })
+            }
+
+            entry<NavKey.Buttons> {
+                ScreenButton(onBack = { backStack.removeLastOrNull() })
+            }
+
+            entry<NavKey.Cards> {
+                ScreenCards(onBack = { backStack.removeLastOrNull() })
+            }
+
+            entry<NavKey.Carousel> {
+                ScreenCarousel(onBack = { backStack.removeLastOrNull() })
+            }
+
+            entry<NavKey.CheckBox> {
+                ScreenCheckBox(onBack = { backStack.removeLastOrNull() })
+            }
+
+            entry<NavKey.Chip> {
+                ScreenChip(onBack = { backStack.removeLastOrNull() })
+            }
+
+            entry<NavKey.ColumnScreen> {
+                ScreenColumn(onBack = { backStack.removeLastOrNull() })
+            }
+
+            entry<NavKey.DatePicker> {
+                ScreenDatePicker(onBack = { backStack.removeLastOrNull() })
+            }
+
+            entry<NavKey.Dialog> {
+                ScreenDialog(onBack = { backStack.removeLastOrNull() })
+            }
+
+            entry<NavKey.FullScreenDialog> {
+                ScreenFullScreenDialog(onBack = { backStack.removeLastOrNull() })
+            }
+
+            entry<NavKey.ElevatedButton> {
+                ScreenElevatedButton(onBack = { backStack.removeLastOrNull() })
+            }
+
+            entry<NavKey.FilledTonalButton> {
+                ScreenFilledTonalButton(onBack = { backStack.removeLastOrNull() })
+            }
+
+            entry<NavKey.IconButton> {
+                ScreenIconButton(onBack = { backStack.removeLastOrNull() })
+            }
+
+            entry<NavKey.LazyColumnScreen> {
+                ScreenLazyColumn(onBack = { backStack.removeLastOrNull() })
+            }
+
+            entry<NavKey.LazyRowScreen> {
+                ScreenLazyRow(onBack = { backStack.removeLastOrNull() })
+            }
+
+            entry<NavKey.Menu> {
+                ScreenMenu(onBack = { backStack.removeLastOrNull() })
+            }
+
+            entry<NavKey.BottomNavigationBar> {
+                ScreenBottomNavigationBar(onBack = { backStack.removeLastOrNull() })
+            }
+
+            entry<NavKey.NavigationDrawer> {
+                ScreenNavigationDrawer(onBack = { backStack.removeLastOrNull() })
+            }
+
+            entry<NavKey.OutlineButton> {
+                ScreenOutlineButton(onBack = { backStack.removeLastOrNull() })
+            }
+
+            entry<NavKey.ProgressIndicator> {
+                ScreenProgressIndicator(onBack = { backStack.removeLastOrNull() })
+            }
+
+            entry<NavKey.Radio> {
+                ScreenRadio(onBack = { backStack.removeLastOrNull() })
+            }
+
+            entry<NavKey.RowScreen> {
+                ScreenRow(onBack = { backStack.removeLastOrNull() })
+            }
+
+            entry<NavKey.ScaffoldScreen> {
+                ScreenScaffold(onBack = { backStack.removeLastOrNull() })
+            }
+
+            entry<NavKey.MultiChoiceSegmentButton> {
+                ScreenMultiChoiceSegmentButton(
+                    onBack = { backStack.removeLastOrNull() },
+                )
+            }
+
+            entry<NavKey.SingleChoiceSegmentedButton> {
+                ScreenSingleChoiceSegmentedButton(
+                    onBack = { backStack.removeLastOrNull() },
+                )
+            }
+
+            entry<NavKey.Slider> {
+                ScreenSlider(onBack = { backStack.removeLastOrNull() })
+            }
+
+            entry<NavKey.SnackBar> {
+                ScreenSnackBar(onBack = { backStack.removeLastOrNull() })
+            }
+
+            entry<NavKey.SpacerScreen> {
+                ScreenSpacer(onBack = { backStack.removeLastOrNull() })
+            }
+
+            entry<NavKey.Switch> {
+                ScreenSwitchComponent(onBack = { backStack.removeLastOrNull() })
+            }
+
+            entry<NavKey.Tabs> {
+                ScreenTabs(onBack = { backStack.removeLastOrNull() })
+            }
+
+            entry<NavKey.TextButton> {
+                ScreenTextButton(onBack = { backStack.removeLastOrNull() })
+            }
+
+            entry<NavKey.TextField> {
+                ScreenTextField(onBack = { backStack.removeLastOrNull() })
+            }
+
+            entry<NavKey.TimePicker> {
+                ScreenTimePicker(onBack = { backStack.removeLastOrNull() })
+            }
+
+            entry<NavKey.Toolbar> {
+                ScreenToolbar(onBack = { backStack.removeLastOrNull() })
+            }
+
+            entry<NavKey.ToolTips> {
+                ScreenToolTips(onBack = { backStack.removeLastOrNull() })
+            }
+
+            entry<NavKey.BoxScreen> {
+                ScreenBox(onBack = { backStack.removeLastOrNull() })
+            }
+
+            entry<NavKey.TopAppBarScreen> {
+                ScreenTopAppBar(onBack = { backStack.removeLastOrNull() })
             }
         }
     )
