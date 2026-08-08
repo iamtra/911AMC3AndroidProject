@@ -3,7 +3,7 @@ package kh.com.pheaktra.developer.basic.advance.android.weekend
 /**
  * Class Draff Planing for next 2 - 3 months
  * 1. Jetpack compose navigation (Done)
- * 2. MVVM with static
+ * 2. MVVM with static (Model View ViewModel)
  *      - UI
  *      - State
  *      - Repository pattern
@@ -24,7 +24,7 @@ package kh.com.pheaktra.developer.basic.advance.android.weekend
  *
  * ================== Compose Lifecycle owner ================== Done
  *
- * ================== Understanding color in material  ==================
+ * ================== Understanding color in material  ================== (Check apply light/Dark color)
  *
  */
 
@@ -32,4 +32,10 @@ package kh.com.pheaktra.developer.basic.advance.android.weekend
  * Research
  * 1. Design Pattern
  * 2. Architecture
+ */
+
+/**
+ * R & D
+ * 1. Research and develop related android ViewModel
+ * 2. Compose ViewModel
  */

@@ -23,6 +23,7 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
@@ -40,20 +41,67 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.compose.LifecycleEventEffect
 import androidx.lifecycle.compose.LocalLifecycleOwner
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.AsyncImage
 import kh.com.pheaktra.developer.basic.advance.android.weekend.R
 import kh.com.pheaktra.developer.basic.advance.android.weekend.model.MaterialComponentModel
 import kh.com.pheaktra.developer.basic.advance.android.weekend.ui.theme.AppTheme
+import kh.com.pheaktra.developer.basic.advance.android.weekend.util.BaseUiState
+import kh.com.pheaktra.developer.basic.advance.android.weekend.util.Loading
+import kh.com.pheaktra.developer.basic.advance.android.weekend.util.LoadingUtil
 import kh.com.pheaktra.developer.basic.advance.android.weekend.util.SystemBarController
+import kotlinx.coroutines.delay
+import kotlin.time.Duration.Companion.microseconds
+import kotlin.time.Duration.Companion.milliseconds
+import kotlin.time.Duration.Companion.minutes
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ScreenHome(
     onClick: (item: MaterialComponentModel) -> Unit,
     onClickNotification: (String) -> Unit,
+    homeVM: HomeVM = viewModel()
 ) {
     val lifecycleOwner = LocalLifecycleOwner.current
+
+    val stateUiState by homeVM.stateUiState.collectAsStateWithLifecycle()
+
     var triggerState by remember { mutableStateOf(false) }
+
+    LaunchedEffect(Unit) {
+        homeVM.fetchComponentList()
+    }
+
+    LaunchedEffect(stateUiState) {
+        when (val state = stateUiState) {
+            is BaseUiState.Loading -> {
+                LoadingUtil.showLoading()
+            }
+
+            is BaseUiState.Success -> {
+                LoadingUtil.hideLoading()
+                println("====> Data: ${state.data}")
+            }
+
+            is BaseUiState.Failure -> {
+                println("====> Code: ${state.code}")
+                println("====> Message: ${state.message}")
+                LoadingUtil.hideLoading()
+            }
+
+            is BaseUiState.Exception -> {
+                println("====> Throwable: ${state.throwable}")
+                LoadingUtil.hideLoading()
+            }
+
+            is BaseUiState.Empty -> {
+                LoadingUtil.hideLoading()
+            }
+
+            else -> {}
+        }
+    }
 
     LaunchedEffect(Unit) {
         println("=====> LaunchedEffect")
@@ -90,6 +138,11 @@ fun ScreenHome(
             lifecycleOwner.lifecycle.removeObserver(observer)
         }
     }
+
+    data class Account(
+        val accountNo: String,
+
+        )
 
 //    DisposableEffect(lifecycleOwner) {
 //        val observer = LifecycleEventObserver { _, event ->
@@ -190,49 +243,57 @@ fun ScreenHome(
             }
         }
     ) { paddingValues ->
-        LazyColumn(
-            modifier = Modifier
-                .padding(paddingValues)
-        ) {
-            items(componentList) { item ->
-                Row(
+        when (stateUiState) {
+            is BaseUiState.Success -> {
+                LazyColumn(
                     modifier = Modifier
-                        .fillMaxWidth()
-                        .clickable(
-                            onClick = {
-                                onClick(item)
-                            }
-                        )
-                        .padding(16.dp),
-                    verticalAlignment = Alignment.CenterVertically
+                        .padding(paddingValues)
                 ) {
-                    AsyncImage(
-                        model = item.icon,
-                        contentDescription = null,
-                        modifier = Modifier.size(24.dp)
-                    )
-                    Column(
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .padding(start = 16.dp)
-                    ) {
-                        Text(
-                            text = item.title,
-                            style = MaterialTheme.typography.titleMedium,
-                            fontWeight = FontWeight.Bold
-                        )
-                        Text(
-                            text = item.description,
-                            style = MaterialTheme.typography.bodySmall,
-                            color = MaterialTheme.colorScheme.onSurfaceVariant
+                    items(componentList) { item ->
+                        Row(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .clickable(
+                                    onClick = {
+                                        onClick(item)
+                                    }
+                                )
+                                .padding(16.dp),
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            AsyncImage(
+                                model = item.icon,
+                                contentDescription = null,
+                                modifier = Modifier.size(24.dp)
+                            )
+                            Column(
+                                modifier = Modifier
+                                    .fillMaxSize()
+                                    .padding(start = 16.dp)
+                            ) {
+                                Text(
+                                    text = item.title,
+                                    style = MaterialTheme.typography.titleMedium,
+                                    fontWeight = FontWeight.Bold
+                                )
+                                Text(
+                                    text = item.description,
+                                    style = MaterialTheme.typography.bodySmall,
+                                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                                )
+                            }
+                        }
+                        HorizontalDivider(
+                            modifier = Modifier.padding(horizontal = 16.dp),
+                            thickness = 0.5.dp,
+                            color = MaterialTheme.colorScheme.outlineVariant
                         )
                     }
                 }
-                HorizontalDivider(
-                    modifier = Modifier.padding(horizontal = 16.dp),
-                    thickness = 0.5.dp,
-                    color = MaterialTheme.colorScheme.outlineVariant
-                )
+            }
+
+            else -> {
+
             }
         }
     }

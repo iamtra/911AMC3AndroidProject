@@ -8,6 +8,8 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.isSystemInDarkTheme
 import kh.com.pheaktra.developer.basic.advance.android.weekend.navigation.BaseNavigation
 import kh.com.pheaktra.developer.basic.advance.android.weekend.ui.theme.AppTheme
+import kh.com.pheaktra.developer.basic.advance.android.weekend.util.Loading
+import kh.com.pheaktra.developer.basic.advance.android.weekend.util.LoadingUtil
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,10 +26,14 @@ class MainActivity : ComponentActivity() {
         )
         setContent {
             AppTheme {
+                if (LoadingUtil.isLoading.value) {
+                    Loading()
+                }
                 BaseNavigation()
             }
         }
     }
+
     override fun onStart() {
         super.onStart()
         println("=====> onStart")

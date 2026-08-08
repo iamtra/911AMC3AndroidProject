@@ -42,6 +42,7 @@ import kh.com.pheaktra.developer.basic.advance.android.weekend.model.MaterialCom
 import kh.com.pheaktra.developer.basic.advance.android.weekend.ui.theme.AppTheme
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import kotlin.time.Duration.Companion.milliseconds
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -110,7 +111,7 @@ fun ScreenProgressIndicator(
                     onClick = {
                         isShowDialog = true
                         scope.launch {
-                            delay(2000)
+                            delay(2000.milliseconds)
                             isShowDialog = false
                         }
                     }
