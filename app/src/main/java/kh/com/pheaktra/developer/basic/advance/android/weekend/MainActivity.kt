@@ -5,6 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.SystemBarStyle
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.isSystemInDarkTheme
 import kh.com.pheaktra.developer.basic.advance.android.weekend.navigation.BaseNavigation
 import kh.com.pheaktra.developer.basic.advance.android.weekend.ui.theme.AppTheme
 
@@ -26,5 +27,24 @@ class MainActivity : ComponentActivity() {
                 BaseNavigation()
             }
         }
+    }
+    override fun onStart() {
+        super.onStart()
+        println("=====> onStart")
+    }
+
+    override fun onPause() {
+        super.onPause()
+//        println("=====> onPause")
+    }
+
+    override fun onResume() {
+        super.onResume()
+//        println("=====> onResume")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+//        println("=====> onDestroy")
     }
 }

@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -20,6 +21,13 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -28,6 +36,10 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleEventObserver
+import androidx.lifecycle.compose.LifecycleEventEffect
+import androidx.lifecycle.compose.LocalLifecycleOwner
 import coil.compose.AsyncImage
 import kh.com.pheaktra.developer.basic.advance.android.weekend.R
 import kh.com.pheaktra.developer.basic.advance.android.weekend.model.MaterialComponentModel
@@ -40,6 +52,82 @@ fun ScreenHome(
     onClick: (item: MaterialComponentModel) -> Unit,
     onClickNotification: (String) -> Unit,
 ) {
+    val lifecycleOwner = LocalLifecycleOwner.current
+    var triggerState by remember { mutableStateOf(false) }
+
+    LaunchedEffect(Unit) {
+        println("=====> LaunchedEffect")
+    }
+
+    LaunchedEffect(key1 = triggerState) {
+        println("=====> LaunchedEffect $triggerState")
+    }
+
+    LifecycleEventEffect(Lifecycle.Event.ON_START) {
+        println("=====> LifecycleEventEffect ON_START")
+    }
+
+    LifecycleEventEffect(Lifecycle.Event.ON_STOP) {
+        println("=====> LifecycleEventEffect ON_STOP")
+    }
+
+    LifecycleEventEffect(Lifecycle.Event.ON_PAUSE) {
+        println("=====> LifecycleEventEffect ON_PAUSE")
+    }
+
+    LifecycleEventEffect(Lifecycle.Event.ON_RESUME) {
+        println("=====> LifecycleEventEffect ON_RESUME")
+    }
+
+    DisposableEffect(lifecycleOwner) {
+        val observer = LifecycleEventObserver { _, event ->
+            if (event == Lifecycle.Event.ON_DESTROY) {
+                println("=====> ON_DESTROY")
+            }
+        }
+        lifecycleOwner.lifecycle.addObserver(observer)
+        onDispose {
+            lifecycleOwner.lifecycle.removeObserver(observer)
+        }
+    }
+
+//    DisposableEffect(lifecycleOwner) {
+//        val observer = LifecycleEventObserver { _, event ->
+//            when (event) {
+//                Lifecycle.Event.ON_CREATE -> {
+//                    println("=====> ON_CREATE")
+//                }
+//
+//                Lifecycle.Event.ON_START -> {
+//                    println("=====> ON_START")
+//                }
+//
+//                Lifecycle.Event.ON_RESUME -> {
+//                    println("=====> ON_RESUME")
+//                }
+//
+//                Lifecycle.Event.ON_PAUSE -> {
+//                    println("=====> ON_PAUSE")
+//                }
+//
+//                Lifecycle.Event.ON_STOP -> {
+//                    println("=====> ON_STOP")
+//                }
+//
+//                Lifecycle.Event.ON_DESTROY -> {
+//                    println("=====> ON_DESTROY")
+//                }
+//
+//                Lifecycle.Event.ON_ANY -> Unit
+//            }
+//        }
+//
+//        lifecycleOwner.lifecycle.addObserver(observer)
+//
+//        onDispose {
+//            lifecycleOwner.lifecycle.removeObserver(observer)
+//        }
+//    }
 
     SystemBarController(
         useDarkStatusBarIcons = false,
@@ -86,6 +174,20 @@ fun ScreenHome(
                     actionIconContentColor = MaterialTheme.colorScheme.onPrimary
                 )
             )
+        },
+        floatingActionButton = {
+            FloatingActionButton(
+                onClick = {
+                    triggerState = !triggerState
+                },
+                containerColor = MaterialTheme.colorScheme.primary
+            ) {
+                Icon(
+                    painter = painterResource(R.drawable.ic_share),
+                    contentDescription = "Share",
+                    tint = MaterialTheme.colorScheme.onPrimary
+                )
+            }
         }
     ) { paddingValues ->
         LazyColumn(

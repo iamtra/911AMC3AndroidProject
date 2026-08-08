@@ -19,6 +19,7 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.TopAppBarDefaults.topAppBarColors
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -26,6 +27,9 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleEventObserver
+import androidx.lifecycle.compose.LocalLifecycleOwner
 import kh.com.pheaktra.developer.basic.advance.android.weekend.R
 import kh.com.pheaktra.developer.basic.advance.android.weekend.model.MaterialComponentModel
 import kh.com.pheaktra.developer.basic.advance.android.weekend.ui.theme.AppTheme
@@ -36,6 +40,46 @@ fun ScreenBadge(
     item: MaterialComponentModel,
     onBack: () -> Unit
 ) {
+    val lifecycleOwner = LocalLifecycleOwner.current
+
+    DisposableEffect(lifecycleOwner) {
+        val observer = LifecycleEventObserver { _, event ->
+            when (event) {
+                Lifecycle.Event.ON_CREATE -> {
+                    println("=====> ON_CREATE")
+                }
+
+                Lifecycle.Event.ON_START -> {
+                    println("=====> ON_START")
+                }
+
+                Lifecycle.Event.ON_RESUME -> {
+                    println("=====> ON_RESUME")
+                }
+
+                Lifecycle.Event.ON_PAUSE -> {
+                    println("=====> ON_PAUSE")
+                }
+
+                Lifecycle.Event.ON_STOP -> {
+                    println("=====> ON_STOP")
+                }
+
+                Lifecycle.Event.ON_DESTROY -> {
+                    println("=====> ON_DESTROY")
+                }
+
+                Lifecycle.Event.ON_ANY -> Unit
+            }
+        }
+
+        lifecycleOwner.lifecycle.addObserver(observer)
+
+        onDispose {
+            lifecycleOwner.lifecycle.removeObserver(observer)
+        }
+    }
+
     Scaffold(
         topBar = {
             TopAppBar(
@@ -109,7 +153,7 @@ fun ScreenBadge(
                         )
                     }
                 },
-                colors = TopAppBarDefaults.topAppBarColors(
+                colors = topAppBarColors(
                     containerColor = MaterialTheme.colorScheme.primary,
                     titleContentColor = MaterialTheme.colorScheme.onPrimary,
                     navigationIconContentColor = MaterialTheme.colorScheme.onPrimary,
