@@ -270,4 +270,11 @@ val componentList = listOf(
         NavKey::TopAppBarScreen,
         "https://img.icons8.com/color/96/top-menu.png",
     ),
+    MaterialComponentModel(
+        39,
+        "State (ViewModel)",
+        "Study how to manege state in Jetpack compose",
+        NavKey::StateViewModelScreen,
+        "https://img.icons8.com/color/96/top-menu.png",
+    ),
 )

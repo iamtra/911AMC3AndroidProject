@@ -43,5 +43,7 @@ object NavKey {
     data class BoxScreen(val data: MaterialComponentModel)
     data class TopAppBarScreen(val data: MaterialComponentModel)
 
+    data class StateViewModelScreen(val data: MaterialComponentModel)
+
     data class NotificationList(val title: String)
 }

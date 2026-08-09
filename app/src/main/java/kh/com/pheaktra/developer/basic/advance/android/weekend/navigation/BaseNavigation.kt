@@ -49,6 +49,7 @@ import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.segmented
 import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.slider.ScreenSlider
 import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.snackbar.ScreenSnackBar
 import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.spacer.ScreenSpacer
+import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.stateviewmodel.ScreenStateViewModel
 import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.switchcomponent.ScreenSwitchComponent
 import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.tab.ScreenTabs
 import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.textbutton.ScreenTextButton
@@ -368,6 +369,12 @@ fun BaseNavigation() {
             entry<NavKey.NotificationList> { key ->
                 ScreenNotificationList(
                     title = key.title,
+                    onBack = { backStack.removeLastOrNull() }
+                )
+            }
+            entry<NavKey.StateViewModelScreen> { key ->
+                ScreenStateViewModel(
+                    item = key.data,
                     onBack = { backStack.removeLastOrNull() }
                 )
             }
