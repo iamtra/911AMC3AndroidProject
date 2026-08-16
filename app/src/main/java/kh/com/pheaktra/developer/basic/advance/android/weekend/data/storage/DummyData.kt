@@ -1,4 +1,4 @@
-package kh.com.pheaktra.developer.basic.advance.android.weekend.feature.home
+package kh.com.pheaktra.developer.basic.advance.android.weekend.data.storage
 
 import kh.com.pheaktra.developer.basic.advance.android.weekend.model.MaterialComponentModel
 import kh.com.pheaktra.developer.basic.advance.android.weekend.navigation.NavKey

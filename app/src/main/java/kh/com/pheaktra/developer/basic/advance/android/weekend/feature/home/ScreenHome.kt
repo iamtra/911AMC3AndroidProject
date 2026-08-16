@@ -23,9 +23,7 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -45,16 +43,12 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.AsyncImage
 import kh.com.pheaktra.developer.basic.advance.android.weekend.R
+import kh.com.pheaktra.developer.basic.advance.android.weekend.data.storage.componentList
 import kh.com.pheaktra.developer.basic.advance.android.weekend.model.MaterialComponentModel
 import kh.com.pheaktra.developer.basic.advance.android.weekend.ui.theme.AppTheme
 import kh.com.pheaktra.developer.basic.advance.android.weekend.util.BaseUiState
-import kh.com.pheaktra.developer.basic.advance.android.weekend.util.Loading
 import kh.com.pheaktra.developer.basic.advance.android.weekend.util.LoadingUtil
 import kh.com.pheaktra.developer.basic.advance.android.weekend.util.SystemBarController
-import kotlinx.coroutines.delay
-import kotlin.time.Duration.Companion.microseconds
-import kotlin.time.Duration.Companion.milliseconds
-import kotlin.time.Duration.Companion.minutes
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -69,9 +63,9 @@ fun ScreenHome(
 
     var triggerState by remember { mutableStateOf(false) }
 
-    LaunchedEffect(Unit) {
-        homeVM.fetchComponentList()
-    }
+//    LaunchedEffect(Unit) {
+//        homeVM.fetchComponentList()
+//    }
 
     LaunchedEffect(stateUiState) {
         when (val state = stateUiState) {

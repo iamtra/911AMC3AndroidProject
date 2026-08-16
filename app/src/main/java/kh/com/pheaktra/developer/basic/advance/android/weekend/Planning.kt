@@ -28,7 +28,11 @@ package kh.com.pheaktra.developer.basic.advance.android.weekend
  *
  * ================== Understanding color in material  ================== (Check apply light/Dark color)
  *
- * ================== Multiple Module  ==================
+ * ================== MVVM with static  ================== In Processing
+ *
+ * ==================  Repository  ================== (Done)
+ *
+ * ================== Retrofit API ================== 2026 08, 16
  *
  * ================== Multiple Module  ==================
  *
