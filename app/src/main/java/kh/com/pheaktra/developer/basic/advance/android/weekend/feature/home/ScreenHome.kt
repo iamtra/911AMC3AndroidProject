@@ -44,7 +44,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.AsyncImage
 import kh.com.pheaktra.developer.basic.advance.android.weekend.R
 import kh.com.pheaktra.developer.basic.advance.android.weekend.data.storage.componentList
-import kh.com.pheaktra.developer.basic.advance.android.weekend.model.MaterialComponentModel
+import kh.com.pheaktra.developer.basic.advance.android.weekend.model.general.MaterialComponentModel
 import kh.com.pheaktra.developer.basic.advance.android.weekend.ui.theme.AppTheme
 import kh.com.pheaktra.developer.basic.advance.android.weekend.util.BaseUiState
 import kh.com.pheaktra.developer.basic.advance.android.weekend.util.LoadingUtil

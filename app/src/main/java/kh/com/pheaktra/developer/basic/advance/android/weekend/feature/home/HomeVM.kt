@@ -4,14 +4,11 @@ import androidx.compose.runtime.Stable
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kh.com.pheaktra.developer.basic.advance.android.weekend.data.respository.HomeRepository
-import kh.com.pheaktra.developer.basic.advance.android.weekend.data.storage.componentList
-import kh.com.pheaktra.developer.basic.advance.android.weekend.model.MaterialComponentModel
+import kh.com.pheaktra.developer.basic.advance.android.weekend.model.general.MaterialComponentModel
 import kh.com.pheaktra.developer.basic.advance.android.weekend.util.BaseUiState
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import kotlin.time.Duration.Companion.milliseconds
 
 @Stable
 class HomeVM(

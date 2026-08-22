@@ -1,6 +1,6 @@
 package kh.com.pheaktra.developer.basic.advance.android.weekend.navigation
 
-import kh.com.pheaktra.developer.basic.advance.android.weekend.model.MaterialComponentModel
+import kh.com.pheaktra.developer.basic.advance.android.weekend.model.general.MaterialComponentModel
 
 object NavKey {
     data object Home
@@ -44,6 +44,8 @@ object NavKey {
     data class TopAppBarScreen(val data: MaterialComponentModel)
 
     data class StateViewModelScreen(val data: MaterialComponentModel)
+
+    data class UserApiScreen(val data: MaterialComponentModel)
 
     data class NotificationList(val title: String)
 }

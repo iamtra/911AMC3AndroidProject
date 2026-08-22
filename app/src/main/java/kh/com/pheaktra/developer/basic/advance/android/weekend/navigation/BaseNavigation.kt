@@ -17,6 +17,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.navigation3.runtime.entryProvider
 import androidx.navigation3.ui.NavDisplay
+import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.api.ScreenUserApi
 import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.badge.ScreenBadge
 import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.bottomsheet.ScreenBottomSheet
 import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.box.ScreenBox
@@ -58,8 +59,7 @@ import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.timepicke
 import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.toolbar.ScreenToolbar
 import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.tooltips.ScreenToolTips
 import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.topbar.ScreenTopAppBar
-import kh.com.pheaktra.developer.basic.advance.android.weekend.model.MaterialComponentModel
-import kh.com.pheaktra.developer.basic.advance.android.weekend.model.route
+import kh.com.pheaktra.developer.basic.advance.android.weekend.model.general.route
 private const val ANIMATION_DURATION = 300
 @Composable
 fun BaseNavigation() {
@@ -374,6 +374,12 @@ fun BaseNavigation() {
             }
             entry<NavKey.StateViewModelScreen> { key ->
                 ScreenStateViewModel(
+                    item = key.data,
+                    onBack = { backStack.removeLastOrNull() }
+                )
+            }
+            entry<NavKey.UserApiScreen> { key ->
+                ScreenUserApi(
                     item = key.data,
                     onBack = { backStack.removeLastOrNull() }
                 )

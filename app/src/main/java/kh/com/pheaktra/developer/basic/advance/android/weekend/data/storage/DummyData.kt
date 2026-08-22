@@ -1,6 +1,6 @@
 package kh.com.pheaktra.developer.basic.advance.android.weekend.data.storage
 
-import kh.com.pheaktra.developer.basic.advance.android.weekend.model.MaterialComponentModel
+import kh.com.pheaktra.developer.basic.advance.android.weekend.model.general.MaterialComponentModel
 import kh.com.pheaktra.developer.basic.advance.android.weekend.navigation.NavKey
 
 val componentList = listOf(
@@ -276,5 +276,12 @@ val componentList = listOf(
         "Study how to manege state in Jetpack compose",
         NavKey::StateViewModelScreen,
         "https://img.icons8.com/color/96/top-menu.png",
+    ),
+    MaterialComponentModel(
+        40,
+        "Network",
+        "Detail about request api in android",
+        NavKey::UserApiScreen,
+        "https://img.icons8.com/color/96/wifi.png",
     ),
 )

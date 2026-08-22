@@ -16,7 +16,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppTheme"
         android:enableOnBackInvokedCallback="false"
-        tools:targetApi="33">
+        android:usesCleartextTraffic="true"
+        tools:targetApi="37">
         <activity
             android:name=".MainActivity"
             android:exported="true"
