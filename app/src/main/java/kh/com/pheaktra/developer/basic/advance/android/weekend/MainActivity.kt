@@ -1,11 +1,16 @@
 package kh.com.pheaktra.developer.basic.advance.android.weekend
 
+import android.Manifest
+import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.SystemBarStyle
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import kh.com.pheaktra.developer.basic.advance.android.weekend.navigation.BaseNavigation
 import kh.com.pheaktra.developer.basic.advance.android.weekend.ui.theme.AppTheme
 import kh.com.pheaktra.developer.basic.advance.android.weekend.util.Loading
@@ -24,12 +29,30 @@ class MainActivity : ComponentActivity() {
                 darkScrim = android.graphics.Color.TRANSPARENT,
             ),
         )
+        requestAccessLocalNetworkPermission()
         setContent {
             AppTheme {
                 if (LoadingUtil.isLoading.value) {
                     Loading()
                 }
                 BaseNavigation()
+            }
+        }
+    }
+
+    fun requestAccessLocalNetworkPermission() {
+        if (Build.VERSION.SDK_INT >= 37) {
+            if (
+                ContextCompat.checkSelfPermission(
+                    this,
+                    Manifest.permission.ACCESS_LOCAL_NETWORK
+                ) != PackageManager.PERMISSION_GRANTED
+            ) {
+                ActivityCompat.requestPermissions(
+                    this,
+                    arrayOf(Manifest.permission.ACCESS_LOCAL_NETWORK),
+                    1001
+                )
             }
         }
     }

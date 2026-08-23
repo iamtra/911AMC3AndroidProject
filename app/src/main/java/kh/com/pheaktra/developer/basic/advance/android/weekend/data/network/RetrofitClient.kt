@@ -23,6 +23,7 @@ val loggingInterceptor = HttpLoggingInterceptor().apply {
 
 val okHttpClient = OkHttpClient.Builder()
     .addInterceptor(loggingInterceptor)
+//    .retryOnConnectionFailure(true)
     .connectTimeout(
         30,
         TimeUnit.SECONDS
@@ -37,7 +38,6 @@ val okHttpClient = OkHttpClient.Builder()
     )
     .build()
 
-private const val PORT = "3000"
 private const val BASE_URL = "http://10.0.2.2:3500/"
 
 private val retrofit = Retrofit.Builder()
