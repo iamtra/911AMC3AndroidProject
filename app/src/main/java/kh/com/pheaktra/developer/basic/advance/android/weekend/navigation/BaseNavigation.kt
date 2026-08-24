@@ -17,7 +17,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.navigation3.runtime.entryProvider
 import androidx.navigation3.ui.NavDisplay
-import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.api.ScreenUserApi
+import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.api.user.ScreenUserApi
+import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.api.userdetail.ScreenUserDetail
 import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.badge.ScreenBadge
 import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.bottomsheet.ScreenBottomSheet
 import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.box.ScreenBox
@@ -60,7 +61,9 @@ import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.toolbar.S
 import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.tooltips.ScreenToolTips
 import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.topbar.ScreenTopAppBar
 import kh.com.pheaktra.developer.basic.advance.android.weekend.model.general.route
+
 private const val ANIMATION_DURATION = 300
+
 @Composable
 fun BaseNavigation() {
     val backStack = remember { mutableStateListOf<Any>(NavKey.Home) }
@@ -72,7 +75,7 @@ fun BaseNavigation() {
                 initialOffsetX = { fullWidth -> fullWidth },
                 animationSpec = tween(durationMillis = ANIMATION_DURATION),
             ) togetherWith slideOutHorizontally(
-                targetOffsetX = { fullWidth -> -fullWidth/3 },
+                targetOffsetX = { fullWidth -> -fullWidth / 3 },
                 animationSpec = tween(durationMillis = ANIMATION_DURATION),
             )
         },
@@ -381,6 +384,16 @@ fun BaseNavigation() {
             entry<NavKey.UserApiScreen> { key ->
                 ScreenUserApi(
                     item = key.data,
+                    onBack = { backStack.removeLastOrNull() },
+                    onClickUser = { id ->
+                        backStack.add(NavKey.UserDetailScreen(id))
+                    }
+                )
+            }
+
+            entry<NavKey.UserDetailScreen> { key ->
+                ScreenUserDetail(
+                    userId = key.id,
                     onBack = { backStack.removeLastOrNull() }
                 )
             }

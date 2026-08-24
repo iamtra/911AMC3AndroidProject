@@ -16,6 +16,8 @@ sealed interface BaseUiState<out T> {
     ) : BaseUiState<Nothing>
 
     data class Exception(
+        val code: String? = null,
+        val message: String? = null,
         val throwable: Throwable
     ) : BaseUiState<Nothing>
 

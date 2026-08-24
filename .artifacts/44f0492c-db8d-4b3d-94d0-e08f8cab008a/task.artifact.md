@@ -1,0 +1,3 @@
+- [x] Add `coil-network-okhttp` to `libs.versions.toml`
+- [x] Add `coil-network-okhttp` to `app/build.gradle.kts`
+- [x] Sync Gradle

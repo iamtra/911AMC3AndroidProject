@@ -15,3 +15,5 @@ data class UserModelResponse(
     val age: Int,
     val gender: String,
 )
+
+fun UserModelResponse.getFullName() = "$firstName $lastName"

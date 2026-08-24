@@ -47,5 +47,7 @@ object NavKey {
 
     data class UserApiScreen(val data: MaterialComponentModel)
 
+    data class UserDetailScreen(val id: Int)
+
     data class NotificationList(val title: String)
 }
