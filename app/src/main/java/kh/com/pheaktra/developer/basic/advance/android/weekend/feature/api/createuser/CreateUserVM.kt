@@ -1,9 +1,11 @@
-package kh.com.pheaktra.developer.basic.advance.android.weekend.feature.api.userdetail
+package kh.com.pheaktra.developer.basic.advance.android.weekend.feature.api.createuser
 
 import androidx.compose.runtime.Stable
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kh.com.pheaktra.developer.basic.advance.android.weekend.data.network.apiService
+import kh.com.pheaktra.developer.basic.advance.android.weekend.model.request.CreateUserRequest
+import kh.com.pheaktra.developer.basic.advance.android.weekend.model.request.UpdateUserRequest
 import kh.com.pheaktra.developer.basic.advance.android.weekend.model.response.UserModelResponse
 import kh.com.pheaktra.developer.basic.advance.android.weekend.util.BaseUiState
 import kotlinx.coroutines.CancellationException
@@ -14,26 +16,22 @@ import java.net.SocketTimeoutException
 
 
 @Stable
-class UserDetailApiVM : ViewModel() {
+class CreateUserVM : ViewModel() {
 
-    private var _userDetailUiState =
+    private var _createUserUiState =
         MutableStateFlow<BaseUiState<UserModelResponse>>(BaseUiState.None)
-    val userDetailUiState = _userDetailUiState.asStateFlow()
+    val createUserUiState = _createUserUiState.asStateFlow()
 
-    private var _deleteUserUiState =
-        MutableStateFlow<BaseUiState<UserModelResponse>>(BaseUiState.None)
-    val deleteUserUiState = _deleteUserUiState.asStateFlow()
-
-    fun getUserDetail(id: Int) {
-        _userDetailUiState.value = BaseUiState.Loading
+    fun createUser(body: CreateUserRequest) {
+        _createUserUiState.value = BaseUiState.Loading
         viewModelScope.launch {
             try {
-                val response = apiService.getUserDetail(id)
-                _userDetailUiState.emit(BaseUiState.Success(response.data))
+                val response = apiService.createUser(body)
+                _createUserUiState.emit(BaseUiState.Success(response.data))
             } catch (e: CancellationException) {
                 throw e
             } catch (e: SocketTimeoutException) {
-                _userDetailUiState.emit(
+                _createUserUiState.emit(
                     BaseUiState.Exception(
                         code = "CONNECTION TIMEOUT",
                         message = "Could not reach 10.0.2.2:3500. Check server binding and firewall.",
@@ -43,7 +41,7 @@ class UserDetailApiVM : ViewModel() {
                 e.printStackTrace()
             } catch (e: Exception) {
                 e.printStackTrace()
-                _userDetailUiState.emit(
+                _createUserUiState.emit(
                     BaseUiState.Exception(
                         code = "API ERROR",
                         message = e.message,
@@ -54,16 +52,16 @@ class UserDetailApiVM : ViewModel() {
         }
     }
 
-    fun onDeleteUser(id: Int) {
-        _deleteUserUiState.value = BaseUiState.Loading
+    fun updateUser(id: Int, body: UpdateUserRequest) {
+        _createUserUiState.value = BaseUiState.Loading
         viewModelScope.launch {
             try {
-                val response = apiService.deleteUser(id)
-                _deleteUserUiState.emit(BaseUiState.Success(response.data))
+                val response = apiService.updateUser(id, body)
+                _createUserUiState.emit(BaseUiState.Success(response.data))
             } catch (e: CancellationException) {
                 throw e
             } catch (e: SocketTimeoutException) {
-                _deleteUserUiState.emit(
+                _createUserUiState.emit(
                     BaseUiState.Exception(
                         code = "CONNECTION TIMEOUT",
                         message = "Could not reach 10.0.2.2:3500. Check server binding and firewall.",
@@ -73,7 +71,7 @@ class UserDetailApiVM : ViewModel() {
                 e.printStackTrace()
             } catch (e: Exception) {
                 e.printStackTrace()
-                _deleteUserUiState.emit(
+                _createUserUiState.emit(
                     BaseUiState.Exception(
                         code = "API ERROR",
                         message = e.message,
@@ -85,7 +83,6 @@ class UserDetailApiVM : ViewModel() {
     }
 
     fun onDispose() {
-        _userDetailUiState.value = BaseUiState.None
-        _deleteUserUiState.value = BaseUiState.None
+        _createUserUiState.value = BaseUiState.None
     }
 }

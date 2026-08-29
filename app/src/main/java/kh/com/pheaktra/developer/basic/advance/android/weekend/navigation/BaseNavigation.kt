@@ -17,6 +17,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.navigation3.runtime.entryProvider
 import androidx.navigation3.ui.NavDisplay
+import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.api.createuser.ScreenCreateUser
 import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.api.user.ScreenUserApi
 import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.api.userdetail.ScreenUserDetail
 import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.badge.ScreenBadge
@@ -68,6 +69,10 @@ private const val ANIMATION_DURATION = 300
 fun BaseNavigation() {
     val backStack = remember { mutableStateListOf<Any>(NavKey.Home) }
 
+    fun onBack() {
+        backStack.removeLastOrNull()
+    }
+
     NavDisplay(
         backStack = backStack,
         transitionSpec = {
@@ -89,7 +94,7 @@ fun BaseNavigation() {
             )
         },
         onBack = {
-            backStack.removeLastOrNull()
+            onBack()
         },
         entryProvider = entryProvider {
             entry<NavKey.Home> {
@@ -106,295 +111,306 @@ fun BaseNavigation() {
             entry<NavKey.Badge> { key ->
                 ScreenBadge(
                     item = key.data,
-                    onBack = { backStack.removeLastOrNull() }
+                    onBack = { onBack() }
                 )
             }
 
             entry<NavKey.BottomSheet> { key ->
                 ScreenBottomSheet(
                     item = key.data,
-                    onBack = { backStack.removeLastOrNull() }
+                    onBack = { onBack() }
                 )
             }
 
             entry<NavKey.Buttons> { key ->
                 ScreenButton(
                     item = key.data,
-                    onBack = { backStack.removeLastOrNull() }
+                    onBack = { onBack() }
                 )
             }
 
             entry<NavKey.Cards> { key ->
                 ScreenCards(
                     item = key.data,
-                    onBack = { backStack.removeLastOrNull() }
+                    onBack = { onBack() }
                 )
             }
 
             entry<NavKey.Carousel> { key ->
                 ScreenCarousel(
                     item = key.data,
-                    onBack = { backStack.removeLastOrNull() }
+                    onBack = { onBack() }
                 )
             }
 
             entry<NavKey.CheckBox> { key ->
                 ScreenCheckBox(
                     item = key.data,
-                    onBack = { backStack.removeLastOrNull() }
+                    onBack = { onBack() }
                 )
             }
 
             entry<NavKey.Chip> { key ->
                 ScreenChip(
                     item = key.data,
-                    onBack = { backStack.removeLastOrNull() }
+                    onBack = { onBack() }
                 )
             }
 
             entry<NavKey.ColumnScreen> { key ->
                 ScreenColumn(
                     item = key.data,
-                    onBack = { backStack.removeLastOrNull() }
+                    onBack = { onBack() }
                 )
             }
 
             entry<NavKey.DatePicker> { key ->
                 ScreenDatePicker(
                     item = key.data,
-                    onBack = { backStack.removeLastOrNull() }
+                    onBack = { onBack() }
                 )
             }
 
             entry<NavKey.Dialog> { key ->
                 ScreenDialog(
                     item = key.data,
-                    onBack = { backStack.removeLastOrNull() }
+                    onBack = { onBack() }
                 )
             }
 
             entry<NavKey.FullScreenDialog> { key ->
                 ScreenFullScreenDialog(
                     item = key.data,
-                    onBack = { backStack.removeLastOrNull() }
+                    onBack = { onBack() }
                 )
             }
 
             entry<NavKey.ElevatedButton> { key ->
                 ScreenElevatedButton(
                     item = key.data,
-                    onBack = { backStack.removeLastOrNull() }
+                    onBack = { onBack() }
                 )
             }
 
             entry<NavKey.FilledTonalButton> { key ->
                 ScreenFilledTonalButton(
                     item = key.data,
-                    onBack = { backStack.removeLastOrNull() }
+                    onBack = { onBack() }
                 )
             }
 
             entry<NavKey.IconButton> { key ->
                 ScreenIconButton(
                     item = key.data,
-                    onBack = { backStack.removeLastOrNull() }
+                    onBack = { onBack() }
                 )
             }
 
             entry<NavKey.LazyColumnScreen> { key ->
                 ScreenLazyColumn(
                     item = key.data,
-                    onBack = { backStack.removeLastOrNull() }
+                    onBack = { onBack() }
                 )
             }
 
             entry<NavKey.LazyRowScreen> { key ->
                 ScreenLazyRow(
                     item = key.data,
-                    onBack = { backStack.removeLastOrNull() }
+                    onBack = { onBack() }
                 )
             }
 
             entry<NavKey.Menu> { key ->
                 ScreenMenu(
                     item = key.data,
-                    onBack = { backStack.removeLastOrNull() }
+                    onBack = { onBack() }
                 )
             }
 
             entry<NavKey.BottomNavigationBar> { key ->
                 ScreenBottomNavigationBar(
                     item = key.data,
-                    onBack = { backStack.removeLastOrNull() }
+                    onBack = { onBack() }
                 )
             }
 
             entry<NavKey.NavigationDrawer> { key ->
                 ScreenNavigationDrawer(
                     item = key.data,
-                    onBack = { backStack.removeLastOrNull() }
+                    onBack = { onBack() }
                 )
             }
 
             entry<NavKey.OutlineButton> { key ->
                 ScreenOutlineButton(
                     item = key.data,
-                    onBack = { backStack.removeLastOrNull() }
+                    onBack = { onBack() }
                 )
             }
 
             entry<NavKey.ProgressIndicator> { key ->
                 ScreenProgressIndicator(
                     item = key.data,
-                    onBack = { backStack.removeLastOrNull() }
+                    onBack = { onBack() }
                 )
             }
 
             entry<NavKey.Radio> { key ->
                 ScreenRadio(
                     item = key.data,
-                    onBack = { backStack.removeLastOrNull() }
+                    onBack = { onBack() }
                 )
             }
 
             entry<NavKey.RowScreen> { key ->
                 ScreenRow(
                     item = key.data,
-                    onBack = { backStack.removeLastOrNull() }
+                    onBack = { onBack() }
                 )
             }
 
             entry<NavKey.ScaffoldScreen> { key ->
                 ScreenScaffold(
                     item = key.data,
-                    onBack = { backStack.removeLastOrNull() }
+                    onBack = { onBack() }
                 )
             }
 
             entry<NavKey.MultiChoiceSegmentButton> { key ->
                 ScreenMultiChoiceSegmentButton(
                     item = key.data,
-                    onBack = { backStack.removeLastOrNull() },
+                    onBack = { onBack() },
                 )
             }
 
             entry<NavKey.SingleChoiceSegmentedButton> { key ->
                 ScreenSingleChoiceSegmentedButton(
                     item = key.data,
-                    onBack = { backStack.removeLastOrNull() },
+                    onBack = { onBack() },
                 )
             }
 
             entry<NavKey.Slider> { key ->
                 ScreenSlider(
                     item = key.data,
-                    onBack = { backStack.removeLastOrNull() }
+                    onBack = { onBack() }
                 )
             }
 
             entry<NavKey.SnackBar> { key ->
                 ScreenSnackBar(
                     item = key.data,
-                    onBack = { backStack.removeLastOrNull() }
+                    onBack = { onBack() }
                 )
             }
 
             entry<NavKey.SpacerScreen> { key ->
                 ScreenSpacer(
                     item = key.data,
-                    onBack = { backStack.removeLastOrNull() }
+                    onBack = { onBack() }
                 )
             }
 
             entry<NavKey.Switch> { key ->
                 ScreenSwitchComponent(
                     item = key.data,
-                    onBack = { backStack.removeLastOrNull() }
+                    onBack = { onBack() }
                 )
             }
 
             entry<NavKey.Tabs> { key ->
                 ScreenTabs(
                     item = key.data,
-                    onBack = { backStack.removeLastOrNull() }
+                    onBack = { onBack() }
                 )
             }
 
             entry<NavKey.TextButton> { key ->
                 ScreenTextButton(
                     item = key.data,
-                    onBack = { backStack.removeLastOrNull() }
+                    onBack = { onBack() }
                 )
             }
 
             entry<NavKey.TextField> { key ->
                 ScreenTextField(
                     item = key.data,
-                    onBack = { backStack.removeLastOrNull() }
+                    onBack = { onBack() }
                 )
             }
 
             entry<NavKey.TimePicker> { key ->
                 ScreenTimePicker(
                     item = key.data,
-                    onBack = { backStack.removeLastOrNull() }
+                    onBack = { onBack() }
                 )
             }
 
             entry<NavKey.Toolbar> { key ->
                 ScreenToolbar(
                     item = key.data,
-                    onBack = { backStack.removeLastOrNull() }
+                    onBack = { onBack() }
                 )
             }
 
             entry<NavKey.ToolTips> { key ->
                 ScreenToolTips(
                     item = key.data,
-                    onBack = { backStack.removeLastOrNull() }
+                    onBack = { onBack() }
                 )
             }
 
             entry<NavKey.BoxScreen> { key ->
                 ScreenBox(
                     item = key.data,
-                    onBack = { backStack.removeLastOrNull() }
+                    onBack = { onBack() }
                 )
             }
 
             entry<NavKey.TopAppBarScreen> { key ->
                 ScreenTopAppBar(
                     item = key.data,
-                    onBack = { backStack.removeLastOrNull() }
+                    onBack = { onBack() }
                 )
             }
 
             entry<NavKey.NotificationList> { key ->
                 ScreenNotificationList(
                     title = key.title,
-                    onBack = { backStack.removeLastOrNull() }
+                    onBack = { onBack() }
                 )
             }
             entry<NavKey.StateViewModelScreen> { key ->
                 ScreenStateViewModel(
                     item = key.data,
-                    onBack = { backStack.removeLastOrNull() }
+                    onBack = { onBack() }
                 )
             }
             entry<NavKey.UserApiScreen> { key ->
                 ScreenUserApi(
                     item = key.data,
-                    onBack = { backStack.removeLastOrNull() },
+                    onBack = { onBack() },
                     onClickUser = { id ->
                         backStack.add(NavKey.UserDetailScreen(id))
+                    },
+                    onCreateUser = {
+                        backStack.add(NavKey.CreateUserScreen(null))
                     }
                 )
             }
-
             entry<NavKey.UserDetailScreen> { key ->
                 ScreenUserDetail(
                     userId = key.id,
-                    onBack = { backStack.removeLastOrNull() }
+                    onBack = { onBack() },
+                    onEdit = { user ->
+                        backStack.add(NavKey.CreateUserScreen(user))
+                    }
+                )
+            }
+            entry<NavKey.CreateUserScreen> { key ->
+                ScreenCreateUser(
+                    user = key.data,
+                    onBack = { onBack() }
                 )
             }
         }

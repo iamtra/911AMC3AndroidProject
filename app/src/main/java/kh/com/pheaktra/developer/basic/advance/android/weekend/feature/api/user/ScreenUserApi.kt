@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -18,6 +19,8 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.ExtendedFloatingActionButton
+import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -50,6 +53,7 @@ fun ScreenUserApi(
     item: MaterialComponentModel,
     onBack: () -> Unit = {},
     onClickUser: (Int) -> Unit = {},
+    onCreateUser: () -> Unit = {},
     userApiVM: UserApiVM = viewModel()
 ) {
     val context = LocalContext.current
@@ -87,6 +91,7 @@ fun ScreenUserApi(
         }
     }
     Scaffold(
+        modifier = Modifier.navigationBarsPadding(),
         topBar = {
             TopAppBar(
                 navigationIcon = {
@@ -97,7 +102,9 @@ fun ScreenUserApi(
                     ) {
                         Icon(
                             painter = painterResource(R.drawable.ic_arrow_back),
-                            contentDescription = "Back"
+                            contentDescription = "Back",
+                            tint = MaterialTheme.colorScheme.onPrimary,
+                            modifier = Modifier.size(48.dp)
                         )
                     }
                 },
@@ -108,7 +115,8 @@ fun ScreenUserApi(
                                 modifier = Modifier.fillMaxWidth(),
                                 text = item.title,
                                 textAlign = TextAlign.Start,
-                                fontWeight = FontWeight.Bold
+                                style = MaterialTheme.typography.headlineMedium,
+                                fontWeight = FontWeight.Bold,
                             )
 
                         }
@@ -121,12 +129,30 @@ fun ScreenUserApi(
                     actionIconContentColor = MaterialTheme.colorScheme.onPrimary
                 )
             )
+        },
+        floatingActionButton = {
+            ExtendedFloatingActionButton(
+                onClick = onCreateUser,
+                icon = {
+                    Icon(
+                        painter = painterResource(R.drawable.ic_add),
+                        contentDescription = "Add user",
+                        modifier = Modifier.size(24.dp)
+                    )
+                },
+                text = {
+                    Text(
+                        text = "New User",
+                        style = MaterialTheme.typography.bodyMedium,
+                        fontWeight = FontWeight.Medium,
+                    )
+                },
+            )
         }
     ) { paddingValues ->
         LazyColumn(
             modifier = Modifier
                 .padding(paddingValues)
-                .fillMaxWidth()
                 .fillMaxSize()
         ) {
             when (val state = userListUiState) {

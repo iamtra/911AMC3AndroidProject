@@ -1,5 +1,6 @@
 package kh.com.pheaktra.developer.basic.advance.android.weekend.feature.api.userdetail
 
+import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -18,6 +19,7 @@ import androidx.compose.material.icons.outlined.Cake
 import androidx.compose.material.icons.outlined.Email
 import androidx.compose.material.icons.outlined.Person
 import androidx.compose.material.icons.outlined.PersonOutline
+import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.HorizontalDivider
@@ -30,12 +32,14 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults.topAppBarColors
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -43,6 +47,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import kh.com.pheaktra.developer.basic.advance.android.weekend.R
+import kh.com.pheaktra.developer.basic.advance.android.weekend.model.request.CreateUserRequest
 import kh.com.pheaktra.developer.basic.advance.android.weekend.model.response.UserModelResponse
 import kh.com.pheaktra.developer.basic.advance.android.weekend.model.response.getFullName
 import kh.com.pheaktra.developer.basic.advance.android.weekend.util.BaseUiState
@@ -52,9 +57,12 @@ import kh.com.pheaktra.developer.basic.advance.android.weekend.util.LoadingUtil
 fun ScreenUserDetail(
     userId: Int,
     onBack: () -> Unit = {},
+    onEdit: (UserModelResponse) -> Unit = {},
     userDetailApiVM: UserDetailApiVM = viewModel()
 ) {
+    val context = LocalContext.current
     val userDetailUiState by userDetailApiVM.userDetailUiState.collectAsStateWithLifecycle()
+    val deleteUserUiState by userDetailApiVM.deleteUserUiState.collectAsStateWithLifecycle()
 
     LaunchedEffect(Unit) {
         userDetailApiVM.getUserDetail(userId)
@@ -66,22 +74,50 @@ fun ScreenUserDetail(
 
             is BaseUiState.Success -> {
                 LoadingUtil.hideLoading()
-                println("=====> Success: ${state.data}")
             }
 
             is BaseUiState.Failure -> {
                 LoadingUtil.hideLoading()
-                println("=====> Failure: ${state.message}")
             }
 
             is BaseUiState.Exception -> {
                 LoadingUtil.hideLoading()
-                println("=====> Exception: ${state.message}")
             }
 
             else -> {
                 LoadingUtil.hideLoading()
             }
+        }
+    }
+
+    LaunchedEffect(key1 = deleteUserUiState) {
+        when (val state = deleteUserUiState) {
+            is BaseUiState.Loading -> LoadingUtil.showLoading()
+
+            is BaseUiState.Success -> {
+                LoadingUtil.hideLoading()
+                onBack()
+            }
+
+            is BaseUiState.Failure -> {
+                LoadingUtil.hideLoading()
+                Toast.makeText(context, state.message, Toast.LENGTH_SHORT).show()
+            }
+
+            is BaseUiState.Exception -> {
+                LoadingUtil.hideLoading()
+                Toast.makeText(context, state.message, Toast.LENGTH_SHORT).show()
+            }
+
+            else -> {
+                LoadingUtil.hideLoading()
+            }
+        }
+    }
+
+    DisposableEffect(Unit) {
+        onDispose {
+            userDetailApiVM.onDispose()
         }
     }
 
@@ -96,7 +132,9 @@ fun ScreenUserDetail(
                     ) {
                         Icon(
                             painter = painterResource(R.drawable.ic_arrow_back),
-                            contentDescription = "Back"
+                            contentDescription = "Back",
+                            tint = MaterialTheme.colorScheme.onPrimary,
+                            modifier = Modifier.size(48.dp)
                         )
                     }
                 },
@@ -109,7 +147,8 @@ fun ScreenUserDetail(
                                         modifier = Modifier.fillMaxWidth(),
                                         text = state.data.getFullName(),
                                         textAlign = TextAlign.Start,
-                                        fontWeight = FontWeight.Bold
+                                        style = MaterialTheme.typography.headlineMedium,
+                                        fontWeight = FontWeight.Bold,
                                     )
                                 }
 
@@ -124,6 +163,24 @@ fun ScreenUserDetail(
                                 }
                             }
                         }
+                    }
+                },
+                actions = {
+                    IconButton(
+                        onClick = {
+                            val userDetail =
+                                (userDetailUiState as? BaseUiState.Success<UserModelResponse>)
+                            userDetail?.data?.let { user ->
+                                onEdit(user)
+                            }
+                        }
+                    ) {
+                        Icon(
+                            painter = painterResource(R.drawable.ic_edit),
+                            contentDescription = "Back",
+                            tint = MaterialTheme.colorScheme.onPrimary,
+                            modifier = Modifier.size(48.dp)
+                        )
                     }
                 },
                 colors = topAppBarColors(
@@ -147,6 +204,21 @@ fun ScreenUserDetail(
                     }
                     item {
                         UserInformationCard(state.data)
+                    }
+                    item {
+                        Button(
+                            onClick = {
+                                userDetailApiVM.onDeleteUser(userId)
+                            },
+                            enabled = true,
+                            modifier = Modifier.fillMaxWidth(),
+                        ) {
+                            Text(
+                                text = "Delete",
+                                style = MaterialTheme.typography.labelLarge,
+                                color = MaterialTheme.colorScheme.error
+                            )
+                        }
                     }
                 }
 
