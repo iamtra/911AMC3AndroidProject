@@ -15,10 +15,14 @@ import kh.com.pheaktra.developer.basic.advance.android.weekend.navigation.BaseNa
 import kh.com.pheaktra.developer.basic.advance.android.weekend.ui.theme.AppTheme
 import kh.com.pheaktra.developer.basic.advance.android.weekend.util.Loading
 import kh.com.pheaktra.developer.basic.advance.android.weekend.util.LoadingUtil
+import kh.com.pheaktra.developer.core.Transfer
 
 class MainActivity : ComponentActivity() {
+    private lateinit var transfer: Transfer
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        transfer = Transfer()
         enableEdgeToEdge(
             statusBarStyle = SystemBarStyle.auto(
                 lightScrim = android.graphics.Color.TRANSPARENT,
@@ -58,22 +62,19 @@ class MainActivity : ComponentActivity() {
     }
 
     override fun onStart() {
+        transfer.onTransfer(2000.0)
         super.onStart()
-        println("=====> onStart")
     }
 
     override fun onPause() {
         super.onPause()
-//        println("=====> onPause")
     }
 
     override fun onResume() {
         super.onResume()
-//        println("=====> onResume")
     }
 
     override fun onDestroy() {
         super.onDestroy()
-//        println("=====> onDestroy")
     }
 }
