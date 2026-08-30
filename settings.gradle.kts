@@ -26,3 +26,6 @@ rootProject.name = "911AMAndroidBasicAdvanceWeekend"
 include(":app")
 include(":core")
 include(":core:model")
+include(":core:data")
+include(":core:network")
+include(":core:domain")
