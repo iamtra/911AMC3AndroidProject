@@ -1,4 +1,4 @@
-package kh.com.pheaktra.developer.basic.advance.android.weekend.model.request
+package kh.com.pheaktra.developer.model.request
 
 import kotlinx.serialization.Serializable
 

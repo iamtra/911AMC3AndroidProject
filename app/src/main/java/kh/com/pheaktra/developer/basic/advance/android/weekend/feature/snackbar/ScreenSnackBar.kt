@@ -28,7 +28,7 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import kh.com.pheaktra.developer.basic.advance.android.weekend.R
-import kh.com.pheaktra.developer.basic.advance.android.weekend.model.general.MaterialComponentModel
+import kh.com.pheaktra.developer.model.general.MaterialComponentModel
 import kh.com.pheaktra.developer.basic.advance.android.weekend.ui.theme.AppTheme
 import kotlinx.coroutines.launch
 

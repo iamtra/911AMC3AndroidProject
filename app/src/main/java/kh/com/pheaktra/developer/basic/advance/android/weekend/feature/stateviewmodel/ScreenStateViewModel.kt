@@ -37,8 +37,8 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import kh.com.pheaktra.developer.basic.advance.android.weekend.R
-import kh.com.pheaktra.developer.basic.advance.android.weekend.model.general.MaterialComponentModel
-import kh.com.pheaktra.developer.basic.advance.android.weekend.model.general.UserModel
+import kh.com.pheaktra.developer.model.general.MaterialComponentModel
+import kh.com.pheaktra.developer.model.general.UserModel
 import kh.com.pheaktra.developer.basic.advance.android.weekend.ui.theme.AppTheme
 
 @OptIn(ExperimentalMaterial3Api::class)

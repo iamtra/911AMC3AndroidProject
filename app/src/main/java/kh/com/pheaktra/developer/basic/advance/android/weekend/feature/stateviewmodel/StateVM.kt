@@ -2,7 +2,7 @@ package kh.com.pheaktra.developer.basic.advance.android.weekend.feature.statevie
 
 import androidx.compose.runtime.Stable
 import androidx.lifecycle.ViewModel
-import kh.com.pheaktra.developer.basic.advance.android.weekend.model.general.UserModel
+import kh.com.pheaktra.developer.model.general.UserModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 

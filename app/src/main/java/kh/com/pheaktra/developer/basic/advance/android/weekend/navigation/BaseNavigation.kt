@@ -61,7 +61,7 @@ import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.timepicke
 import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.toolbar.ScreenToolbar
 import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.tooltips.ScreenToolTips
 import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.topbar.ScreenTopAppBar
-import kh.com.pheaktra.developer.basic.advance.android.weekend.model.general.route
+import kh.com.pheaktra.developer.model.general.route
 
 private const val ANIMATION_DURATION = 300
 

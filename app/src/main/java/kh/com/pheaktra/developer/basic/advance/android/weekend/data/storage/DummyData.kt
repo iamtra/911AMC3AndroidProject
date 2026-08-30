@@ -1,6 +1,6 @@
 package kh.com.pheaktra.developer.basic.advance.android.weekend.data.storage
 
-import kh.com.pheaktra.developer.basic.advance.android.weekend.model.general.MaterialComponentModel
+import kh.com.pheaktra.developer.model.general.MaterialComponentModel
 import kh.com.pheaktra.developer.basic.advance.android.weekend.navigation.NavKey
 
 val componentList = listOf(

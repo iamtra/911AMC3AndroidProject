@@ -73,6 +73,7 @@ dependencies {
 
     // Local Module
     implementation(project(":core"))
+    implementation(project(":core:model"))
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

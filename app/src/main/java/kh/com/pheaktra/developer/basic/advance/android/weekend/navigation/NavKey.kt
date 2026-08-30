@@ -1,7 +1,7 @@
 package kh.com.pheaktra.developer.basic.advance.android.weekend.navigation
 
-import kh.com.pheaktra.developer.basic.advance.android.weekend.model.general.MaterialComponentModel
-import kh.com.pheaktra.developer.basic.advance.android.weekend.model.response.UserModelResponse
+import kh.com.pheaktra.developer.model.general.MaterialComponentModel
+import kh.com.pheaktra.developer.model.response.UserModelResponse
 
 object NavKey {
     data object Home

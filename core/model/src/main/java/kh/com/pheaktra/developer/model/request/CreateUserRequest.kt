@@ -1,4 +1,4 @@
-package kh.com.pheaktra.developer.basic.advance.android.weekend.model.request
+package kh.com.pheaktra.developer.model.request
 
 import kotlinx.serialization.Serializable
 
@@ -13,7 +13,7 @@ data class CreateUserRequest(
     val gender: String
 )
 
-fun CreateUserRequest.toUpdateUserRequest() = UpdateUserRequest(
+    fun CreateUserRequest.toUpdateUserRequest() = UpdateUserRequest(
     username = username,
     email = email,
     password = password,

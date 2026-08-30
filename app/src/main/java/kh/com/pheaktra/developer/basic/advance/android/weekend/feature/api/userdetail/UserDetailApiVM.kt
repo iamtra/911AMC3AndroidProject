@@ -4,7 +4,7 @@ import androidx.compose.runtime.Stable
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kh.com.pheaktra.developer.basic.advance.android.weekend.data.network.apiService
-import kh.com.pheaktra.developer.basic.advance.android.weekend.model.response.UserModelResponse
+import kh.com.pheaktra.developer.model.response.UserModelResponse
 import kh.com.pheaktra.developer.basic.advance.android.weekend.util.BaseUiState
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.flow.MutableStateFlow

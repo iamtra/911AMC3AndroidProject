@@ -1,9 +1,9 @@
 package kh.com.pheaktra.developer.basic.advance.android.weekend.data.network
 
-import kh.com.pheaktra.developer.basic.advance.android.weekend.model.request.CreateUserRequest
-import kh.com.pheaktra.developer.basic.advance.android.weekend.model.request.UpdateUserRequest
-import kh.com.pheaktra.developer.basic.advance.android.weekend.model.response.BaseResponse
-import kh.com.pheaktra.developer.basic.advance.android.weekend.model.response.UserModelResponse
+import kh.com.pheaktra.developer.model.request.CreateUserRequest
+import kh.com.pheaktra.developer.model.request.UpdateUserRequest
+import kh.com.pheaktra.developer.model.response.BaseResponse
+import kh.com.pheaktra.developer.model.response.UserModelResponse
 import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.GET

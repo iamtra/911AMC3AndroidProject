@@ -1,4 +1,4 @@
-package kh.com.pheaktra.developer.basic.advance.android.weekend.model.general
+package kh.com.pheaktra.developer.model.general
 
 data class UserModel(
     val firstName: String,
