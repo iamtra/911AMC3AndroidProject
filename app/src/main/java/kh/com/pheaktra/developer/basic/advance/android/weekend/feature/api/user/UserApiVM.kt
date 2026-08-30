@@ -21,16 +21,12 @@ class UserApiVM : ViewModel() {
     fun getUserList() {
         _userListUiState.value = BaseUiState.Loading
         viewModelScope.launch {
-//            println("=====> getUserList")
             try {
                 val response = apiService.getUserList()
-//                println("=====> API SUCCESS: Received ${response.data.size} users")
-//                println("=====> response: $response")
                 _userListUiState.emit(BaseUiState.Success(response.data))
             } catch (e: CancellationException) {
                 throw e
             } catch (e: SocketTimeoutException) {
-//                println("=====> CONNECTION TIMEOUT: Could not reach 10.0.2.2:3500. Check server binding and firewall.")
                 _userListUiState.emit(
                     BaseUiState.Exception(
                         code = "CONNECTION TIMEOUT",

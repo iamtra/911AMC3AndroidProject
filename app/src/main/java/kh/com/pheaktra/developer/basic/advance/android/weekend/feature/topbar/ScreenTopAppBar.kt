@@ -51,7 +51,6 @@ fun ScreenTopAppBar(
                 actions = {
                     IconButton(
                         onClick = {
-                            println("=====> Shared")
                         }
                     ) {
                         Icon(

@@ -34,7 +34,6 @@ class HomeVM(
     fun getHomeData() {
         viewModelScope.launch {
             homeRepository.getHomeData().collect { componentListUiState ->
-                println("=====>Test $componentListUiState")
                 _stateUiState.emit(componentListUiState)
             }
         }

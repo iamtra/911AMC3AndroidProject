@@ -75,17 +75,13 @@ fun ScreenHome(
 
             is BaseUiState.Success -> {
                 LoadingUtil.hideLoading()
-                println("====> Data: ${state.data}")
             }
 
             is BaseUiState.Failure -> {
-                println("====> Code: ${state.code}")
-                println("====> Message: ${state.message}")
                 LoadingUtil.hideLoading()
             }
 
             is BaseUiState.Exception -> {
-                println("====> Throwable: ${state.throwable}")
                 LoadingUtil.hideLoading()
             }
 
@@ -98,33 +94,26 @@ fun ScreenHome(
     }
 
     LaunchedEffect(Unit) {
-        println("=====> LaunchedEffect")
     }
 
     LaunchedEffect(key1 = triggerState) {
-        println("=====> LaunchedEffect $triggerState")
     }
 
     LifecycleEventEffect(Lifecycle.Event.ON_START) {
-        println("=====> LifecycleEventEffect ON_START")
     }
 
     LifecycleEventEffect(Lifecycle.Event.ON_STOP) {
-        println("=====> LifecycleEventEffect ON_STOP")
     }
 
     LifecycleEventEffect(Lifecycle.Event.ON_PAUSE) {
-        println("=====> LifecycleEventEffect ON_PAUSE")
     }
 
     LifecycleEventEffect(Lifecycle.Event.ON_RESUME) {
-        println("=====> LifecycleEventEffect ON_RESUME")
     }
 
     DisposableEffect(lifecycleOwner) {
         val observer = LifecycleEventObserver { _, event ->
             if (event == Lifecycle.Event.ON_DESTROY) {
-                println("=====> ON_DESTROY")
             }
         }
         lifecycleOwner.lifecycle.addObserver(observer)

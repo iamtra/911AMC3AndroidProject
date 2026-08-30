@@ -45,27 +45,21 @@ fun ScreenBadge(
         val observer = LifecycleEventObserver { _, event ->
             when (event) {
                 Lifecycle.Event.ON_CREATE -> {
-                    println("=====> ON_CREATE")
                 }
 
                 Lifecycle.Event.ON_START -> {
-                    println("=====> ON_START")
                 }
 
                 Lifecycle.Event.ON_RESUME -> {
-                    println("=====> ON_RESUME")
                 }
 
                 Lifecycle.Event.ON_PAUSE -> {
-                    println("=====> ON_PAUSE")
                 }
 
                 Lifecycle.Event.ON_STOP -> {
-                    println("=====> ON_STOP")
                 }
 
                 Lifecycle.Event.ON_DESTROY -> {
-                    println("=====> ON_DESTROY")
                 }
 
                 Lifecycle.Event.ON_ANY -> Unit
@@ -110,7 +104,6 @@ fun ScreenBadge(
 //                navigationIcon = {
 //                    IconButton(
 //                        onClick = {
-//                            println("=====> Back")
 //                        }
 //                    ) {
 //                        Icon(
@@ -132,7 +125,6 @@ fun ScreenBadge(
                     ) {
                         IconButton(
                             onClick = {
-                                println("=====> Share")
                             }
                         ) {
                             Icon(
@@ -143,7 +135,6 @@ fun ScreenBadge(
                     }
                     IconButton(
                         onClick = {
-                            println("=====> More vert")
                         }
                     ) {
                         Icon(

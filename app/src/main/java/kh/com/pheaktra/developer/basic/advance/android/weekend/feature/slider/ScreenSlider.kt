@@ -126,7 +126,6 @@ fun ScreenSlider(
                     value = sliderValue,
                     onValueChange = { value ->
                         sliderValue = value
-                        println("=====> $value")
                     }
                 )
                 Text(
@@ -154,7 +153,6 @@ fun ScreenSlider(
                     value = sliderStep,
                     onValueChange = { value ->
                         sliderStep = value
-                        println("=====> $value")
                     },
                     steps = 5,
                     valueRange = 1f..10f

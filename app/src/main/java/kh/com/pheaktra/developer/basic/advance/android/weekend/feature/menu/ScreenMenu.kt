@@ -49,7 +49,6 @@ fun ScreenMenu(
         MenuItemModel(
             text = "Open",
             onClick = {
-                println("====> Open item")
             },
             leadingIcon = R.drawable.ic_open_folder,
         ),

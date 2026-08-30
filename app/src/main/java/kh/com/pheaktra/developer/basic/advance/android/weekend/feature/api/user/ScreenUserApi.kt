@@ -70,19 +70,16 @@ fun ScreenUserApi(
 
             is BaseUiState.Success -> {
                 LoadingUtil.hideLoading()
-                println("=====> Success: ${state.data}")
             }
 
             is BaseUiState.Failure -> {
                 LoadingUtil.hideLoading()
                 Toast.makeText(context, state.message, Toast.LENGTH_SHORT).show()
-                println("=====> Failure: ${state.message}")
             }
 
             is BaseUiState.Exception -> {
                 LoadingUtil.hideLoading()
                 Toast.makeText(context, state.message, Toast.LENGTH_SHORT).show()
-                println("=====> Exception: ${state.message}")
             }
 
             else -> {
