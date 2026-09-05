@@ -60,9 +60,9 @@ fun ScreenUserApi(
     val userListUiState by userApiVM.userListUiState.collectAsStateWithLifecycle()
 
     LaunchedEffect(Unit) {
-        if (userListUiState is BaseUiState.Success) {
-            return@LaunchedEffect
-        }
+//        if (userListUiState is BaseUiState.Success) {
+//            return@LaunchedEffect
+//        }
         userApiVM.getUserList()
     }
 

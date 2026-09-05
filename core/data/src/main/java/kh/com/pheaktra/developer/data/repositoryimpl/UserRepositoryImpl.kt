@@ -6,7 +6,6 @@ import kh.com.pheaktra.developer.model.request.UpdateUserRequest
 import kh.com.pheaktra.developer.model.response.BaseResponse
 import kh.com.pheaktra.developer.model.response.UserModelResponse
 import kh.com.pheaktra.developer.network.ApiService
-import kh.com.pheaktra.developer.network.RetrofitClient
 import javax.inject.Inject
 
 class UserRepositoryImpl @Inject constructor(
@@ -32,6 +31,6 @@ class UserRepositoryImpl @Inject constructor(
     }
 
     override suspend fun deleteUser(id: Int): BaseResponse<UserModelResponse> {
-        return RetrofitClient.apiService.deleteUser(id)
+        return apiService.deleteUser(id)
     }
 }
