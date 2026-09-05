@@ -1,8 +1,8 @@
 package kh.com.pheaktra.developer.basic.advance.android.weekend.data.respository
 
 import kh.com.pheaktra.developer.basic.advance.android.weekend.data.storage.componentList
+import kh.com.pheaktra.developer.model.BaseUiState
 import kh.com.pheaktra.developer.model.general.MaterialComponentModel
-import kh.com.pheaktra.developer.basic.advance.android.weekend.util.BaseUiState
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow

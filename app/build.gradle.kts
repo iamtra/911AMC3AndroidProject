@@ -2,6 +2,8 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.kotlin.serialization)
+    alias(libs.plugins.com.google.devtools.ksp)
+    alias(libs.plugins.com.google.dagger.hilt.android)
 }
 
 android {
@@ -36,8 +38,8 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     buildFeatures {
         compose = true
@@ -71,10 +73,15 @@ dependencies {
     implementation(libs.kotlinx.coroutines.android)
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
 
+    // Di
+    implementation(libs.hilt.android)
+    ksp(libs.hilt.android.compiler)
+
     // Local Module
     implementation(project(":core"))
     implementation(project(":core:model"))
     implementation(project(":core:data"))
+    implementation(project(":core:domain"))
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

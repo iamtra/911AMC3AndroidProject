@@ -3,11 +3,10 @@ package kh.com.pheaktra.developer.basic.advance.android.weekend.feature.api.crea
 import androidx.compose.runtime.Stable
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import kh.com.pheaktra.developer.basic.advance.android.weekend.data.network.apiService
+import kh.com.pheaktra.developer.model.BaseUiState
 import kh.com.pheaktra.developer.model.request.CreateUserRequest
 import kh.com.pheaktra.developer.model.request.UpdateUserRequest
 import kh.com.pheaktra.developer.model.response.UserModelResponse
-import kh.com.pheaktra.developer.basic.advance.android.weekend.util.BaseUiState
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -26,8 +25,8 @@ class CreateUserVM : ViewModel() {
         _createUserUiState.value = BaseUiState.Loading
         viewModelScope.launch {
             try {
-                val response = apiService.createUser(body)
-                _createUserUiState.emit(BaseUiState.Success(response.data))
+//                val response = apiService.createUser(body)
+//                _createUserUiState.emit(BaseUiState.Success(response.data))
             } catch (e: CancellationException) {
                 throw e
             } catch (e: SocketTimeoutException) {
@@ -56,8 +55,8 @@ class CreateUserVM : ViewModel() {
         _createUserUiState.value = BaseUiState.Loading
         viewModelScope.launch {
             try {
-                val response = apiService.updateUser(id, body)
-                _createUserUiState.emit(BaseUiState.Success(response.data))
+//                val response = apiService.updateUser(id, body)
+//                _createUserUiState.emit(BaseUiState.Success(response.data))
             } catch (e: CancellationException) {
                 throw e
             } catch (e: SocketTimeoutException) {

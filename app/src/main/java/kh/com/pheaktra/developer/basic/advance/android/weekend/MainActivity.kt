@@ -11,12 +11,14 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import dagger.hilt.android.AndroidEntryPoint
 import kh.com.pheaktra.developer.basic.advance.android.weekend.navigation.BaseNavigation
 import kh.com.pheaktra.developer.basic.advance.android.weekend.ui.theme.AppTheme
 import kh.com.pheaktra.developer.basic.advance.android.weekend.util.Loading
 import kh.com.pheaktra.developer.basic.advance.android.weekend.util.LoadingUtil
 import kh.com.pheaktra.developer.core.Transfer
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     private lateinit var transfer: Transfer
 

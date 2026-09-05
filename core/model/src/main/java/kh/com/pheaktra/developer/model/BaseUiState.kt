@@ -1,4 +1,4 @@
-package kh.com.pheaktra.developer.basic.advance.android.weekend.util
+package kh.com.pheaktra.developer.model
 
 sealed interface BaseUiState<out T> {
 

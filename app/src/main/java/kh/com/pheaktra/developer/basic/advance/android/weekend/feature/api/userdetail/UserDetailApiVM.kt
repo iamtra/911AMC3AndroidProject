@@ -3,9 +3,8 @@ package kh.com.pheaktra.developer.basic.advance.android.weekend.feature.api.user
 import androidx.compose.runtime.Stable
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import kh.com.pheaktra.developer.basic.advance.android.weekend.data.network.apiService
+import kh.com.pheaktra.developer.model.BaseUiState
 import kh.com.pheaktra.developer.model.response.UserModelResponse
-import kh.com.pheaktra.developer.basic.advance.android.weekend.util.BaseUiState
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -28,8 +27,8 @@ class UserDetailApiVM : ViewModel() {
         _userDetailUiState.value = BaseUiState.Loading
         viewModelScope.launch {
             try {
-                val response = apiService.getUserDetail(id)
-                _userDetailUiState.emit(BaseUiState.Success(response.data))
+//                val response = apiService.getUserDetail(id)
+//                _userDetailUiState.emit(BaseUiState.Success(response.data))
             } catch (e: CancellationException) {
                 throw e
             } catch (e: SocketTimeoutException) {
@@ -58,8 +57,8 @@ class UserDetailApiVM : ViewModel() {
         _deleteUserUiState.value = BaseUiState.Loading
         viewModelScope.launch {
             try {
-                val response = apiService.deleteUser(id)
-                _deleteUserUiState.emit(BaseUiState.Success(response.data))
+//                val response = apiService.deleteUser(id)
+//                _deleteUserUiState.emit(BaseUiState.Success(response.data))
             } catch (e: CancellationException) {
                 throw e
             } catch (e: SocketTimeoutException) {

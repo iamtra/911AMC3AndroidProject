@@ -1,4 +1,4 @@
-package kh.com.pheaktra.developer.basic.advance.android.weekend.data.network
+package kh.com.pheaktra.developer.network
 
 import kh.com.pheaktra.developer.model.request.CreateUserRequest
 import kh.com.pheaktra.developer.model.request.UpdateUserRequest

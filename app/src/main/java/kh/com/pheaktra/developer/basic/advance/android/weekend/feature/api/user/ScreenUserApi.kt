@@ -44,8 +44,8 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import kh.com.pheaktra.developer.basic.advance.android.weekend.R
 import kh.com.pheaktra.developer.model.general.MaterialComponentModel
 import kh.com.pheaktra.developer.model.response.UserModelResponse
-import kh.com.pheaktra.developer.basic.advance.android.weekend.util.BaseUiState
 import kh.com.pheaktra.developer.basic.advance.android.weekend.util.LoadingUtil
+import kh.com.pheaktra.developer.model.BaseUiState
 
 @Composable
 fun ScreenUserApi(
@@ -60,6 +60,9 @@ fun ScreenUserApi(
     val userListUiState by userApiVM.userListUiState.collectAsStateWithLifecycle()
 
     LaunchedEffect(Unit) {
+        if (userListUiState is BaseUiState.Success) {
+            return@LaunchedEffect
+        }
         userApiVM.getUserList()
     }
 
@@ -93,6 +96,7 @@ fun ScreenUserApi(
                 navigationIcon = {
                     IconButton(
                         onClick = {
+                            userApiVM.onDispose()
                             onBack()
                         }
                     ) {

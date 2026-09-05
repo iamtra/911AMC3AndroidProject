@@ -53,8 +53,8 @@ import kh.com.pheaktra.developer.model.request.CreateUserRequest
 import kh.com.pheaktra.developer.model.request.toUpdateUserRequest
 import kh.com.pheaktra.developer.model.response.UserModelResponse
 import kh.com.pheaktra.developer.basic.advance.android.weekend.ui.theme.AppTheme
-import kh.com.pheaktra.developer.basic.advance.android.weekend.util.BaseUiState
 import kh.com.pheaktra.developer.basic.advance.android.weekend.util.LoadingUtil
+import kh.com.pheaktra.developer.model.BaseUiState
 
 @Composable
 fun ScreenCreateUser(

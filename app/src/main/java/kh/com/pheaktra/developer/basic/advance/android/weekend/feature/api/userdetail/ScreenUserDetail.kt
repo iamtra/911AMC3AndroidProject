@@ -49,8 +49,8 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import kh.com.pheaktra.developer.basic.advance.android.weekend.R
 import kh.com.pheaktra.developer.model.response.UserModelResponse
 import kh.com.pheaktra.developer.model.response.getFullName
-import kh.com.pheaktra.developer.basic.advance.android.weekend.util.BaseUiState
 import kh.com.pheaktra.developer.basic.advance.android.weekend.util.LoadingUtil
+import kh.com.pheaktra.developer.model.BaseUiState
 
 @Composable
 fun ScreenUserDetail(

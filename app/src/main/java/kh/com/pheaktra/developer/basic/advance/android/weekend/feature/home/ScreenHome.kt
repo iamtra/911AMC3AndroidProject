@@ -46,9 +46,9 @@ import kh.com.pheaktra.developer.basic.advance.android.weekend.R
 import kh.com.pheaktra.developer.basic.advance.android.weekend.data.storage.componentList
 import kh.com.pheaktra.developer.model.general.MaterialComponentModel
 import kh.com.pheaktra.developer.basic.advance.android.weekend.ui.theme.AppTheme
-import kh.com.pheaktra.developer.basic.advance.android.weekend.util.BaseUiState
 import kh.com.pheaktra.developer.basic.advance.android.weekend.util.LoadingUtil
 import kh.com.pheaktra.developer.basic.advance.android.weekend.util.SystemBarController
+import kh.com.pheaktra.developer.model.BaseUiState
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
