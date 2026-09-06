@@ -22,7 +22,7 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "911AMAndroidBasicAdvanceWeekend"
+rootProject.name = "AndroidMasterClass"
 include(":app")
 include(":core")
 include(":core:model")

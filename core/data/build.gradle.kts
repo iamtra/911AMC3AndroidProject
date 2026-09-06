@@ -34,10 +34,15 @@ android {
 dependencies {
     implementation(libs.androidx.appcompat)
     implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.room.ktx)
     implementation(libs.material)
     // Di
     implementation(libs.hilt.android)
     ksp(libs.hilt.android.compiler)
+
+    // Room database
+    implementation(libs.androidx.room.runtime)
+    ksp(libs.androidx.room.compiler)
 
     implementation(project(":core:domain"))
     implementation(project(":core:model"))
