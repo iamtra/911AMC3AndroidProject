@@ -284,4 +284,11 @@ val componentList = listOf(
         NavKey::UserApiScreen,
         "https://img.icons8.com/color/96/wifi.png",
     ),
+    MaterialComponentModel(
+        41,
+        "Room Database",
+        "Detail about Room Database in Android",
+        NavKey::TaskScreen,
+        "https://img.icons8.com/color/96/database.png",
+    ),
 )

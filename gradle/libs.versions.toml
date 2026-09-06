@@ -22,6 +22,7 @@ retrofit = "3.0.0"
 appcompat = "1.8.0"
 materialVersion = "1.10.0"
 hilt = "2.60.1"
+hiltNavigationCompose = "1.4.0"
 ksp = "2.3.10"
 roomCompiler = "2.8.4"
 roomRuntime = "2.8.4"
@@ -67,6 +68,7 @@ material = { group = "com.google.android.material", name = "material", version.r
 # DI
 hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }
 hilt-android-compiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "hilt" }
+hilt-nav-compose = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "hiltNavigationCompose" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

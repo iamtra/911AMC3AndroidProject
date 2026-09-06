@@ -22,7 +22,8 @@ interface TaskDao {
     @Query(
         """
         SELECT * FROM tasks
-        WHERE title LIKE :query AND description LIKE :query
+        WHERE title LIKE '%' || :query || '%'
+           OR description LIKE '%' || :query || '%'
         """
     )
     suspend fun searchTasks(query: String): List<TaskEntity>

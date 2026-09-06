@@ -1,6 +1,5 @@
 package kh.com.pheaktra.developer.domain.repository
 
-import kh.com.pheaktra.developer.data.local.entities.TaskEntity
 import kh.com.pheaktra.developer.model.request.TaskModel
 
 interface TaskRepository {

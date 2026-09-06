@@ -45,6 +45,9 @@ import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.notificat
 import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.outlinebutton.ScreenOutlineButton
 import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.progressindicator.ScreenProgressIndicator
 import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.radio.ScreenRadio
+import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.room.create.ScreenCreateUpdateTask
+import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.room.detail.ScreenTaskDetail
+import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.room.task.ScreenTask
 import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.row.ScreenRow
 import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.scaffold.ScreenScaffold
 import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.segmentedbutton.ScreenMultiChoiceSegmentButton
@@ -413,6 +416,40 @@ fun BaseNavigation() {
                     onBack = { onBack() }
                 )
             }
+
+            entry<NavKey.TaskScreen> { key ->
+                ScreenTask(
+                    title = key.data.title,
+                    onBack = { onBack() },
+                    onDetail = { task ->
+                        backStack.add(NavKey.TaskDetailScreen(task.taskId.toString()))
+                    },
+                    onCreate = {
+                        backStack.add(NavKey.CreateUpdateTaskScreen())
+                    }
+                )
+            }
+
+            entry<NavKey.CreateUpdateTaskScreen> {
+                ScreenCreateUpdateTask(
+                    task = it.task,
+                    onBack = { onBack() },
+                    onConfirm = { 
+                        onBack()
+                    }
+                )
+            }
+
+            entry<NavKey.TaskDetailScreen> {
+                ScreenTaskDetail(
+                    taskId = it.id,
+                    onBack = { onBack() },
+                    onEdit = { task ->
+                        backStack.add(NavKey.CreateUpdateTaskScreen(task))
+                    }
+                )
+            }
+
         }
     )
 }

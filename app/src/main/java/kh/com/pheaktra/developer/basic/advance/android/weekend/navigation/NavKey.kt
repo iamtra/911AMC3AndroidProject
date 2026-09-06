@@ -1,6 +1,7 @@
 package kh.com.pheaktra.developer.basic.advance.android.weekend.navigation
 
 import kh.com.pheaktra.developer.model.general.MaterialComponentModel
+import kh.com.pheaktra.developer.model.request.TaskModel
 import kh.com.pheaktra.developer.model.response.UserModelResponse
 
 object NavKey {
@@ -54,6 +55,12 @@ object NavKey {
     data class UserDetailScreen(val id: Int)
 
     data class CreateUserScreen(val data: UserModelResponse?)
+
+    data class TaskScreen(val data: MaterialComponentModel)
+
+    data class CreateUpdateTaskScreen(val task: TaskModel? = null)
+
+    data class TaskDetailScreen(val id: String)
 
     data class NotificationList(val title: String)
 }

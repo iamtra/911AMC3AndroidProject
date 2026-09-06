@@ -75,6 +75,7 @@ dependencies {
 
     // Di
     implementation(libs.hilt.android)
+    implementation(libs.hilt.nav.compose)
     ksp(libs.hilt.android.compiler)
 
     // Local Module

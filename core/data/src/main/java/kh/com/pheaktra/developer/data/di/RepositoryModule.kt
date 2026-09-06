@@ -6,6 +6,8 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import kh.com.pheaktra.developer.domain.repository.UserRepository
 import kh.com.pheaktra.developer.data.repositoryimpl.UserRepositoryImpl
+import kh.com.pheaktra.developer.domain.repository.TaskRepository
+import kh.com.pheaktra.developer.data.repositoryimpl.TaskRepositoryImpl
 import javax.inject.Singleton
 
 @Module
@@ -16,4 +18,10 @@ abstract class RepositoryModule {
     abstract fun bindUserRepository(
         impl: UserRepositoryImpl
     ): UserRepository
+
+    @Binds
+    @Singleton
+    abstract fun bindTaskRepository(
+        impl: TaskRepositoryImpl
+    ): TaskRepository
 }
