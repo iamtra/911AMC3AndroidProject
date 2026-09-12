@@ -42,4 +42,9 @@ class TaskDetailVM @Inject constructor(
             }
         }
     }
+
+    fun onDispose() {
+        _taskState.value = BaseUiState.None
+        _deleteState.value = BaseUiState.None
+    }
 }

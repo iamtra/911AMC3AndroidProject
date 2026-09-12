@@ -1,15 +1,16 @@
 package kh.com.pheaktra.developer.domain.repository
 
 import kh.com.pheaktra.developer.model.request.TaskModel
+import kotlinx.coroutines.flow.Flow
 
 interface TaskRepository {
-    suspend fun getAllTasks(): List<TaskModel>
+    fun getAllTasks(): Flow<List<TaskModel>>
 
     suspend fun getTaskById(taskId: Int): TaskModel?
 
     suspend fun deleteTaskById(taskId: Int)
 
-    suspend fun searchTasks(query: String): List<TaskModel>
+    fun searchTasks(query: String): Flow<List<TaskModel>>
 
     suspend fun createTask(task: TaskModel)
 

@@ -10,5 +10,9 @@ package kh.com.pheaktra.developer.basic.advance.android.weekend
  *  *      - Room + Di (Done)
  * 3. Firebase push notification (September 13, 2026)
  * 4. Hardware, Runtime Permission && Broadcast receiver (3 weeks)
+ *      - Access Media (Photo, File)
+ *      - Camera
+ *      - GPS
+ *      - Network
  * 5. Cross environment (Multi Product Flavor)
  */
