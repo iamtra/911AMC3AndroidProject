@@ -42,7 +42,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import kh.com.pheaktra.developer.basic.advance.android.weekend.R
 import kh.com.pheaktra.developer.basic.advance.android.weekend.ui.theme.AppTheme
 import kh.com.pheaktra.developer.model.BaseUiState
@@ -148,7 +148,10 @@ fun ScreenTaskContent(
 
                 is BaseUiState.Exception -> {
                     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                        Text(text = "Error: ${state.message}", color = MaterialTheme.colorScheme.error)
+                        Text(
+                            text = "Error: ${state.message}",
+                            color = MaterialTheme.colorScheme.error
+                        )
                     }
                 }
 
@@ -176,7 +179,10 @@ fun TaskList(
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         items(tasks) { task ->
-            TaskItem(task = task, onClick = { onTaskClick(task) }, onDelete = { onDeleteClick(task) })
+            TaskItem(
+                task = task,
+                onClick = { onTaskClick(task) },
+                onDelete = { onDeleteClick(task) })
         }
     }
 }
@@ -218,7 +224,11 @@ fun TaskItem(
                 )
             }
             IconButton(onClick = onDelete) {
-                Icon(imageVector = Icons.Default.Delete, contentDescription = "Delete", tint = MaterialTheme.colorScheme.error)
+                Icon(
+                    imageVector = Icons.Default.Delete,
+                    contentDescription = "Delete",
+                    tint = MaterialTheme.colorScheme.error
+                )
             }
         }
     }
