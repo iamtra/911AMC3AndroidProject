@@ -30,7 +30,6 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -38,6 +37,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -209,12 +209,12 @@ fun TaskItem(
                 Text(
                     text = task.description,
                     style = MaterialTheme.typography.bodyMedium,
-                    maxLines = 1
+                    maxLines = 2
                 )
                 Text(
                     text = if (task.completedYN) "Completed" else "Pending",
                     style = MaterialTheme.typography.labelSmall,
-                    color = if (task.completedYN) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.secondary
+                    color = if (task.completedYN) Color.Green else Color.Yellow
                 )
             }
             IconButton(onClick = onDelete) {

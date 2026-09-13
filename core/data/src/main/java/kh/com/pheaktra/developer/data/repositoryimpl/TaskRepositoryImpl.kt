@@ -6,13 +6,15 @@ import kh.com.pheaktra.developer.data.local.entities.toTaskModel
 import kh.com.pheaktra.developer.data.local.entities.toTaskModelList
 import kh.com.pheaktra.developer.domain.repository.TaskRepository
 import kh.com.pheaktra.developer.model.request.TaskModel
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 class TaskRepositoryImpl @Inject constructor(
     private val taskDao: TaskDao
 ) : TaskRepository {
-    override suspend fun getAllTasks(): List<TaskModel> {
-        return taskDao.getAllTasks().toTaskModelList()
+    override fun getAllTasks(): Flow<List<TaskModel>> {
+        return taskDao.getAllTasks().map { it.toTaskModelList() }
     }
 
     override suspend fun getTaskById(taskId: Int): TaskModel? {
@@ -23,8 +25,8 @@ class TaskRepositoryImpl @Inject constructor(
         taskDao.deleteTaskById(taskId)
     }
 
-    override suspend fun searchTasks(query: String): List<TaskModel> {
-        return taskDao.searchTasks(query).toTaskModelList()
+    override fun searchTasks(query: String): Flow<List<TaskModel>> {
+        return taskDao.searchTasks(query).map { it.toTaskModelList() }
     }
 
     override suspend fun createTask(task: TaskModel) {

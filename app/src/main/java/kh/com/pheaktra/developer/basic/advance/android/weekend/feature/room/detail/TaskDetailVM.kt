@@ -42,4 +42,10 @@ class TaskDetailVM @Inject constructor(
             }
         }
     }
+
+    public override fun onCleared() {
+        super.onCleared()
+        _taskState.value = BaseUiState.None
+        _deleteState.value = BaseUiState.None
+    }
 }

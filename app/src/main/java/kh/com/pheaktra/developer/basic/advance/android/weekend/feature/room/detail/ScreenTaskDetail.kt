@@ -14,7 +14,6 @@ import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -25,16 +24,16 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import kh.com.pheaktra.developer.basic.advance.android.weekend.R
 import kh.com.pheaktra.developer.basic.advance.android.weekend.ui.theme.AppTheme
 import kh.com.pheaktra.developer.model.BaseUiState
@@ -60,22 +59,36 @@ fun ScreenTaskDetail(
         }
     }
 
-    ScreenTaskDetailContent(
-        taskState = taskState,
-        onBack = onBack,
-        onEdit = onEdit,
-        onDelete = {
-            (taskState as? BaseUiState.Success<TaskModel?>)?.data?.taskId?.let {
-                viewModel.deleteTask(it)
+    DisposableEffect(Unit) {
+        onDispose {
+            viewModel.onCleared()
+        }
+    }
+
+    when (val state = taskState) {
+        is BaseUiState.Success -> {
+            state.data?.let {
+                ScreenTaskDetailContent(
+                    task = it,
+                    onBack = onBack,
+                    onEdit = onEdit,
+                    onDelete = {
+                        (taskState as? BaseUiState.Success<TaskModel?>)?.data?.taskId?.let { taskId ->
+                            viewModel.deleteTask(taskId)
+                        }
+                    }
+                )
             }
         }
-    )
+
+        else -> {}
+    }
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ScreenTaskDetailContent(
-    taskState: BaseUiState<TaskModel?>,
+    task: TaskModel,
     onBack: () -> Unit,
     onEdit: (TaskModel) -> Unit,
     onDelete: () -> Unit
@@ -105,76 +118,54 @@ fun ScreenTaskDetailContent(
                 .padding(padding)
                 .fillMaxSize()
         ) {
-            when (val state = taskState) {
-                is BaseUiState.Loading -> {
-                    CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
-                }
-
-                is BaseUiState.Success -> {
-                    val task = state.data
-                    if (task != null) {
-                        Column(
-                            modifier = Modifier
-                                .padding(16.dp)
-                                .fillMaxSize()
-                        ) {
-                            Text(
-                                text = task.title,
-                                style = MaterialTheme.typography.headlineMedium,
-                                fontWeight = FontWeight.Bold
-                            )
-                            Spacer(modifier = Modifier.height(8.dp))
-                            Text(
-                                text = if (task.completedYN) "Status: Completed" else "Status: Pending",
-                                style = MaterialTheme.typography.bodyLarge,
-                                color = if (task.completedYN) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.secondary
-                            )
-                            Spacer(modifier = Modifier.height(16.dp))
-                            Text(
-                                text = "Description:",
-                                style = MaterialTheme.typography.titleMedium,
-                                fontWeight = FontWeight.SemiBold
-                            )
-                            Text(
-                                text = task.description,
-                                style = MaterialTheme.typography.bodyMedium
-                            )
-                            Spacer(modifier = Modifier.weight(1f))
-                            Row(modifier = Modifier.fillMaxWidth()) {
-                                OutlinedButton(
-                                    onClick = { onEdit(task) },
-                                    modifier = Modifier.weight(1f)
-                                ) {
-                                    Icon(Icons.Default.Edit, contentDescription = null)
-                                    Spacer(modifier = Modifier.width(8.dp))
-                                    Text("Edit")
-                                }
-                                Spacer(modifier = Modifier.width(16.dp))
-                                Button(
-                                    onClick = onDelete,
-                                    modifier = Modifier.weight(1f),
-                                    colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.error)
-                                ) {
-                                    Icon(Icons.Default.Delete, contentDescription = null)
-                                    Spacer(modifier = Modifier.width(8.dp))
-                                    Text("Delete")
-                                }
-                            }
-                        }
-                    } else {
-                        Text("Task not found", modifier = Modifier.align(Alignment.Center))
+            Column(
+                modifier = Modifier
+                    .padding(16.dp)
+                    .fillMaxSize()
+            ) {
+                Text(
+                    text = task.title,
+                    style = MaterialTheme.typography.headlineMedium,
+                    fontWeight = FontWeight.Bold
+                )
+                Spacer(modifier = Modifier.height(8.dp))
+                Text(
+                    text = if (task.completedYN) "Status: Completed" else "Status: Pending",
+                    style = MaterialTheme.typography.bodyLarge,
+                    color = if (task.completedYN) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.secondary
+                )
+                Spacer(modifier = Modifier.height(16.dp))
+                Text(
+                    text = "Description:",
+                    style = MaterialTheme.typography.titleMedium,
+                    fontWeight = FontWeight.SemiBold
+                )
+                Text(
+                    text = task.description,
+                    style = MaterialTheme.typography.bodyMedium
+                )
+                Spacer(modifier = Modifier.weight(1f))
+                Row(modifier = Modifier.fillMaxWidth()) {
+                    OutlinedButton(
+                        onClick = { onEdit(task) },
+                        modifier = Modifier.weight(1f)
+                    ) {
+                        Icon(Icons.Default.Edit, contentDescription = null)
+                        Spacer(modifier = Modifier.width(8.dp))
+                        Text("Edit")
+                    }
+                    Spacer(modifier = Modifier.width(16.dp))
+                    Button(
+                        onClick = onDelete,
+                        modifier = Modifier.weight(1f),
+                        colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.error)
+                    ) {
+                        Icon(Icons.Default.Delete, contentDescription = null)
+                        Spacer(modifier = Modifier.width(8.dp))
+                        Text("Delete")
                     }
                 }
 
-                is BaseUiState.Exception -> {
-                    Text(
-                        text = "Error: ${state.message}",
-                        color = MaterialTheme.colorScheme.error,
-                        modifier = Modifier.align(Alignment.Center)
-                    )
-                }
-
-                else -> {}
             }
         }
     }
@@ -185,9 +176,7 @@ fun ScreenTaskDetailContent(
 fun ScreenTaskDetailPreview() {
     AppTheme {
         ScreenTaskDetailContent(
-            taskState = BaseUiState.Success(
-                TaskModel(1, "Sample Task", "This is a sample task description.", false)
-            ),
+            task = TaskModel(1, "Sample Task", "This is a sample task description.", false),
             onBack = {},
             onEdit = {},
             onDelete = {}

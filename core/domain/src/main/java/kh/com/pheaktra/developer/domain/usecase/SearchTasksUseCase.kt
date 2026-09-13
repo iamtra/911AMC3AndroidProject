@@ -17,7 +17,9 @@ class SearchTasksUseCase @Inject constructor(
             emit(BaseUiState.Loading)
             try {
                 val tasks = taskRepository.searchTasks(params)
-                emit(BaseUiState.Success(tasks))
+                tasks.collect { response ->
+                    emit(BaseUiState.Success(response))
+                }
             } catch (e: CancellationException) {
                 throw e
             } catch (e: Exception) {

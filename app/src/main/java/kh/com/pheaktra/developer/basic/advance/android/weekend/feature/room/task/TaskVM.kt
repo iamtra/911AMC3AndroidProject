@@ -10,12 +10,10 @@ import kh.com.pheaktra.developer.domain.usecase.SearchTasksUseCase
 import kh.com.pheaktra.developer.model.BaseUiState
 import kh.com.pheaktra.developer.model.request.TaskModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
@@ -24,28 +22,27 @@ import javax.inject.Inject
 @Stable
 @HiltViewModel
 class TaskVM @Inject constructor(
-    private val getAllTasksUseCase: GetAllTasksUseCase,
+    getAllTasksUseCase: GetAllTasksUseCase,
+    searchTasksUseCase: SearchTasksUseCase,
     private val deleteTaskByIdUseCase: DeleteTaskByIdUseCase,
-    private val searchTasksUseCase: SearchTasksUseCase,
 ) : ViewModel() {
 
     private val _searchQuery = MutableStateFlow("")
-    private val _refreshTrigger = MutableSharedFlow<Unit>(replay = 1).apply { tryEmit(Unit) }
 
     @OptIn(ExperimentalCoroutinesApi::class)
     val tasksState: StateFlow<BaseUiState<List<TaskModel>>> =
-        combine(_searchQuery, _refreshTrigger) { query, _ -> query }
+        _searchQuery
             .flatMapLatest { query ->
-                if (query.isEmpty()) {
-                    getAllTasksUseCase(Unit)
+                if (query.isNotEmpty()) {
+                    searchTasksUseCase.invoke(query)
                 } else {
-                    searchTasksUseCase(query)
+                    getAllTasksUseCase.invoke(Unit)
                 }
             }
             .stateIn(
                 scope = viewModelScope,
                 started = SharingStarted.WhileSubscribed(5_000),
-                initialValue = BaseUiState.Loading,
+                initialValue = BaseUiState.Loading
             )
 
     fun searchTasks(query: String) {
@@ -54,18 +51,11 @@ class TaskVM @Inject constructor(
 
     fun deleteTask(taskId: Int) {
         viewModelScope.launch {
-            deleteTaskByIdUseCase(taskId).collectLatest { state ->
-                if (state is BaseUiState.Success) {
-                    _refreshTrigger.emit(Unit)
-                }
-            }
+            deleteTaskByIdUseCase(taskId).collectLatest { _ -> }
         }
     }
 
     fun onDispose() {
-        viewModelScope.launch {
-            _searchQuery.value = ""
-            _refreshTrigger.emit(Unit)
-        }
+        _searchQuery.value = ""
     }
 }
