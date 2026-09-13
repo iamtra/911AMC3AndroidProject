@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "30478540173",
+    "project_id": "c3androidmasterclass-daf7d",
+    "storage_bucket": "c3androidmasterclass-daf7d.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:30478540173:android:23a548223b185fa779f1c4",
+        "android_client_info": {
+          "package_name": "kh.com.pheaktra.developer.basic.advance.android.weekend"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBoL6-ZJV6vxIKAGCaQq6r0aLJxpCoz0LM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

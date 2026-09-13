@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.com.google.devtools.ksp)
     alias(libs.plugins.com.google.dagger.hilt.android)
+    alias(libs.plugins.com.google.gms.google.services)
 }
 
 android {
@@ -77,6 +78,11 @@ dependencies {
     implementation(libs.hilt.android)
     implementation(libs.hilt.nav.compose)
     ksp(libs.hilt.android.compiler)
+
+    // Firebase Push Botification
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.analytics)
+    implementation(libs.firebase.messaging)
 
     // Local Module
     implementation(project(":core"))

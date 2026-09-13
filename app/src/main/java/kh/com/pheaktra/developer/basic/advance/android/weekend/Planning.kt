@@ -9,6 +9,21 @@ package kh.com.pheaktra.developer.basic.advance.android.weekend
  *  *      - Setup room database (Explain about database) (Done)
  *  *      - Room + Di (Done)
  * 3. Firebase push notification (September 13, 2026)
+ *      1. Create Firebase project (Done)
+ *      2. Add Google Services plugin (Done)
+ *      3. Configure app/build.gradle.kts (Done)
+ *      4. Add notification permission (Done)
+ *      5. Create FirebaseMessagingService (Done)
+ *      6. Create notification channel (Done)
+ *      7. Initialize notification channel (Done)
+ *      8. Register Firebase service in Manifest (Done)
+ *      9. Create notification manually (Done)
+ *      10. Android 13+ permission (Done)
+ *      11. Get FCM token
+ *      12. Handle data messages
+ *      13. Handle notification click
+ *      14. Receive notification click in MainActivity
+ *      15. Recommended project structure
  * 4. Hardware, Runtime Permission && Broadcast receiver (3 weeks)
  *      - Access Media (Photo, File)
  *      - Camera
