@@ -58,6 +58,13 @@ object NavKey {
 
     data class TaskScreen(val data: MaterialComponentModel)
 
+    data class PickerSinglePhotoScreen(val data: MaterialComponentModel)
+    data class PickerMultiPhotoScreen(val data: MaterialComponentModel)
+    data class PickerSingleVideoScreen(val data: MaterialComponentModel)
+    data class PickerMultiVideoScreen(val data: MaterialComponentModel)
+    data class PickerVideoAndPhotos(val data: MaterialComponentModel)
+    data class PickFromFile(val data: MaterialComponentModel)
+
     data class CreateUpdateTaskScreen(val task: TaskModel? = null)
 
     data class TaskDetailScreen(val id: String)

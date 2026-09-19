@@ -19,15 +19,21 @@ package kh.com.pheaktra.developer.basic.advance.android.weekend
  *      8. Register Firebase service in Manifest (Done)
  *      9. Create notification manually (Done)
  *      10. Android 13+ permission (Done)
- *      11. Get FCM token
+ *      11. Get FCM token (Do research)
  *      12. Handle data messages
  *      13. Handle notification click
  *      14. Receive notification click in MainActivity
- *      15. Recommended project structure
  * 4. Hardware, Runtime Permission && Broadcast receiver (3 weeks)
- *      - Access Media (Photo, File)
+ *      - Access Media
+ *          - Media Picker (Photo, Video)
+ *          - Media Pick from File
  *      - Camera
  *      - GPS
- *      - Network
+ *      - Broadcast receiver:
+ *              - Network
+ *              - Get Battery
+ *              - Handle data messages
+ *              - Handle notification click
+ *              - Receive notification click in MainActivity
  * 5. Cross environment (Multi Product Flavor)
  */

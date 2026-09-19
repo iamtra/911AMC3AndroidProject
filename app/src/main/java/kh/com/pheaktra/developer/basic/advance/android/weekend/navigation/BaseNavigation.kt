@@ -38,6 +38,12 @@ import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.home.Scre
 import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.iconbuttons.ScreenIconButton
 import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.lazycolumn.ScreenLazyColumn
 import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.lazyrow.ScreenLazyRow
+import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.mediapicker.ScreenPickFromFile
+import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.mediapicker.ScreenPickerMultiplePhoto
+import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.mediapicker.ScreenPickerSinglePhoto
+import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.mediapicker.ScreenPickerSingleVideos
+import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.mediapicker.ScreenPickerMultipleVideos
+import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.mediapicker.ScreenPickerVideoAndPhoto
 import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.menu.ScreenMenu
 import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.navigationbar.ScreenBottomNavigationBar
 import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.navigationdrawer.ScreenNavigationDrawer
@@ -447,6 +453,48 @@ fun BaseNavigation() {
                     onEdit = { task ->
                         backStack.add(NavKey.CreateUpdateTaskScreen(task))
                     }
+                )
+            }
+
+            entry<NavKey.PickerSinglePhotoScreen> { key ->
+                ScreenPickerSinglePhoto(
+                    item = key.data,
+                    onBack = { onBack() }
+                )
+            }
+
+            entry<NavKey.PickerMultiPhotoScreen> { key ->
+                ScreenPickerMultiplePhoto(
+                    item = key.data,
+                    onBack = { onBack() }
+                )
+            }
+
+            entry<NavKey.PickerSingleVideoScreen> { key ->
+                ScreenPickerSingleVideos(
+                    item = key.data,
+                    onBack = { onBack() }
+                )
+            }
+
+            entry<NavKey.PickerMultiVideoScreen> { key ->
+                ScreenPickerMultipleVideos(
+                    item = key.data,
+                    onBack = { onBack() }
+                )
+            }
+
+            entry<NavKey.PickerVideoAndPhotos> { key ->
+                ScreenPickerVideoAndPhoto(
+                    item = key.data,
+                    onBack = { onBack() }
+                )
+            }
+
+            entry<NavKey.PickFromFile> { key ->
+                ScreenPickFromFile(
+                    item = key.data,
+                    onBack = { onBack() }
                 )
             }
 
