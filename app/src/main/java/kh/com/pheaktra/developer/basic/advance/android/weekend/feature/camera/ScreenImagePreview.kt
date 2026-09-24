@@ -1,10 +1,7 @@
-package kh.com.pheaktra.developer.basic.advance.android.weekend.feature.mediapicker
+package kh.com.pheaktra.developer.basic.advance.android.weekend.feature.camera
 
+import android.content.Intent
 import android.net.Uri
-import androidx.activity.compose.rememberLauncherForActivityResult
-import androidx.activity.result.PickVisualMediaRequest
-import androidx.activity.result.contract.ActivityResultContracts
-import androidx.activity.result.contract.ActivityResultContracts.PickVisualMedia
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -20,37 +17,45 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults.topAppBarColors
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import kh.com.pheaktra.developer.basic.advance.android.weekend.R
-import kh.com.pheaktra.developer.basic.advance.android.weekend.ui.theme.AppTheme
-import kh.com.pheaktra.developer.model.general.MaterialComponentModel
 
 @Composable
-fun ScreenPickFromFile(
-    item: MaterialComponentModel,
+fun ScreenImagePreview(
+    imageUri: Uri? = null,
     onBack: () -> Unit,
 ) {
-    val (docUri, setDocUri) = remember { mutableStateOf<Uri?>(null) }
+    val context = LocalContext.current
 
-    val pickMedia = rememberLauncherForActivityResult(
-        ActivityResultContracts.OpenDocument()
-    ) { docUri ->
-        if (docUri != null) {
-            println("=====> Selected URI: $docUri")
-            setDocUri(docUri)
-        } else {
-            println("=====> No media selected")
+    fun shareImage() {
+        if (imageUri == null) return
+        
+        val shareIntent = Intent(Intent.ACTION_SEND).apply {
+            type = "image/*"
+
+            putExtra(
+                Intent.EXTRA_STREAM,
+                imageUri
+            )
+            putExtra(Intent.EXTRA_TEXT, "This is image shared by my app")
+            addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
         }
+
+        val chooserIntent = Intent.createChooser(
+            shareIntent,
+            ""
+        )
+
+        context.startActivity(chooserIntent)
     }
+
     Scaffold(
         topBar = {
             TopAppBar(
@@ -73,7 +78,7 @@ fun ScreenPickFromFile(
                     actionIconContentColor = MaterialTheme.colorScheme.onPrimary
                 ),
                 title = {
-                    Text(item.title)
+                    Text("Preview image")
                 }
             )
         },
@@ -83,14 +88,10 @@ fun ScreenPickFromFile(
                     .fillMaxWidth()
                     .padding(16.dp),
                 onClick = {
-                    val mediaCategories = arrayOf(
-                        "image/*",
-                        "video/*",
-                    )
-                    pickMedia.launch(mediaCategories)
+                   shareImage()
                 }
             ) {
-                Text(text = "Pick Photo")
+                Text(text = "Share")
             }
         }
     ) { paddingValues ->
@@ -106,32 +107,17 @@ fun ScreenPickFromFile(
                     .padding(vertical = 8.dp),
                 contentAlignment = Alignment.Center
             ) {
-                AsyncImage(
-                    model = docUri,
-                    contentDescription = "Selected Image",
-                    contentScale = ContentScale.FillWidth,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .clip(RoundedCornerShape(12.dp))
-                )
+                if (imageUri != null) {
+                    AsyncImage(
+                        model = imageUri,
+                        contentDescription = "Selected Image",
+                        contentScale = ContentScale.FillWidth,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .clip(RoundedCornerShape(12.dp))
+                    )
+                }
             }
         }
-    }
-}
-
-@Preview
-@Composable
-fun ScreenPickFromFilePreview() {
-    AppTheme {
-        ScreenPickFromFile(
-            item = MaterialComponentModel(
-                1,
-                "Pick From File",
-                "Pick From File description",
-                { "" },
-                ""
-            ),
-            onBack = {}
-        )
     }
 }

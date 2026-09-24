@@ -25,9 +25,17 @@ package kh.com.pheaktra.developer.basic.advance.android.weekend
  *      14. Receive notification click in MainActivity
  * 4. Hardware, Runtime Permission && Broadcast receiver (3 weeks)
  *      - Access Media
- *          - Media Picker (Photo, Video)
- *          - Media Pick from File
+ *          - Media Picker (Photo, Video) (Done)
+ *          - Media Pick from File (Done)
  *      - Camera
+ *          - Permission
+ *          - Save image cache directory
+ *          - Take photo
+ *          - Pass Uri to image preview screen
+ *          - Share image to social media
+ *
+ *      - FingerPrint
+ *
  *      - GPS
  *      - Broadcast receiver:
  *              - Network

@@ -1,5 +1,6 @@
 package kh.com.pheaktra.developer.basic.advance.android.weekend.navigation
 
+import android.net.Uri
 import kh.com.pheaktra.developer.model.general.MaterialComponentModel
 import kh.com.pheaktra.developer.model.request.TaskModel
 import kh.com.pheaktra.developer.model.response.UserModelResponse
@@ -65,6 +66,11 @@ object NavKey {
     data class PickerVideoAndPhotos(val data: MaterialComponentModel)
     data class PickFromFile(val data: MaterialComponentModel)
 
+    data class CameraHardware(val data: MaterialComponentModel)
+
+    data object CameraPreview
+
+    data class ImagePreview(val imageUri: Uri)
     data class CreateUpdateTaskScreen(val task: TaskModel? = null)
 
     data class TaskDetailScreen(val id: String)

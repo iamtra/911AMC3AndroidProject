@@ -24,6 +24,9 @@ import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.badge.Scr
 import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.bottomsheet.ScreenBottomSheet
 import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.box.ScreenBox
 import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.buttons.ScreenButton
+import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.camera.ScreenCameraHardware
+import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.camera.ScreenCameraPreview
+import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.camera.ScreenImagePreview
 import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.cards.ScreenCards
 import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.carousel.ScreenCarousel
 import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.checkbox.ScreenCheckBox
@@ -440,7 +443,7 @@ fun BaseNavigation() {
                 ScreenCreateUpdateTask(
                     task = it.task,
                     onBack = { onBack() },
-                    onConfirm = { 
+                    onConfirm = {
                         onBack()
                     }
                 )
@@ -495,6 +498,32 @@ fun BaseNavigation() {
                 ScreenPickFromFile(
                     item = key.data,
                     onBack = { onBack() }
+                )
+            }
+            entry<NavKey.CameraHardware> { key ->
+                // Replace by screen camera
+                ScreenCameraHardware(
+                    item = key.data,
+                    onBack = { onBack() },
+                    onOpenCamera = {
+                        backStack.add(NavKey.CameraPreview)
+                    }
+                )
+            }
+
+            entry<NavKey.CameraPreview> { key ->
+                ScreenCameraPreview(
+                    onBack = { onBack() },
+                    onPreview = { uri ->
+                        backStack.add(NavKey.ImagePreview(uri))
+                    }
+                )
+            }
+
+            entry<NavKey.ImagePreview> { key ->
+                ScreenImagePreview(
+                    imageUri = key.imageUri,
+                    onBack = { onBack() },
                 )
             }
 

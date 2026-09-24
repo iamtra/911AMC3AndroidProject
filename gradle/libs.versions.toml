@@ -1,6 +1,7 @@
 [versions]
 agp = "9.3.1"
 biometric = "1.2.0"
+cameraCore = "1.6.2"
 coilCompose = "2.7.0"
 converterGson = "3.0.0"
 coreKtx = "1.19.0"
@@ -34,9 +35,14 @@ roomPaging = "2.8.4"
 runtimeAnnotation = "1.12.1"
 kotlinxCollectionsImmutable = "0.5.2"
 google-services = "4.5.0"
+cameraXVersion = "1.6.2"
 
 [libraries]
 androidx-biometric = { module = "androidx.biometric:biometric", version.ref = "biometric" }
+androidx-camera-camera2 = { module = "androidx.camera:camera-camera2", version.ref = "cameraXVersion" }
+androidx-camera-core = { module = "androidx.camera:camera-core", version.ref = "cameraXVersion" }
+androidx-camera-lifecycle = { module = "androidx.camera:camera-lifecycle", version.ref = "cameraXVersion" }
+androidx-camera-view = { module = "androidx.camera:camera-view", version.ref = "cameraXVersion" }
 androidx-compose-material-icons-extended = { module = "androidx.compose.material:material-icons-extended" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 androidx-lifecycle-viewmodel-compose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "lifecycleViewmodelCompose" }

@@ -1,16 +1,15 @@
-package kh.com.pheaktra.developer.basic.advance.android.weekend.feature.mediapicker
+package kh.com.pheaktra.developer.basic.advance.android.weekend.feature.camera
 
-import android.net.Uri
+import android.Manifest
+import android.content.pm.PackageManager
+import android.widget.Toast
 import androidx.activity.compose.rememberLauncherForActivityResult
-import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.activity.result.contract.ActivityResultContracts.PickVisualMedia
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -20,37 +19,50 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults.topAppBarColors
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import coil.compose.AsyncImage
+import androidx.core.content.ContextCompat
 import kh.com.pheaktra.developer.basic.advance.android.weekend.R
-import kh.com.pheaktra.developer.basic.advance.android.weekend.ui.theme.AppTheme
 import kh.com.pheaktra.developer.model.general.MaterialComponentModel
 
 @Composable
-fun ScreenPickFromFile(
+fun ScreenCameraHardware(
     item: MaterialComponentModel,
     onBack: () -> Unit,
+    onOpenCamera: () -> Unit,
 ) {
-    val (docUri, setDocUri) = remember { mutableStateOf<Uri?>(null) }
-
-    val pickMedia = rememberLauncherForActivityResult(
-        ActivityResultContracts.OpenDocument()
-    ) { docUri ->
-        if (docUri != null) {
-            println("=====> Selected URI: $docUri")
-            setDocUri(docUri)
-        } else {
-            println("=====> No media selected")
-        }
+    val context = LocalContext.current
+    var hasCameraPermission by remember {
+        mutableStateOf(
+            ContextCompat.checkSelfPermission(
+                context,
+                Manifest.permission.CAMERA,
+            ) == PackageManager.PERMISSION_GRANTED
+        )
     }
+
+    val permissionLauncher = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.RequestPermission(),
+        onResult = { isGranted ->
+            if (isGranted) {
+                onOpenCamera()
+            } else {
+                Toast.makeText(
+                    context,
+                    "Permission Denied",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        }
+    )
+
     Scaffold(
         topBar = {
             TopAppBar(
@@ -83,14 +95,14 @@ fun ScreenPickFromFile(
                     .fillMaxWidth()
                     .padding(16.dp),
                 onClick = {
-                    val mediaCategories = arrayOf(
-                        "image/*",
-                        "video/*",
-                    )
-                    pickMedia.launch(mediaCategories)
+                    if (!hasCameraPermission) {
+                        permissionLauncher.launch(Manifest.permission.CAMERA)
+                    } else {
+                        onOpenCamera()
+                    }
                 }
             ) {
-                Text(text = "Pick Photo")
+                Text(text = "Open Camera")
             }
         }
     ) { paddingValues ->
@@ -106,32 +118,7 @@ fun ScreenPickFromFile(
                     .padding(vertical = 8.dp),
                 contentAlignment = Alignment.Center
             ) {
-                AsyncImage(
-                    model = docUri,
-                    contentDescription = "Selected Image",
-                    contentScale = ContentScale.FillWidth,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .clip(RoundedCornerShape(12.dp))
-                )
             }
         }
-    }
-}
-
-@Preview
-@Composable
-fun ScreenPickFromFilePreview() {
-    AppTheme {
-        ScreenPickFromFile(
-            item = MaterialComponentModel(
-                1,
-                "Pick From File",
-                "Pick From File description",
-                { "" },
-                ""
-            ),
-            onBack = {}
-        )
     }
 }
