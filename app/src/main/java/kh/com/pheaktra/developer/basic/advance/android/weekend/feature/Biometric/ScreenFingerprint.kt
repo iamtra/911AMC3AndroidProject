@@ -1,9 +1,5 @@
-package kh.com.pheaktra.developer.basic.advance.android.weekend.feature.fingerprint
+package kh.com.pheaktra.developer.basic.advance.android.weekend.feature.Biometric
 
-import androidx.biometric.BiometricManager
-import androidx.biometric.BiometricManager.Authenticators.BIOMETRIC_STRONG
-import androidx.biometric.BiometricManager.Authenticators.DEVICE_CREDENTIAL
-import androidx.biometric.BiometricPrompt
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -27,8 +23,6 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.core.content.ContextCompat
-import androidx.fragment.app.FragmentActivity
 import kh.com.pheaktra.developer.basic.advance.android.weekend.R
 import kh.com.pheaktra.developer.basic.advance.android.weekend.ui.theme.AppTheme
 import kh.com.pheaktra.developer.basic.advance.android.weekend.util.BiometricUtil
@@ -95,7 +89,7 @@ fun ScreenFingerPrint(
                     onExecuteBiometric()
                 },
             ) {
-                Text("FingerPrint")
+                Text("Biometric")
             }
         }
     ) { innerPadding ->

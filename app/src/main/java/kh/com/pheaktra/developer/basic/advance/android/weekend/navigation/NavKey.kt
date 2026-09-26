@@ -70,6 +70,8 @@ object NavKey {
 
     data class FingerPrint(val data: MaterialComponentModel)
 
+    data class GetLocation(val data: MaterialComponentModel)
+
     data object CameraPreview
 
     data class ImagePreview(val imageUri: Uri)

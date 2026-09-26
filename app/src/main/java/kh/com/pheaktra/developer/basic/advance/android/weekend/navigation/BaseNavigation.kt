@@ -37,11 +37,12 @@ import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.dialog.Sc
 import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.dialog.ScreenFullScreenDialog
 import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.elevatedbutton.ScreenElevatedButton
 import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.filltonalbutton.ScreenFilledTonalButton
-import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.fingerprint.ScreenFingerPrint
+import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.Biometric.ScreenFingerPrint
 import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.home.ScreenHome
 import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.iconbuttons.ScreenIconButton
 import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.lazycolumn.ScreenLazyColumn
 import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.lazyrow.ScreenLazyRow
+import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.location.ScreenGetLocation
 import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.mediapicker.ScreenPickFromFile
 import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.mediapicker.ScreenPickerMultiplePhoto
 import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.mediapicker.ScreenPickerSinglePhoto
@@ -530,6 +531,12 @@ fun BaseNavigation() {
 
             entry<NavKey.FingerPrint> { key ->
                 ScreenFingerPrint(
+                    item = key.data,
+                    onBack = { onBack() }
+                )
+            }
+            entry<NavKey.GetLocation> { key ->
+                ScreenGetLocation(
                     item = key.data,
                     onBack = { onBack() }
                 )

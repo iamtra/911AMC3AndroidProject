@@ -37,6 +37,9 @@ package kh.com.pheaktra.developer.basic.advance.android.weekend
  *      - FingerPrint
  *
  *      - GPS
+ *          - Check permission
+ *          - Get latitude and longitude
+ *          - Display on map
  *
  *      - Broadcast receiver:
  *              - Network

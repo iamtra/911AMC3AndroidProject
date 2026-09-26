@@ -342,9 +342,16 @@ val componentList = listOf(
     ),
     MaterialComponentModel(
         49,
-        "Fingerprint",
+        "Biometric",
         "Authenticate the user securely using fingerprint or biometric authentication.",
         NavKey::FingerPrint,
         "https://img.icons8.com/color/96/fingerprint.png",
+    ),
+    MaterialComponentModel(
+        50,
+        "Location",
+        "Access the user's current location using Android location services and runtime permissions.",
+        NavKey::GetLocation,
+        "https://img.icons8.com/color/96/marker.png",
     ),
 )

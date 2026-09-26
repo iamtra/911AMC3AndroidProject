@@ -97,6 +97,9 @@ dependencies {
 //    implementation("androidx.biometric:biometric:1.1.0")
     implementation(libs.androidx.appcompat)
 
+    // Play service location
+    implementation(libs.play.services.location)
+
 
     // Local Module
     implementation(project(":core"))
