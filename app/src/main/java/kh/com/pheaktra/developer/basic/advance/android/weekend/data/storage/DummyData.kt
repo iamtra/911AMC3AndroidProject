@@ -354,4 +354,11 @@ val componentList = listOf(
         NavKey::GetLocation,
         "https://img.icons8.com/color/96/marker.png",
     ),
+    MaterialComponentModel(
+        51,
+        "Battery",
+        "Monitor the device battery percentage and charging status using Android BroadcastReceiver.",
+        NavKey::Battery,
+        "https://img.icons8.com/color/96/battery.png",
+    ),
 )

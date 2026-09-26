@@ -38,6 +38,7 @@ import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.dialog.Sc
 import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.elevatedbutton.ScreenElevatedButton
 import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.filltonalbutton.ScreenFilledTonalButton
 import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.Biometric.ScreenFingerPrint
+import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.battery.ScreenBattery
 import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.home.ScreenHome
 import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.iconbuttons.ScreenIconButton
 import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.lazycolumn.ScreenLazyColumn
@@ -537,6 +538,13 @@ fun BaseNavigation() {
             }
             entry<NavKey.GetLocation> { key ->
                 ScreenGetLocation(
+                    item = key.data,
+                    onBack = { onBack() }
+                )
+            }
+
+            entry<NavKey.Battery> { key ->
+                ScreenBattery(
                     item = key.data,
                     onBack = { onBack() }
                 )

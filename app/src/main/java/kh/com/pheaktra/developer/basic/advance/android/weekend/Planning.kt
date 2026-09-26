@@ -41,11 +41,11 @@ package kh.com.pheaktra.developer.basic.advance.android.weekend
  *          - Get latitude and longitude
  *          - Display on map
  *
- *      - Broadcast receiver:
- *              - Network
+ *      - Broadcast receiver: (September 27, 2026)
  *              - Get Battery
+ *              - Network
  *              - Handle data messages
  *              - Handle notification click
  *              - Receive notification click in MainActivity
- * 5. Cross environment (Multi Product Flavor)
+ * 5. Cross environment (Multi Product Flavor) (Next week)
  */

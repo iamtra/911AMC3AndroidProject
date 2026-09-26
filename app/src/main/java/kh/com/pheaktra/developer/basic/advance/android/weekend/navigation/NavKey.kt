@@ -71,6 +71,7 @@ object NavKey {
     data class FingerPrint(val data: MaterialComponentModel)
 
     data class GetLocation(val data: MaterialComponentModel)
+    data class Battery(val data: MaterialComponentModel)
 
     data object CameraPreview
 
