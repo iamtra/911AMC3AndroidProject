@@ -37,6 +37,7 @@ import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.dialog.Sc
 import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.dialog.ScreenFullScreenDialog
 import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.elevatedbutton.ScreenElevatedButton
 import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.filltonalbutton.ScreenFilledTonalButton
+import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.fingerprint.ScreenFingerPrint
 import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.home.ScreenHome
 import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.iconbuttons.ScreenIconButton
 import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.lazycolumn.ScreenLazyColumn
@@ -524,6 +525,13 @@ fun BaseNavigation() {
                 ScreenImagePreview(
                     imageUri = key.imageUri,
                     onBack = { onBack() },
+                )
+            }
+
+            entry<NavKey.FingerPrint> { key ->
+                ScreenFingerPrint(
+                    item = key.data,
+                    onBack = { onBack() }
                 )
             }
 

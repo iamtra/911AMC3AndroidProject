@@ -27,7 +27,7 @@ package kh.com.pheaktra.developer.basic.advance.android.weekend
  *      - Access Media
  *          - Media Picker (Photo, Video) (Done)
  *          - Media Pick from File (Done)
- *      - Camera
+ *      - Camera (Done)
  *          - Permission
  *          - Save image cache directory
  *          - Take photo
@@ -37,6 +37,7 @@ package kh.com.pheaktra.developer.basic.advance.android.weekend
  *      - FingerPrint
  *
  *      - GPS
+ *
  *      - Broadcast receiver:
  *              - Network
  *              - Get Battery

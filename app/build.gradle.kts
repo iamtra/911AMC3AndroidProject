@@ -92,6 +92,11 @@ dependencies {
     implementation(libs.androidx.camera.lifecycle)
     implementation(libs.androidx.camera.view)
 
+    // FingerPrint
+    implementation(libs.androidx.biometric)
+//    implementation("androidx.biometric:biometric:1.1.0")
+    implementation(libs.androidx.appcompat)
+
 
     // Local Module
     implementation(project(":core"))

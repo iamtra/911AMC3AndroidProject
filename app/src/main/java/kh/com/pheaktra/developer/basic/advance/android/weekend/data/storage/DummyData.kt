@@ -340,4 +340,11 @@ val componentList = listOf(
         NavKey::CameraHardware,
         "https://img.icons8.com/color/96/camera.png",
     ),
+    MaterialComponentModel(
+        49,
+        "Fingerprint",
+        "Authenticate the user securely using fingerprint or biometric authentication.",
+        NavKey::FingerPrint,
+        "https://img.icons8.com/color/96/fingerprint.png",
+    ),
 )

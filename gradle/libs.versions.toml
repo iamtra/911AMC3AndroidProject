@@ -1,6 +1,6 @@
 [versions]
 agp = "9.3.1"
-biometric = "1.2.0"
+biometric = "1.1.0"
 cameraCore = "1.6.2"
 coilCompose = "2.7.0"
 converterGson = "3.0.0"
