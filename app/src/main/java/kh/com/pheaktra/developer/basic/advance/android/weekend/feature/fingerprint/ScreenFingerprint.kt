@@ -19,6 +19,8 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults.topAppBarColors
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -29,6 +31,7 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentActivity
 import kh.com.pheaktra.developer.basic.advance.android.weekend.R
 import kh.com.pheaktra.developer.basic.advance.android.weekend.ui.theme.AppTheme
+import kh.com.pheaktra.developer.basic.advance.android.weekend.util.BiometricUtil
 import kh.com.pheaktra.developer.model.general.MaterialComponentModel
 
 @Composable
@@ -37,32 +40,22 @@ fun ScreenFingerPrint(
     onBack: () -> Unit
 ) {
     val context = LocalContext.current
-    val executor = ContextCompat.getMainExecutor(context as FragmentActivity)
-    val biometricPrompt = BiometricPrompt(
-        context,
-        executor,
-        object : BiometricPrompt.AuthenticationCallback() {
-            override fun onAuthenticationError(errorCode: Int, errString: CharSequence) {
-                super.onAuthenticationError(errorCode, errString)
-                println("=====> Authentication error: $errString")
-            }
+    val (resultMessage, setResultMessage) = remember { mutableStateOf("") }
 
-            override fun onAuthenticationSucceeded(result: BiometricPrompt.AuthenticationResult) {
-                super.onAuthenticationSucceeded(result)
-                println("=====> Authentication succeeded!")
+    fun onExecuteBiometric() {
+        BiometricUtil.executeBiometric(
+            context = context,
+            onError = { _, message ->
+                setResultMessage(message)
+            },
+            onSuccess = { message ->
+                setResultMessage(message)
+            },
+            onFailure = {
+                setResultMessage("Failed")
             }
-
-            override fun onAuthenticationFailed() {
-                super.onAuthenticationFailed()
-                println("=====> Authentication failed")
-            }
-        }
-    )
-    val promptInfo = BiometricPrompt.PromptInfo.Builder()
-        .setTitle("Biometric login for my app")
-        .setSubtitle("Log in using your biometric credential")
-        .setAllowedAuthenticators(BIOMETRIC_STRONG or DEVICE_CREDENTIAL)
-        .build()
+        )
+    }
 
     Scaffold(
         modifier = Modifier.navigationBarsPadding(),
@@ -99,7 +92,7 @@ fun ScreenFingerPrint(
                     .fillMaxWidth()
                     .padding(horizontal = 16.dp),
                 onClick = {
-                    biometricPrompt.authenticate(promptInfo)
+                    onExecuteBiometric()
                 },
             ) {
                 Text("FingerPrint")
@@ -113,6 +106,7 @@ fun ScreenFingerPrint(
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
+            Text(resultMessage)
         }
     }
 }
