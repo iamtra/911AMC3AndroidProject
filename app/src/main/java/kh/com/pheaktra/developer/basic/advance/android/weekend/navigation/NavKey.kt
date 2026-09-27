@@ -73,6 +73,8 @@ object NavKey {
     data class GetLocation(val data: MaterialComponentModel)
     data class Battery(val data: MaterialComponentModel)
 
+    data class InternetConnection(val data: MaterialComponentModel)
+
     data object CameraPreview
 
     data class ImagePreview(val imageUri: Uri)

@@ -41,6 +41,7 @@ import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.Biometric
 import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.battery.ScreenBattery
 import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.home.ScreenHome
 import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.iconbuttons.ScreenIconButton
+import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.internet.ScreenInternetConnection
 import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.lazycolumn.ScreenLazyColumn
 import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.lazyrow.ScreenLazyRow
 import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.location.ScreenGetLocation
@@ -545,6 +546,13 @@ fun BaseNavigation() {
 
             entry<NavKey.Battery> { key ->
                 ScreenBattery(
+                    item = key.data,
+                    onBack = { onBack() }
+                )
+            }
+
+            entry<NavKey.InternetConnection> { key ->
+                ScreenInternetConnection(
                     item = key.data,
                     onBack = { onBack() }
                 )

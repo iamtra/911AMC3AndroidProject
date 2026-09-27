@@ -36,14 +36,15 @@ package kh.com.pheaktra.developer.basic.advance.android.weekend
  *
  *      - FingerPrint
  *
- *      - GPS
+ *      - GPS (Done)
  *          - Check permission
  *          - Get latitude and longitude
  *          - Display on map
  *
  *      - Broadcast receiver: (September 27, 2026)
- *              - Get Battery
- *              - Network
+ *              - Get Battery (Done)
+ *              - Internet Connection
+ *              - Airplan mode
  *              - Handle data messages
  *              - Handle notification click
  *              - Receive notification click in MainActivity
