@@ -43,8 +43,8 @@ package kh.com.pheaktra.developer.basic.advance.android.weekend
  *
  *      - Broadcast receiver: (September 27, 2026)
  *              - Get Battery (Done)
- *              - Internet Connection
- *              - Airplan mode
+ *              - Internet Connection (Done)
+ *              - Airplan mode (Done)
  *              - Handle data messages
  *              - Handle notification click
  *              - Receive notification click in MainActivity

@@ -362,10 +362,17 @@ val componentList = listOf(
         "https://img.icons8.com/color/96/battery.png",
     ),
     MaterialComponentModel(
+        52,
+        "Internet Connection",
+        "Monitor the device's internet connectivity and detect network availability or connection changes.",
+        NavKey::InternetConnection,
+        "https://img.icons8.com/color/96/wifi.png",
+    ),
+    MaterialComponentModel(
         53,
         "Airplane Mode",
         "Monitor the device's Airplane Mode status and detect when it is turned on or off.",
         NavKey::AirPlanMode,
         "https://img.icons8.com/color/96/airplane-mode-on.png",
-    ),
+    )
 )

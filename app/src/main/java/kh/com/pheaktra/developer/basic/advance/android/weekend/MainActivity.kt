@@ -1,19 +1,21 @@
 package kh.com.pheaktra.developer.basic.advance.android.weekend
 
 import android.Manifest
+import android.app.ComponentCaller
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
-import androidx.activity.ComponentActivity
 import androidx.activity.SystemBarStyle
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import dagger.hilt.android.AndroidEntryPoint
+import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.segmentedbutton.TransactionType
 import kh.com.pheaktra.developer.basic.advance.android.weekend.navigation.BaseNavigation
+import kh.com.pheaktra.developer.basic.advance.android.weekend.receiver.NotificationClickReceiver
 import kh.com.pheaktra.developer.basic.advance.android.weekend.ui.theme.AppTheme
 import kh.com.pheaktra.developer.basic.advance.android.weekend.util.Loading
 import kh.com.pheaktra.developer.basic.advance.android.weekend.util.LoadingUtil
@@ -22,9 +24,11 @@ import kh.com.pheaktra.developer.core.Transfer
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private lateinit var transfer: Transfer
+    private var transactionType: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        handleNotificationIntent(intent)
         transfer = Transfer()
         enableEdgeToEdge(
             statusBarStyle = SystemBarStyle.auto(
@@ -42,8 +46,22 @@ class MainActivity : AppCompatActivity() {
                 if (LoadingUtil.isLoading.value) {
                     Loading()
                 }
-                BaseNavigation()
+                BaseNavigation(transactionType)
             }
+        }
+    }
+
+    override fun onNewIntent(intent: Intent) {
+        super.onNewIntent(intent)
+        setIntent(intent)
+        handleNotificationIntent(intent)
+    }
+
+    private fun handleNotificationIntent(intent: Intent?) {
+        val transactionType = intent?.getStringExtra(NotificationClickReceiver.TRANSACTION_TYPE)
+        if (transactionType != null) {
+            println("=====> MainActivity $transactionType")
+            this.transactionType = transactionType
         }
     }
 
@@ -58,10 +76,15 @@ class MainActivity : AppCompatActivity() {
                 ActivityCompat.requestPermissions(
                     this,
                     arrayOf(Manifest.permission.ACCESS_LOCAL_NETWORK),
-                    1001
+                    1001,
                 )
             }
         }
+    }
+
+    override fun onNewIntent(intent: Intent, caller: ComponentCaller) {
+        super.onNewIntent(intent, caller)
+        handleNotificationIntent(intent)
     }
 
     override fun onStart() {

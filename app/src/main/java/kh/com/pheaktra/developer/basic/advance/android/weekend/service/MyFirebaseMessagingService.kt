@@ -1,11 +1,15 @@
 package kh.com.pheaktra.developer.basic.advance.android.weekend.service
 
 import android.app.NotificationManager
+import android.app.PendingIntent
+import android.content.Intent
 import android.util.Log
 import androidx.core.app.NotificationCompat
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
+import kh.com.pheaktra.developer.basic.advance.android.weekend.MainActivity
 import kh.com.pheaktra.developer.basic.advance.android.weekend.R
+import kh.com.pheaktra.developer.basic.advance.android.weekend.receiver.NotificationClickReceiver
 
 class MyFirebaseMessagingService : FirebaseMessagingService() {
     override fun onNewToken(token: String) {
@@ -23,42 +27,34 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
 
         Log.d(
             "FCM",
-            "From: ${message.from}"
+            "From: ${message.from}",
         )
 
-        // Notification payload
-        message.notification?.let { notification ->
+        // Ensure notification channel is created
+        NotificationHelper.createNotificationChannel(this)
 
-            val title = notification.title.orEmpty()
-            val body = notification.body.orEmpty()
+        val title = message.notification?.title
+            ?: message.data["title"]
+            ?: getString(R.string.app_name)
 
-            Log.d("FCM", "Title: $title")
-            Log.d("FCM", "Body: $body")
+        val body = message.notification?.body
+            ?: message.data["body"]
+            ?: ""
 
+        Log.d("FCM", "Title: $title")
+        Log.d("FCM", "Body: $body")
+
+        if (title.isNotEmpty() || body.isNotEmpty() || message.data.isNotEmpty()) {
             showNotification(
                 title = title,
                 body = body,
                 data = message.data,
             )
         }
-
-        // Data payload
-        if (message.data.isNotEmpty()) {
-
-            Log.d(
-                "FCM",
-                "Data: ${message.data}"
-            )
-
-            // If you send data-only messages,
-            // you may want to create the notification here.
-        }
     }
 
     private fun sendTokenToServer(token: String) {
-        // Example:
-        //
-        // notificationRepository.registerToken(token)
+        Log.d("FCM", "Sending token to server: $token")
     }
 
     private fun showNotification(
@@ -66,11 +62,40 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
         body: String,
         data: Map<String, String>,
     ) {
-
         val notificationManager =
             getSystemService(
                 NotificationManager::class.java
             )
+
+        val notificationId = System.currentTimeMillis().toInt()
+
+        val transactionType = data[NotificationClickReceiver.TRANSACTION_TYPE]
+            ?: data["transaction_type"]
+
+        // Create PendingIntent launching MainActivity directly (required for Android 12+ API 31+ notification trampoline restriction)
+        val intent = Intent(
+            this,
+            MainActivity::class.java,
+        ).apply {
+            flags = Intent.FLAG_ACTIVITY_NEW_TASK or
+                    Intent.FLAG_ACTIVITY_CLEAR_TOP
+
+            putExtra(
+                NotificationClickReceiver.EXTRA_NOTIFICATION_ID,
+                notificationId,
+            )
+            putExtra(
+                NotificationClickReceiver.TRANSACTION_TYPE,
+                transactionType,
+            )
+        }
+
+        val pendingIntent = PendingIntent.getActivity(
+            this,
+            notificationId,
+            intent,
+            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE,
+        )
 
         val notification = NotificationCompat.Builder(
             this,
@@ -81,10 +106,11 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
             .setContentText(body)
             .setPriority(NotificationCompat.PRIORITY_HIGH)
             .setAutoCancel(true)
+            .setContentIntent(pendingIntent)
             .build()
 
         notificationManager.notify(
-            System.currentTimeMillis().toInt(),
+            notificationId,
             notification,
         )
     }

@@ -78,13 +78,32 @@ import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.timepicke
 import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.toolbar.ScreenToolbar
 import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.tooltips.ScreenToolTips
 import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.topbar.ScreenTopAppBar
+import kh.com.pheaktra.developer.model.general.MaterialComponentModel
 import kh.com.pheaktra.developer.model.general.route
 
 private const val ANIMATION_DURATION = 300
 
 @Composable
-fun BaseNavigation() {
+fun BaseNavigation(
+    transactionType: String = "",
+) {
+    val route = when(transactionType) {
+        "01" -> NavKey.InternetConnection(
+            MaterialComponentModel(
+                52,
+                "Internet Connection",
+                "Monitor the device's internet connectivity and detect network availability or connection changes.",
+                NavKey::InternetConnection,
+                "https://img.icons8.com/color/96/wifi.png",
+            )
+        )
+        else -> {}
+    }
     val backStack = remember { mutableStateListOf<Any>(NavKey.Home) }
+
+    if (transactionType.isNotEmpty()) {
+        backStack.add(route)
+    }
 
     fun onBack() {
         backStack.removeLastOrNull()
