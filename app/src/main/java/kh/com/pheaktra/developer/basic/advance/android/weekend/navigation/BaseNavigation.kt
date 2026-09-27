@@ -38,6 +38,7 @@ import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.dialog.Sc
 import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.elevatedbutton.ScreenElevatedButton
 import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.filltonalbutton.ScreenFilledTonalButton
 import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.Biometric.ScreenFingerPrint
+import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.airplanmode.ScreenAirPlanMode
 import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.battery.ScreenBattery
 import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.home.ScreenHome
 import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.iconbuttons.ScreenIconButton
@@ -553,6 +554,13 @@ fun BaseNavigation() {
 
             entry<NavKey.InternetConnection> { key ->
                 ScreenInternetConnection(
+                    item = key.data,
+                    onBack = { onBack() }
+                )
+            }
+
+            entry<NavKey.AirPlanMode> { key ->
+                ScreenAirPlanMode(
                     item = key.data,
                     onBack = { onBack() }
                 )

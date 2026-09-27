@@ -3,6 +3,7 @@ package kh.com.pheaktra.developer.basic.advance.android.weekend.util.extension
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
+import android.provider.Settings
 
 fun Context.isInternetConnected(): Boolean {
     val connectivityManager =
@@ -16,4 +17,12 @@ fun Context.isInternetConnected(): Boolean {
     return capabilities.hasCapability(
         NetworkCapabilities.NET_CAPABILITY_INTERNET
     )
+}
+
+fun Context.isAirplaneModeEnabled(): Boolean {
+    return Settings.Global.getInt(
+        contentResolver,
+        Settings.Global.AIRPLANE_MODE_ON,
+        0,
+    ) != 0
 }

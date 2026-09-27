@@ -74,6 +74,7 @@ object NavKey {
     data class Battery(val data: MaterialComponentModel)
 
     data class InternetConnection(val data: MaterialComponentModel)
+    data class AirPlanMode(val data: MaterialComponentModel)
 
     data object CameraPreview
 
