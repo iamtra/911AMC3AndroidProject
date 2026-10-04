@@ -20,9 +20,43 @@ android {
         minSdk = 29
         targetSdk = 37
         versionCode = 1
-        versionName = "1.0"
+        versionName = "1.0.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    flavorDimensions += "environment"
+
+    productFlavors {
+        // Create development environment
+        create("dev") {
+            dimension = "environment"
+            applicationIdSuffix = ".dev"
+            versionName = "1.0.1"
+            resValue("string", "app_name", "[Dev] Android Master")
+
+            buildConfigField("String", "BASE_URL", "\"http://www.pheaktra.developer.dev.com/\"")
+        }
+
+        // Create stagging environment
+        create("uat") {
+            dimension = "environment"
+            applicationIdSuffix = ".uat"
+            versionName = "1.0.0"
+            resValue("string", "app_name", "[UAT] Android Master")
+            buildConfigField("String", "BASE_URL", "\"http://www.pheaktra.developer.uat.com/\"")
+        }
+
+        // Create production environment
+        create("prod") {
+            dimension = "environment"
+            versionName = "1.0.0"
+
+
+            resValue("string", "app_name", "Android Master")
+
+            buildConfigField("String", "BASE_URL", "\"http://10.0.2.2:3500/\"")
+        }
     }
 
     buildTypes {
@@ -45,6 +79,7 @@ android {
     buildFeatures {
         compose = true
         buildConfig = true
+        resValues = true
     }
 }
 

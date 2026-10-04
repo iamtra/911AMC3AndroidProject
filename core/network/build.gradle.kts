@@ -19,6 +19,28 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    flavorDimensions += "environment"
+
+    productFlavors {
+        // Create development environment
+        create("dev") {
+            dimension = "environment"
+            buildConfigField("String", "BASE_URL", "\"http://www.pheaktra.developer.dev.com/\"")
+        }
+
+        // Create stagging environment
+        create("uat") {
+            dimension = "environment"
+            buildConfigField("String", "BASE_URL", "\"http://www.pheaktra.developer.uat.com/\"")
+        }
+
+        // Create production environment
+        create("prod") {
+            dimension = "environment"
+            buildConfigField("String", "BASE_URL", "\"http://10.0.2.2:3500/\"")
+        }
+    }
+
     buildTypes {
         release {
             isMinifyEnabled = false
@@ -27,6 +49,10 @@ android {
                 "proguard-rules.pro"
             )
         }
+    }
+    buildFeatures {
+        buildConfig = true
+        resValues = true
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17

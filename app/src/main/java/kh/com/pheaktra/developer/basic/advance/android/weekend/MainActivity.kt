@@ -13,7 +13,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import dagger.hilt.android.AndroidEntryPoint
-import kh.com.pheaktra.developer.basic.advance.android.weekend.feature.segmentedbutton.TransactionType
 import kh.com.pheaktra.developer.basic.advance.android.weekend.navigation.BaseNavigation
 import kh.com.pheaktra.developer.basic.advance.android.weekend.receiver.NotificationClickReceiver
 import kh.com.pheaktra.developer.basic.advance.android.weekend.ui.theme.AppTheme
@@ -40,6 +39,9 @@ class MainActivity : AppCompatActivity() {
                 darkScrim = android.graphics.Color.TRANSPARENT,
             ),
         )
+
+        println("=====> ${BuildConfig.BASE_URL}")
+
         requestAccessLocalNetworkPermission()
         setContent {
             AppTheme {

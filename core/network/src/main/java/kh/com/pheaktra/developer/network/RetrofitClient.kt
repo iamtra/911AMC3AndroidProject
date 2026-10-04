@@ -40,7 +40,7 @@ object RetrofitClient {
         )
         .build()
 
-    private const val BASE_URL = "http://10.0.2.2:3500/"
+    private const val BASE_URL = BuildConfig.BASE_URL
 
     private val retrofit = Retrofit.Builder()
         .baseUrl(BASE_URL)
